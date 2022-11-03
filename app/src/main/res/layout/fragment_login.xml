@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginFragment"
+    android:background="@color/baby_blue">
+
+    <!-- _________________BACKGROUND_________________ -->
+
+    <ImageView
+        android:id="@+id/imgBubbleUp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@mipmap/bubbles_foreground"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="-50dp"
+        android:layout_marginRight="-30dp"/>
+
+    <ImageView
+        android:id="@+id/imglogo"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:background="@mipmap/login_image_foreground" />
+
+    <ImageView
+        android:id="@+id/imgSingleBubble"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="50dp"/>
+
+
+    <ImageView
+        android:id="@+id/imgSingleBubble1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="300dp"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubble2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="480dp"
+        android:layout_alignParentRight="true"/>
+
+
+    <ImageView
+        android:id="@+id/imgBubbleDown"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-30dp"
+        android:layout_marginLeft="-30dp"
+        android:layout_marginEnd="-30dp"
+        android:layout_marginBottom="-30dp"
+        android:rotation="@integer/material_motion_duration_short_1"
+        android:background="@mipmap/bubbles_foreground" />
+
+    <EditText
+        android:id="@+id/txtUsername"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="380dp"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textColorHint="@color/light_gray"
+        android:textColor="@color/editTextColor"
+        android:hint="Username" />
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="430dp"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:backgroundTint="@color/navy_blue"
+        android:textColorHint="@color/light_gray"
+        android:textColor="@color/editTextColor"
+        android:hint="Password"/>
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="500dp"
+        android:background="@drawable/rounded_button"
+        android:text="Login" />
+
+
+</RelativeLayout>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Customer.HomeFragment"
+    android:background="@color/baby_blue">
+
+    <!-- _________________BACKGROUND_________________ -->
+
+    <ImageView
+        android:id="@+id/imgBubbleUp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginRight="-10dp"
+        android:background="@mipmap/bubbles_foreground"
+        android:layout_alignParentRight="true"
+        android:alpha="0.5"/>
+
+
+
+    <ImageView
+        android:id="@+id/imgBubbleDown"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="-10dp"
+        android:layout_marginBottom="-10dp"
+        android:alpha="0.5"
+        android:background="@mipmap/bubbles_foreground"
+        android:rotation="@integer/material_motion_duration_medium_1"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubble1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="200dp"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubbleLeftTop1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubbleLeftTop2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="-20dp"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubbleLeftTop3"
+        android:layout_width="87dp"
+        android:layout_height="79dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="-20dp"
+        android:alpha="0.2"
+        android:background="@mipmap/single_bubble_image_foreground" />
+
+    <ImageView
+        android:id="@+id/imgSingleBubble3"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="250dp"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubble4"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.5"
+        android:layout_alignParentRight= "true"
+        android:layout_marginRight="-50dp"
+        android:layout_marginTop="580dp"/>
+
+    <!-- _________________TITLE_________________ -->
+
+    <TextView
+        android:id="@+id/txtCustomerDashboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="DASHBOARD"/>
+
+    <TextView
+        android:id="@+id/txtSubTittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_below="@id/txtCustomerDashboard"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="Book Now, Pay Later!"/>
+
+    <TextView
+        android:id="@+id/txtSaying"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10dp"
+        android:layout_below="@id/txtSubTittle"
+        android:layout_marginLeft="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="Quick View of your bookings"/>
+
+    <!-- _________________NOTIFICATION BELL_________________ -->
+
+    <ImageView
+        android:id="@+id/imgNotificationBell"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@mipmap/notification_bell_icon_foreground"
+        android:layout_alignParentRight= "true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"/>
+
+
+
+    <!-- _________________CALENDAR_________________ -->
+
+    <!-- calendar background -->
+
+    <ImageView
+        android:layout_below="@id/txtSaying"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/blue_grotto"
+        android:alpha="0.2"/>
+
+    <ImageView
+        android:layout_below="@id/txtSaying"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/blue_grotto"
+        android:alpha="0.5"/>
+
+    <!-- calendar background ends here-->
+
+    <CalendarView
+        android:id="@+id/calendar"
+        android:layout_below="@id/txtSaying"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:weekDayTextAppearance="@style/Theme.Laundry_App.CalenderViewWeekCustomText"
+        android:dateTextAppearance="@style/Theme.Laundry_App.CalenderViewDateCustomText">
+
+    </CalendarView>
+
+    <!-- _________________ACTIVE RESERVATION_________________ -->
+
+    <ImageView
+        android:layout_below="@id/calendar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:background="@color/white"
+        android:alpha="0.5"/>
+
+    <TextView
+        android:id="@+id/txtActiveReservation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_below="@id/calendar"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="50dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="quick view \n of active \n reservation"/>
+
+    <!-- _________________DELIVERED LAUNDRY_________________ -->
+
+    <ImageView
+        android:layout_below="@id/calendar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/white"
+        android:alpha="0.5"/>
+
+    <TextView
+        android:id="@+id/txtDeliveredLaundry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_below="@id/calendar"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="50dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="quick view \n of delivered \n laundry"/>
+
+
+</RelativeLayout>

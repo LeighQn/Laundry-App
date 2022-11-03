@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/signIn"
+        android:title="SIGN-IN"
+        android:icon="@mipmap/enter_image_foreground"/>
+
+    <item android:id="@+id/signUp"
+        android:title="SIGN UP"
+        android:icon="@mipmap/signup_image_foreground"/>
+
+</menu>

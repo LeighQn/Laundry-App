@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.MainFragments.AdminHomeFragment"
+    android:background="@color/baby_blue">
+
+    <!-- _________________BACKGROUND_________________ -->
+
+    <ImageView
+        android:id="@+id/imgBubbleUp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginRight="-10dp"
+        android:background="@mipmap/bubbles_foreground"
+        android:layout_alignParentRight="true"
+        android:alpha="0.5"/>
+
+
+
+    <ImageView
+        android:id="@+id/imgBubbleDown"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="-10dp"
+        android:layout_marginBottom="-10dp"
+        android:alpha="0.5"
+        android:background="@mipmap/bubbles_foreground"
+        android:rotation="@integer/material_motion_duration_medium_1"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubble1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="200dp"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubbleLeftTop1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubbleLeftTop2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="-20dp"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubbleLeftTop3"
+        android:layout_width="87dp"
+        android:layout_height="79dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="-20dp"
+        android:alpha="0.2"
+        android:background="@mipmap/single_bubble_image_foreground" />
+
+    <ImageView
+        android:id="@+id/imgSingleBubble3"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="250dp"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubble4"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.5"
+        android:layout_alignParentRight= "true"
+        android:layout_marginRight="-50dp"
+        android:layout_marginTop="580dp"/>
+
+    <!-- _________________TITLE_________________ -->
+
+    <TextView
+        android:id="@+id/txtAdminDashboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="DASHBOARD"/>
+
+    <TextView
+        android:id="@+id/txtAdminName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_below="@id/txtAdminDashboard"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="Welcome Back, admin!"/>
+
+    <!-- _______________________BUTTONS_______________________ -->
+
+    <!-- Bookings -->
+
+    <ImageView
+        android:id="@+id/btnBookings"
+        android:layout_width="180dp"
+        android:layout_height="120dp"
+        android:layout_below="@id/txtAdminName"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:alpha=".5"
+        android:background="@drawable/baby_blue_round_bg"
+        android:backgroundTint="@color/blue_grotto"
+        android:elevation="5dp" />
+
+    <TextView
+        android:id="@+id/txtNoOfBookings"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/txtAdminName"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="20dp"
+        android:text="NO. OF BOOKINGS"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:textColor="@color/white"
+        android:shadowColor="@color/red"
+        android:shadowRadius="10"
+        android:elevation="10dp"/>
+
+
+    <!-- Pickup -->
+    <ImageView
+        android:id="@+id/btnPickUp"
+        android:layout_width="180dp"
+        android:layout_height="120dp"
+        android:layout_below="@id/txtAdminName"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp"
+        android:alpha=".5"
+        android:background="@drawable/baby_blue_round_bg"
+        android:backgroundTint="@color/red"
+        android:elevation="5dp" />
+
+
+    <TextView
+        android:id="@+id/txtNoOfPickUp"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/txtAdminName"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="20dp"
+        android:text="NO. OF PICKUP"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:textColor="@color/white"
+        android:shadowColor="@color/yellow"
+        android:shadowRadius="5"
+        android:elevation="10dp" />
+
+    <!-- Monthly Income -->
+    <ImageView
+        android:id="@+id/btnMonthly"
+        android:layout_width="180dp"
+        android:layout_height="140dp"
+        android:layout_below="@id/btnPickUp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:alpha=".5"
+        android:background="@drawable/baby_blue_round_bg"
+        android:backgroundTint="@color/green"
+        android:elevation="5dp" />
+
+    <TextView
+        android:id="@+id/txtMonthlyIncome"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/btnPickUp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:text="TOTAL MONTHLY \n INCOME"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:textColor="@color/white"
+        android:shadowColor="@color/navy_blue"
+        android:shadowRadius="5"
+        android:elevation="10dp" />
+
+    <!-- Daily Income -->
+    <ImageView
+        android:id="@+id/btnDaily"
+        android:layout_width="180dp"
+        android:layout_height="140dp"
+        android:layout_below="@id/btnPickUp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:alpha=".5"
+        android:background="@drawable/baby_blue_round_bg"
+        android:backgroundTint="@color/yellow"
+        android:elevation="5dp" />
+
+    <TextView
+        android:id="@+id/txtDailyIncome"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/btnBookings"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:text="TOTAL DAILY \n INCOME"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:textColor="@color/white"
+        android:shadowColor="@color/navy_blue"
+        android:shadowRadius="10"
+        android:elevation="10dp" />
+
+    <!-- Filter Spinner -->
+    <!-- CHOICES: Monthly/ Daily -->
+    <Spinner
+        android:id="@+id/spinnerFilter"
+        android:layout_below="@id/btnDaily"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="300dp"
+        android:layout_height="20dp"/>
+
+    <!-- Laundry Graph Chart -->
+    <!-- LEGENDS: Bookings/ Walkin -->
+
+
+</RelativeLayout>

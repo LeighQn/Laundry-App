@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <!--DASHBOARD WILL CONTAIN RESERVATION CARD -->
+    <!--IN RESERVATION MUST HAVE FILTER (PICKUP OR WALKIN) -->
+    <item android:id="@+id/admin_dasboard"
+        android:title="Dashboard"
+        android:icon="@mipmap/dashboard_icon_foreground"/>
+
+    <item android:id="@+id/sales"
+        android:title="Sales"
+        android:icon="@mipmap/sales_icon_foreground"/>
+
+    <item android:id="@+id/record"
+        android:title="Records"
+        android:icon="@mipmap/record_icon_foreground"/>
+
+    <!--UNITS EDITABLE (LAUNDRY TYPE AND PRICE PER KG OR PACKAGE -->
+
+    <item android:id="@+id/staffs"
+        android:title="Staffs"
+        android:icon="@mipmap/staff_icon_foreground"/>
+
+    <!-- PROFILE -->
+
+    <item android:id="@+id/admin_profile"
+        android:title="Profile"
+        android:icon="@mipmap/user_icon_foreground"/>
+
+</menu>

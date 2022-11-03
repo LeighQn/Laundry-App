@@ -1,0 +1,55 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Laundry_App" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/blue_grotto</item>
+        <item name="colorPrimaryVariant">@color/navy_blue</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/blue_green</item>
+        <item name="colorSecondaryVariant">@color/navy_blue</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:itemBackground">#181818</item>
+        <item name="android:textColor">@color/editTextColor</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="colorPrimaryDark">@color/baby_blue</item>
+        <item name="colorAccent">@color/navy_blue</item>
+        <item name="windowActionBar">false</item>
+
+    </style>
+
+    <style name="Theme.Laundry_App.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Laundry_App.CalenderViewDateCustomText" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Theme.Laundry_App.CalenderViewWeekCustomText" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textColor">@color/navy_blue</item>
+    </style>
+
+    <style name="Theme.Laundry_App.CalendarViewHeaderCustomText" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+<!-- SPINNER -->
+
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+    </style>
+
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:spinnerDropDownItemStyle">@style/mySpinnerItemStyle</item>
+    </style>
+
+    <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textColor">@color/editTextColor</item>
+        <item name="backgroundTint">@color/black</item>
+    </style>
+
+</resources>
