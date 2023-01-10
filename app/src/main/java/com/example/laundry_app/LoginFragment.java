@@ -144,6 +144,7 @@ public class LoginFragment extends Fragment{
 
                     //  userId = "24";
 
+                    Global.setToken(token);
                     redirectedToAssignedRoleScreen(role, token);
 
                 }
