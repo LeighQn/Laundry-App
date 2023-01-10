@@ -23,6 +23,16 @@ public class Global extends Application {
     public static String homeIpAddress = "";
     public static String fakeApiIpAddress = "https://jsonplaceholder.typicode.com/";
 
+    public static String baseAddress = "http://192.168.254.104:8000/api/v1/";
+
+    public static Retrofit getClient(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseAddress)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        return retrofit;
+    }
+
     public static Retrofit retrofitConnect(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(myIpAddress)
