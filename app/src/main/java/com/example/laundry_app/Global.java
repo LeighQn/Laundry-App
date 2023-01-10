@@ -25,6 +25,8 @@ public class Global extends Application {
 
     public static String baseAddress = "http://192.168.254.104:8000/api/v1/";
 
+    public static String token;
+
     public static Retrofit getClient(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseAddress)
@@ -49,4 +51,12 @@ public class Global extends Application {
         return retrofit;
     }
 
+
+    public String getToken() {
+        return token;
+    }
+
+    public static void setToken(String token) {
+        Global.token = token;
+    }
 }

@@ -8,14 +8,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.laundry_app.API.INTERFACE.BookingInterface;
 import com.example.laundry_app.API.MODELCLASS.BookingModel;
 import com.example.laundry_app.API.MODELCLASS.BookingsRequest;
 import com.example.laundry_app.Global;
 import com.example.laundry_app.USERS.Customer.CustomerDashboard;
-import com.example.laundry_app.USERS.Customer.Screens.DataSetAndAdapter.CustomerBookings;
 import com.example.laundry_app.USERS.Customer.Screens.DataSetAndAdapter.CustomerBookingsAdapter;
 import com.example.laundry_app.R;
 
@@ -34,13 +32,11 @@ public class CustomerBookingsActivity extends AppCompatActivity {
 
     Button btnBackToCustomerHome;
 
-    private ArrayList<CustomerBookings> cBookingsArrayList;
-    private String[] cBookingDates;
-    private String[] cBookingPayables;
-    private String[] cBookingStatus;
+    private List<BookingModel> cBookingsArrayList;
+//    private String[] cBookingDates;
+//    private String[] cBookingPayables;
+//    private String[] cBookingStatus;
     private RecyclerView recyclerView;
-
-    private String token = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,14 +70,20 @@ public class CustomerBookingsActivity extends AppCompatActivity {
 
 
     private void cBookingDataInitialize() {
+        String token = Global.token;
         Call<BookingsRequest> request = bookingInterface.getBookings(token);
         request.enqueue(new Callback<BookingsRequest>() {
             @Override
             public void onResponse(Call<BookingsRequest> call, Response<BookingsRequest> response) {
                 BookingsRequest result = response.body();
                 // data
-                List<BookingModel> bookings = result.getBookings();
-                String message = result.getMessage();
+                if(result != null){
+                    cBookingsArrayList = result.getBookings();
+                    String message = result.getMessage();
+                }
+                else{
+                    cBookingsArrayList.clear();
+                }
             }
 
             @Override
@@ -89,28 +91,28 @@ public class CustomerBookingsActivity extends AppCompatActivity {
 
             }
         });
-        cBookingsArrayList = new ArrayList<CustomerBookings>();
-        cBookingDates = new String[]{
-                getString(R.string.date1),
-                getString(R.string.date2),
-                getString(R.string.date3),
-        };
-
-        cBookingPayables = new String[]{
-                getString(R.string.total1),
-                getString(R.string.total2),
-                getString(R.string.total3),
-        };
-
-        cBookingStatus = new String[]{
-                getString(R.string.status1),
-                getString(R.string.status2),
-                getString(R.string.status3),
-        };
-        for(int i=0; i < cBookingDates.length; i++){
-
-            CustomerBookings cBookings = new CustomerBookings(cBookingDates[i], cBookingPayables[i], cBookingStatus[i] );
-            cBookingsArrayList.add(cBookings);
-        }
+//        cBookingsArrayList = new ArrayList<CustomerBookings>();
+//        cBookingDates = new String[]{
+//                getString(R.string.date1),
+//                getString(R.string.date2),
+//                getString(R.string.date3),
+//        };
+//
+//        cBookingPayables = new String[]{
+//                getString(R.string.total1),
+//                getString(R.string.total2),
+//                getString(R.string.total3),
+//        };
+//
+//        cBookingStatus = new String[]{
+//                getString(R.string.status1),
+//                getString(R.string.status2),
+//                getString(R.string.status3),
+//        };
+//        for(int i=0; i < cBookingDates.length; i++){
+//
+//            CustomerBookings cBookings = new CustomerBookings(cBookingDates[i], cBookingPayables[i], cBookingStatus[i] );
+//            cBookingsArrayList.add(cBookings);
+//        }
     }
 }

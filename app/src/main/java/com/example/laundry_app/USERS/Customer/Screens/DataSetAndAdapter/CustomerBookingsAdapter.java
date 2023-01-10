@@ -13,17 +13,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.laundry_app.API.MODELCLASS.BookingModel;
 import com.example.laundry_app.USERS.Customer.Screens.DetailedBookingActivity;
 import com.example.laundry_app.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerBookingsAdapter extends RecyclerView.Adapter<CustomerBookingsAdapter.CustomerBookingViewHolder> {
 
     Context context;
-    ArrayList<CustomerBookings> cBookingsArrayList;
+    List<BookingModel> cBookingsArrayList;
 
-    public CustomerBookingsAdapter(Context context, ArrayList<CustomerBookings> cBookingsArrayList) {
+    public CustomerBookingsAdapter(Context context, List<BookingModel> cBookingsArrayList) {
 
         this.context = context;
         this.cBookingsArrayList = cBookingsArrayList;
@@ -41,10 +43,10 @@ public class CustomerBookingsAdapter extends RecyclerView.Adapter<CustomerBookin
     @Override
     public void onBindViewHolder(@NonNull CustomerBookingsAdapter.CustomerBookingViewHolder holder, int position) {
 
-        CustomerBookings cBookings = cBookingsArrayList.get(position);
-        holder.txtDate.setText(cBookings.cBookingDates);
-        holder.txtPayables.setText(cBookings.cBookingPayables);
-        holder.txtStatus.setText(cBookings.cBookingStatus);
+        BookingModel booking = cBookingsArrayList.get(position);
+        holder.txtDate.setText(booking.getDate());
+        holder.txtPayables.setText(booking.getTotal());
+        holder.txtStatus.setText(booking.getStatus());
 
         holder.rlCustomerBookingsItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +56,7 @@ public class CustomerBookingsAdapter extends RecyclerView.Adapter<CustomerBookin
                 // create bundle for easier call on intent.putExtras(b); --> see below
                 Bundle b = new Bundle();
                 // b.putString or b.putInt or whatever blat you want, just change the key and value
-                b.putString("reservationStatusId", cBookings.cBookingDates);
+                b.putString("reservationStatusId", booking.getDate());
                 // butangan sulod ang intent nimo
                 intent.putExtras(b);
                 context.startActivity(intent);
