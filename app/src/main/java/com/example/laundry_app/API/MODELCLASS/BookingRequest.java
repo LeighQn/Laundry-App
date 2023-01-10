@@ -1,4 +1,4 @@
-package com.example.laundry_app.API.MODELCLASS.Staff;
+package com.example.laundry_app.API.MODELCLASS;
 
 import com.example.laundry_app.API.MODELCLASS.BookingModel;
 

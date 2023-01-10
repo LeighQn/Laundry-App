@@ -2,7 +2,7 @@ package com.example.laundry_app.API.INTERFACE;
 
 import com.example.laundry_app.API.MODELCLASS.BookingModel;
 import com.example.laundry_app.API.MODELCLASS.BookingsRequest;
-import com.example.laundry_app.API.MODELCLASS.Staff.BookingRequest;
+import com.example.laundry_app.API.MODELCLASS.BookingRequest;
 
 import java.util.List;
 
