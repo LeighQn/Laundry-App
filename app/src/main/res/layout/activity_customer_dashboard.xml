@@ -4,7 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Customer.CustomerDashboard">
+    tools:context=".USERS.Customer.CustomerDashboard">
+
+    <!-- _________________NOTIFICATION_________________ -->
+    <Button
+        android:id="@+id/btn_notification_bell"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@mipmap/notification_bell_icon_foreground"
+        android:layout_alignParentRight= "true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:backgroundTint="@color/black"
+        android:visibility="gone"/>
+
+
+    <!-- _________________LOGOUT_________________ -->
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/logout_icon"
+        android:backgroundTint="@color/editTextColor"
+        android:clickable="true"
+        android:visibility="gone"/>
+
+    <!-- _________________FRAMELAYOUT_________________ -->
 
 
     <FrameLayout
@@ -13,6 +44,26 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation"
         android:layout_marginBottom="0dp" />
+
+    <!--____________________ FLOATING BUTTON ____________________-->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/btn_add_customer_laundry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="normal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        app:elevation="50dp"
+        app:borderWidth="1dp"
+        app:backgroundTint="@color/blue_green"
+        android:layout_marginBottom="80dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/add_icon"
+        android:backgroundTint="@color/navy_blue"
+        android:clickable="true"
+        android:focusable="true"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

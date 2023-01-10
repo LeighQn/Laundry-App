@@ -4,8 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.AdminDashboard">
+    tools:context=".USERS.Admin.AdminDashboard">
 
+    <!-- _________________LOGOUT_________________ -->
+
+    <Button
+        android:id="@+id/btn_logout_admin"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/logout_icon"
+        android:backgroundTint="@color/editTextColor"
+        android:clickable="true"
+        android:visibility="gone"/>
+
+    <!-- _________________NOTIFICATION_________________ -->
+    <Button
+        android:id="@+id/btn_notification_bell"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@mipmap/notification_bell_icon_foreground"
+        android:layout_alignParentRight= "true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:backgroundTint="@color/black"
+        android:visibility="gone"/>
+
+    <!-- _________________FRAMELAYOUT_________________ -->
 
     <FrameLayout
         android:id="@+id/admin_frame_layout"
@@ -33,6 +62,7 @@
         android:clickable="true"
         android:focusable="true"/>
 
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/btn_add_laundry"
@@ -51,6 +81,7 @@
         android:clickable="true"
         android:focusable="true"
         android:visibility="gone"/>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         xmlns:app="http://schemas.android.com/apk/res-auto"

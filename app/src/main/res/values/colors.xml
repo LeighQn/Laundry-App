@@ -6,10 +6,13 @@
     <color name="light_gray">#9E9E9E</color>
     <color name="navy_blue">#05445E</color>
     <color name="blue_grotto">#189AB4</color>
+    <color name="blue_grotto_light">#26B0CC</color>
     <color name="blue_green">#189AB4</color>
     <color name="baby_blue">#D4F1F4</color>
     <color name="editTextColor">#616161</color>
     <color name="red">#F60505</color>
     <color name="yellow">#FFC107</color>
     <color name="green">#4CAF50</color>
+    <color name="pastel_red">#E47B7D</color>
+    <color name="paster_green">#84C294</color>
 </resources>

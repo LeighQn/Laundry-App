@@ -1,21 +1,23 @@
 package com.example.laundry_app;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
+import android.widget.TextView;
 
-import com.example.laundry_app.Customer.CustomerDashboard;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
 
+    // ============================== COMPONENTS ============================== //
+    // ============================== COMPONENTS ============================== //
     BottomNavigationView bottomNavigationView;
+    TextView t1, t2;
+    String username, password;
 
     LoginFragment loginFragment = new LoginFragment();
     SignUpFragment signUpFragment = new SignUpFragment();
@@ -25,27 +27,60 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // ============================== INITIALIZE ============================== //
+        // ============================== INITIALIZE ============================== //
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        t1 = findViewById(R.id.txt_one);
+        t2 = findViewById(R.id.txt_TWO);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, loginFragment).commit();
 
+
+
+        // ============================== FUNCTIONS ============================== //
+        // ============================== FUNCTIONS ============================== //
+
+        // ============================== Home Visibility ============================== //
+        getSupportFragmentManager().beginTransaction().replace(R.id.container_main, loginFragment).commit();
+
+
+        // ============================== Fragment View Changing ============================== //
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch(item.getItemId()){
 
                     case R.id.signIn:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, loginFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container_main, loginFragment).commit();
                         return true;
 
                     case R.id.signUp:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, signUpFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container_main, signUpFragment).commit();
                         return true;
                 }
 
                 return false;
             }
         });
+
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        LoginFragment loginFragment = new LoginFragment();
+        fragmentTransaction.add(R.id.container_main, loginFragment);
+        fragmentTransaction.commit();
+
+    }
+
+
+    // ============================== METHODS ============================== //
+    // ============================== METHODS ============================== //
+
+    // String receiver from other Activity
+    public void receiver(String s1, String s2){
+        username = s1;
+        password = s2;
+        t1.setText(username);
+        t2.setText(password);
 
     }
 }

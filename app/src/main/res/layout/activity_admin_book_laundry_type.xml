@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".USERS.Admin.Screens.AdminBookLaundryTypeActivity"
+    android:background="@color/baby_blue">
+    <!-- _________________BACKGROUND_________________ -->
+
+    <ImageView
+        android:id="@+id/img_bubble_up"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginRight="-10dp"
+        android:background="@mipmap/bubbles_foreground"
+        android:layout_alignParentRight="true"
+        android:alpha="0.5"/>
+
+
+
+    <ImageView
+        android:id="@+id/img_bubble_down"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="-10dp"
+        android:layout_marginBottom="-10dp"
+        android:alpha="0.5"
+        android:background="@mipmap/bubbles_foreground"
+        android:rotation="@integer/material_motion_duration_medium_1"/>
+
+    <ImageView
+        android:id="@+id/img_single1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="200dp"/>
+
+    <ImageView
+        android:id="@+id/img_single_top"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <ImageView
+        android:id="@+id/img_single_top2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="-20dp"/>
+
+    <ImageView
+        android:id="@+id/img_single_top3"
+        android:layout_width="87dp"
+        android:layout_height="79dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="-20dp"
+        android:alpha="0.2"
+        android:background="@mipmap/single_bubble_image_foreground" />
+
+    <ImageView
+        android:id="@+id/img_single_center"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="250dp"/>
+
+    <ImageView
+        android:id="@+id/img_single_bottom"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.5"
+        android:layout_alignParentRight= "true"
+        android:layout_marginRight="-50dp"
+        android:layout_marginTop="580dp"/>
+
+    <ImageView
+        android:layout_width="350dp"
+        android:layout_height="580dp"
+        android:layout_below="@id/txt_quote"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:alpha="0.5"
+        android:background="@color/white" />
+
+
+    <!-- _________________TITLE_________________ -->
+
+    <TextView
+        android:id="@+id/txt_Title_Booking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="BOOK A LAUNDRY"/>
+
+    <TextView
+        android:id="@+id/txt_quote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_below="@id/txt_Title_Booking"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="Book Now, Pay Later!"/>
+
+    <!-- _________________BODY/ CONTENT_________________ -->
+
+    <TextView
+        android:id="@+id/txt_regular_clothes"
+        android:layout_below="@id/txt_quote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:text="Regular Clothes:" />
+
+    <TextView
+        android:id="@+id/etxt_regular_clothes_admin"
+        android:layout_below="@id/txt_quote"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:layout_marginRight="100dp"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@color/editTextColor"
+        android:textColorHint="@color/editTextColor"
+        android:text="0" />
+
+    <Button
+        android:id="@+id/btn_add_regClothes_admin"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/secondary_rounded_button"
+        android:layout_marginTop="125dp"
+        android:layout_marginLeft="220dp"
+        android:textColor="@color/black"
+        android:text="+"/>
+
+
+    <Button
+        android:id="@+id/btn_minus_regClothes_admin"
+        android:layout_marginTop="125dp"
+        android:layout_marginLeft="310dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:textColor="@color/black"
+        android:background="@drawable/secondary_rounded_button"
+        android:text="-"/>
+
+    <TextView
+        android:id="@+id/txt_divider_admin"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_quote"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/navy_blue"
+        android:ems="10"
+        android:inputType="text"
+        android:text="____________________________________________"
+        android:textColor="@color/baby_blue"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/txt_all_white_admin"
+        android:layout_below="@id/txt_regular_clothes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:text="All White:" />
+
+    <TextView
+        android:id="@+id/etxt_all_white_admin"
+        android:layout_below="@id/etxt_regular_clothes_admin"
+        android:layout_width="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="100dp"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:inputType="text"
+        android:textColorHint="@color/editTextColor"
+        android:textColor="@color/editTextColor"
+        android:text="0" />
+
+    <Button
+        android:id="@+id/btn_add_white_admin"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/secondary_rounded_button"
+        android:layout_below="@id/btn_add_regClothes_admin"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="220dp"
+        android:textColor="@color/black"
+        android:text="+"/>
+
+    <Button
+        android:id="@+id/btn_minus_white_admin"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="310dp"
+        android:layout_below="@id/btn_add_regClothes_admin"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:textColor="@color/black"
+        android:background="@drawable/secondary_rounded_button"
+        android:text="-"/>
+
+
+    <TextView
+        android:id="@+id/txt_divider1_admin"
+        android:layout_below="@id/txt_all_white_admin"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textColor="@color/baby_blue"
+        android:text="____________________________________________" />
+
+    <TextView
+        android:id="@+id/txt_maong_admin"
+        android:layout_below="@id/txt_all_white_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:text="Maong:" />
+
+    <TextView
+        android:id="@+id/etxt_maong_admin"
+        android:layout_below="@id/etxt_all_white_admin"
+        android:layout_width="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="100dp"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColorHint="@color/editTextColor"
+        android:textColor="@color/editTextColor"
+        android:text="0" />
+
+    <Button
+        android:id="@+id/btn_add_maong_admin"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/secondary_rounded_button"
+        android:layout_below="@id/btn_add_white_admin"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="220dp"
+        android:textColor="@color/black"
+        android:text="+"/>
+
+    <Button
+        android:id="@+id/btn_minus_maong_admin"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="310dp"
+        android:layout_below="@id/btn_add_white_admin"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:textColor="@color/black"
+        android:background="@drawable/secondary_rounded_button"
+        android:text="-"/>
+
+    <TextView
+        android:id="@+id/txt_divider2_admin"
+        android:layout_below="@id/txt_maong_admin"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textColor="@color/baby_blue"
+        android:text="____________________________________________" />
+
+    <TextView
+        android:id="@+id/txt_bedsheet_admin"
+        android:layout_below="@id/txt_maong_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="15dp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:text="Bedsheet, Pillowcase," />
+
+    <TextView
+        android:id="@+id/txt_towel_admin"
+        android:layout_below="@id/txt_bedsheet_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="15dp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:text="Towel, Curtain," />
+
+    <TextView
+        android:id="@+id/txt_table_admin"
+        android:layout_below="@id/txt_towel_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="15dp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:text="Table cloth, Blanket:" />
+
+    <TextView
+        android:id="@+id/etxt_bedsheet_admin"
+        android:layout_below="@id/etxt_all_white_admin"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:layout_marginRight="100dp"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColorHint="@color/editTextColor"
+        android:textColor="@color/editTextColor"
+        android:text="0" />
+
+    <Button
+        android:id="@+id/btn_add_bedsheet_admin"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/secondary_rounded_button"
+        android:layout_below="@id/btn_add_maong_admin"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="220dp"
+        android:textColor="@color/black"
+        android:text="+"/>
+
+    <Button
+        android:id="@+id/btn_minus_bedsheet_admin"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="310dp"
+        android:layout_below="@id/btn_add_maong_admin"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:textColor="@color/black"
+        android:background="@drawable/secondary_rounded_button"
+        android:text="-"/>
+
+    <TextView
+        android:id="@+id/txt_divider3_admin"
+        android:layout_below="@id/txt_all_white_admin"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textColor="@color/baby_blue"
+        android:text="____________________________________________" />
+
+    <TextView
+        android:id="@+id/txt_comforter_admin"
+        android:layout_below="@id/txt_table_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:text="Comforter:" />
+
+    <TextView
+        android:id="@+id/etxt_comforter_admin"
+        android:layout_below="@id/txt_table_admin"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColorHint="@color/editTextColor"
+        android:textColor="@color/editTextColor"
+        android:text="0" />
+
+    <Button
+        android:id="@+id/btn_add_comforter_admin"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/secondary_rounded_button"
+        android:layout_below="@id/btn_add_bedsheet_admin"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="220dp"
+        android:textColor="@color/black"
+        android:text="+"/>
+
+    <Button
+        android:id="@+id/btn_minus_comforter_admin"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="310dp"
+        android:layout_below="@id/btn_add_bedsheet_admin"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:textColor="@color/black"
+        android:background="@drawable/secondary_rounded_button"
+        android:text="-"/>
+
+    <TextView
+        android:id="@+id/txt_divider4_admin"
+        android:layout_below="@id/txt_comforter_admin"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textColor="@color/baby_blue"
+        android:text="____________________________________________" />
+
+    <TextView
+        android:id="@+id/txt_deliver_fee_admin"
+        android:layout_below="@id/txt_divider4_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:text="Delivery Fee:" />
+
+    <TextView
+        android:id="@+id/etxt_deliver_fee_admin"
+        android:layout_below="@id/txt_divider4_admin"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColorHint="@color/editTextColor"
+        android:text="0" />
+
+
+    <!-- RETURN TO HOME BOOKING-->
+
+    <Button
+        android:id="@+id/btn_book_activity_home_admin"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:textSize="18dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/back_icon"
+        android:backgroundTint="@color/editTextColor" />
+
+
+    <!-- MUST CHANGE TO CONFIRM BOOKING-->
+    <!-- MUST REMOVE-->
+
+    <Button
+        android:id="@+id/btn_to_okay_booking_admin"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/rounded_button"
+        android:text="OKAY" />
+
+
+
+
+</RelativeLayout>

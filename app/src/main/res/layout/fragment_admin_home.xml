@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.MainFragments.AdminHomeFragment"
+    tools:context=".USERS.Admin.MainFragments.AdminHomeFragment"
     android:background="@color/baby_blue">
 
     <!-- _________________BACKGROUND_________________ -->
@@ -99,7 +99,7 @@
         android:text="DASHBOARD"/>
 
     <TextView
-        android:id="@+id/txtAdminName"
+        android:id="@+id/txt_admin_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15dp"
@@ -115,138 +115,266 @@
     <!-- Bookings -->
 
     <ImageView
-        android:id="@+id/btnBookings"
+        android:id="@+id/btn_number_of_bookings"
         android:layout_width="180dp"
         android:layout_height="120dp"
-        android:layout_below="@id/txtAdminName"
+        android:layout_below="@id/txt_admin_name"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="50dp"
         android:alpha=".5"
         android:background="@drawable/baby_blue_round_bg"
         android:backgroundTint="@color/blue_grotto"
         android:elevation="5dp" />
 
     <TextView
-        android:id="@+id/txtNoOfBookings"
+        android:id="@+id/txt_number_of_bookings"
         android:layout_width="180dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/txtAdminName"
-        android:layout_marginTop="60dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/txt_admin_name"
+        android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"
         android:text="NO. OF BOOKINGS"
         android:textAlignment="center"
         android:textStyle="bold"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textColor="@color/white"
         android:shadowColor="@color/red"
+        android:shadowRadius="5"
+        android:elevation="10dp"/>
+
+    <TextView
+        android:id="@+id/txt_display_number_of_bookings"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/txt_number_of_bookings"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="36sp"
+        android:textColor="@color/white"
         android:shadowRadius="10"
         android:elevation="10dp"/>
 
 
     <!-- Pickup -->
+
     <ImageView
-        android:id="@+id/btnPickUp"
+        android:id="@+id/btn_number_of_pickup"
         android:layout_width="180dp"
         android:layout_height="120dp"
-        android:layout_below="@id/txtAdminName"
-        android:layout_alignParentRight="true"
+        android:layout_below="@id/txt_admin_name"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_alignParentRight="true"
         android:alpha=".5"
         android:background="@drawable/baby_blue_round_bg"
         android:backgroundTint="@color/red"
         android:elevation="5dp" />
 
-
     <TextView
-        android:id="@+id/txtNoOfPickUp"
+        android:id="@+id/txt_number_of_pickup"
         android:layout_width="180dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/txtAdminName"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="60dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/txt_admin_name"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
-        android:text="NO. OF PICKUP"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        android:textColor="@color/white"
+        android:layout_alignParentRight="true"
+        android:elevation="10dp"
         android:shadowColor="@color/yellow"
         android:shadowRadius="5"
-        android:elevation="10dp" />
+        android:text="NO. OF PICKUP"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txt_display_number_of_pickup"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/txt_number_of_pickup"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="36sp"
+        android:textColor="@color/white"
+        android:shadowRadius="10"
+        android:elevation="10dp"/>
+
+    <!-- Daily Income -->
+
+    <ImageView
+        android:id="@+id/btn_total_of_daily_booking"
+        android:layout_width="180dp"
+        android:layout_height="120dp"
+        android:layout_below="@id/btn_number_of_bookings"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:alpha=".5"
+        android:background="@drawable/baby_blue_round_bg"
+        android:backgroundTint="@color/yellow"
+        android:elevation="5dp" />
+
+
+    <TextView
+        android:id="@+id/txt_total_of_daily_booking"
+        android:layout_width="160dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/txt_number_of_bookings"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="30dp"
+        android:elevation="10dp"
+        android:shadowColor="@color/black"
+        android:shadowRadius="5"
+        android:text="DAILY INCOME"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txt_display_total_of_daily_booking"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/txt_total_of_daily_booking"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="36sp"
+        android:textColor="@color/white"
+        android:shadowColor="@color/black"
+        android:shadowRadius="5"
+        android:elevation="10dp"/>
 
     <!-- Monthly Income -->
+
+
     <ImageView
         android:id="@+id/btnMonthly"
         android:layout_width="180dp"
-        android:layout_height="140dp"
-        android:layout_below="@id/btnPickUp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
+        android:layout_height="120dp"
+        android:layout_below="@id/btn_number_of_pickup"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
         android:alpha=".5"
         android:background="@drawable/baby_blue_round_bg"
         android:backgroundTint="@color/green"
         android:elevation="5dp" />
 
     <TextView
-        android:id="@+id/txtMonthlyIncome"
-        android:layout_width="180dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/btnPickUp"
+        android:id="@+id/txt_monthly_income"
+        android:layout_width="160dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/txt_number_of_pickup"
+        android:layout_marginTop="120dp"
+        android:layout_marginRight="30dp"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="20dp"
-        android:text="TOTAL MONTHLY \n INCOME"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        android:textColor="@color/white"
+        android:elevation="10dp"
         android:shadowColor="@color/navy_blue"
         android:shadowRadius="5"
-        android:elevation="10dp" />
-
-    <!-- Daily Income -->
-    <ImageView
-        android:id="@+id/btnDaily"
-        android:layout_width="180dp"
-        android:layout_height="140dp"
-        android:layout_below="@id/btnPickUp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:alpha=".5"
-        android:background="@drawable/baby_blue_round_bg"
-        android:backgroundTint="@color/yellow"
-        android:elevation="5dp" />
+        android:text="MONTHLY INCOME"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/txtDailyIncome"
+        android:id="@+id/txt_display_monthly_income"
         android:layout_width="180dp"
         android:layout_height="50dp"
-        android:layout_below="@id/btnBookings"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"
-        android:text="TOTAL DAILY \n INCOME"
+        android:layout_below="@id/txt_total_of_daily_booking"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:text="0"
         android:textAlignment="center"
         android:textStyle="bold"
-        android:textSize="18dp"
+        android:textSize="36sp"
         android:textColor="@color/white"
-        android:shadowColor="@color/navy_blue"
-        android:shadowRadius="10"
-        android:elevation="10dp" />
+        android:shadowColor="@color/black"
+        android:shadowRadius="5"
+        android:elevation="10dp"/>
 
-    <!-- Filter Spinner -->
-    <!-- CHOICES: Monthly/ Daily -->
-    <Spinner
-        android:id="@+id/spinnerFilter"
-        android:layout_below="@id/btnDaily"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_width="300dp"
-        android:layout_height="20dp"/>
-
+    <!---->
     <!-- Laundry Graph Chart -->
     <!-- LEGENDS: Bookings/ Walkin -->
 
+    <TextView
+        android:id="@+id/bar_chart_title"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_total_of_daily_booking"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="SALES"/>
+
+    <TextView
+        android:id="@+id/bar_chart_start_date"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_total_of_daily_booking"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="100dp"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="Jan 09, 2023"/>
+
+    <TextView
+        android:id="@+id/bar_to"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_total_of_daily_booking"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="180dp"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="to"/>
+
+    <TextView
+        android:id="@+id/bar_chart_end_date"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_total_of_daily_booking"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="200dp"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="Jan 15, 2023"/>
+
+
+    <ImageView
+        android:layout_width="380dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/bar_chart_title"
+        android:layout_marginTop="20dp"
+        android:background="@color/light_gray"
+        android:alpha="0.3"
+        />
+
+
+    <!--__________________GRAPH__________________-->
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/bar_chart"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/bar_chart_title"
+        android:layout_marginTop="25dp"/>
 
 </RelativeLayout>

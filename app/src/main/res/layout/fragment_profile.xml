@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -93,147 +94,173 @@
 
     <!-- _________________TITLE_________________ -->
 
+    <Button
+        android:id="@+id/btn_to_home_profile_customer"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/back_icon"
+        android:backgroundTint="@color/editTextColor"/>
+
     <TextView
-        android:id="@+id/txtMyReservation"
+        android:id="@+id/txt_customer_profile_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="50dp"
         android:textSize="20dp"
         android:textStyle="bold"
         android:textColor="@color/editTextColor"
         android:text="PROFILE"/>
 
 
-    <!-- _________________NOTIFICATION BELL_________________ -->
-
-    <ImageView
-        android:id="@+id/imgNotificationBell"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="@mipmap/notification_bell_icon_foreground"
-        android:layout_alignParentRight= "true"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"/>
-
     <!-- _________________PROFILE PICTURE_________________ -->
 
     <ImageView
-        android:id="@+id/imgProfilePic"
+        android:id="@+id/image_profile_customer"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:background="@mipmap/user_icon_foreground" />
+        android:layout_marginTop="80dp"
+        android:src="@drawable/justine"
+        android:clickable="true"
+        />
+
+
 
     <!-- _________________TEXT FIELDS_________________ -->
 
-
     <TextView
-        android:id="@+id/txtFirstName"
-        android:layout_below="@id/imgProfilePic"
-        android:layout_width="300dp"
+        android:id="@+id/txt_title_customer_name"
+        android:layout_below="@id/image_profile_customer"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="50dp"
         android:ems="10"
         android:backgroundTint="@color/navy_blue"
-        android:textSize="20dp"
+        android:textSize="18sp"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:textColorHint="@color/editTextColor"
+        android:hint="Name:"/>
+
+    <TextView
+        android:id="@+id/txt_customer_name"
+        android:layout_below="@id/image_profile_customer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="150dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="18sp"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:hint="First Name"
+        android:text="Justine Leyson"/>
+
+
+    <TextView
+        android:id="@+id/txt_title_username"
+        android:layout_below="@id/txt_customer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="18sp"
         android:inputType="text"
         android:textColor="@color/editTextColor"
-        android:text="First Name" />
+        android:textColorHint="@color/editTextColor"
+        android:hint="Username:" />
 
     <TextView
-        android:id="@+id/txtMiddleName"
-        android:layout_below="@id/txtFirstName"
-        android:layout_width="300dp"
+        android:id="@+id/txt_customer_username"
+        android:layout_below="@id/txt_customer_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="150dp"
+        android:ems="10"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/navy_blue"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:inputType="text"
+        android:hint="Username"
+        android:text="just1"/>
+
+    <TextView
+        android:id="@+id/txt_title_customer_email"
+        android:layout_below="@id/txt_customer_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginLeft="50dp"
         android:ems="10"
         android:backgroundTint="@color/navy_blue"
-        android:textSize="20dp"
+        android:textSize="18sp"
         android:inputType="text"
         android:textColor="@color/editTextColor"
-        android:text="Middle Name" />
+        android:textColorHint="@color/editTextColor"
+        android:hint="Phone:" />
+
 
     <TextView
-        android:id="@+id/txtLastName"
-        android:layout_below="@id/txtMiddleName"
-        android:layout_width="300dp"
+        android:id="@+id/txt_customer_phone"
+        android:layout_below="@id/txt_customer_username"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="150dp"
+        android:textSize="18sp"
+        android:ems="10"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/navy_blue"
+        android:textColor="@color/black"
+        android:hint="Email Address"
+        android:text="09154584569"/>
+
+    <TextView
+        android:id="@+id/txt_title_street"
+        android:layout_below="@id/txt_customer_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginLeft="50dp"
         android:ems="10"
         android:backgroundTint="@color/navy_blue"
-        android:textSize="20dp"
+        android:textSize="18sp"
         android:inputType="text"
         android:textColor="@color/editTextColor"
-        android:text="Last Name" />
+        android:textColorHint="@color/editTextColor"
+        android:hint="Address:" />
 
     <TextView
-        android:id="@+id/txtUsername"
-        android:layout_below="@id/txtLastName"
-        android:layout_width="300dp"
+        android:id="@+id/txt_customer_address"
+        android:layout_below="@id/txt_title_customer_email"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="150dp"
+        android:textSize="18sp"
         android:ems="10"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/navy_blue"
-        android:textColor="@color/editTextColor"
-        android:textSize="20dp"
-        android:inputType="text"
-        android:text="Username" />
+        android:textColor="@color/black"
+        android:hint="Barangay"
+        android:text="Balangay 2"/>
 
-
-    <TextView
-        android:id="@+id/txtEmailAddress"
-        android:layout_below="@id/txtUsername"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:textSize="20dp"
-        android:ems="10"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/navy_blue"
-        android:textColor="@color/editTextColor"
-        android:text="Email Address"/>
-
-    <TextView
-        android:id="@+id/txtStreet"
-        android:layout_below="@id/txtEmailAddress"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:textSize="20dp"
-        android:ems="10"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/navy_blue"
-        android:textColor="@color/editTextColor"
-        android:text="Barangay"/>
-
-    <TextView
-        android:id="@+id/txtBarangay"
-        android:layout_below="@id/txtStreet"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:textSize="20dp"
-        android:ems="10"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/navy_blue"
-        android:textColor="@color/editTextColor"
-        android:text="Street"/>
 
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btn_update_customer_profile"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:textSize="18dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/txtBarangay"
-        android:layout_marginTop="50dp"
+        android:layout_below="@id/txt_customer_address"
+        android:layout_marginTop="180dp"
         android:background="@drawable/rounded_button"
         android:text="UPDATE" />
 

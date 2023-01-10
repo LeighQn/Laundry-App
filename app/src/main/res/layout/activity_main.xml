@@ -7,10 +7,27 @@
     tools:context=".MainActivity">
 
     <FrameLayout
-        android:id="@+id/container"
+        android:id="@+id/container_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation"/>
+
+    <TextView
+        android:id="@+id/txt_one"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/txt_TWO"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
+        android:layout_marginLeft="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

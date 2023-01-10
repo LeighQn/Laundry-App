@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rl_customer_status_item"
+    android:id="@+id/rl_customer_sales_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="4dp"
@@ -9,22 +9,29 @@
     android:padding="8dp">
 
     <TextView
-        android:id="@+id/txtTitle"
+        android:id="@+id/txt_date_admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
         android:textColor="@color/black"
         android:textSize="12dp"
-        android:text="TITLE"/>
+        android:text="Date"/>
 
     <TextView
-        android:id="@+id/txtDescription"
+        android:id="@+id/txt_customer_name_admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/txtTitle"
         android:textSize="12dp"
-        android:background="@color/navy_blue"
+        android:textColor="@color/black"
+        android:layout_marginLeft="150dp"
+        android:text="Payables"/>
+
+    <TextView
+        android:id="@+id/txt_payables_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="300dp"
+        android:textSize="12dp"
         android:textColor="@color/black"
         android:text="Descripton"/>
 

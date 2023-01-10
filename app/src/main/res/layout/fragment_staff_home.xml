@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".USERS.Staff.MainFragments.StaffHomeFragment"
+    android:background="@color/baby_blue">
+
+    <!-- _________________BACKGROUND_________________ -->
+
+    <ImageView
+        android:id="@+id/imgBubbleUp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginRight="-10dp"
+        android:background="@mipmap/bubbles_foreground"
+        android:layout_alignParentRight="true"
+        android:alpha="0.5"/>
+
+
+
+    <ImageView
+        android:id="@+id/imgBubbleDown"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="-10dp"
+        android:layout_marginBottom="-10dp"
+        android:alpha="0.5"
+        android:background="@mipmap/bubbles_foreground"
+        android:rotation="@integer/material_motion_duration_medium_1"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubble1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="200dp"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubbleLeftTop1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubbleLeftTop2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="-20dp"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubbleLeftTop3"
+        android:layout_width="87dp"
+        android:layout_height="79dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="-20dp"
+        android:alpha="0.2"
+        android:background="@mipmap/single_bubble_image_foreground" />
+
+    <ImageView
+        android:id="@+id/imgSingleBubble3"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="250dp"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubble4"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.5"
+        android:layout_alignParentRight= "true"
+        android:layout_marginRight="-50dp"
+        android:layout_marginTop="580dp"/>
+
+    <!-- _________________TITLE_________________ -->
+
+    <TextView
+        android:id="@+id/txtAdminDashboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="DASHBOARD"/>
+
+    <TextView
+        android:id="@+id/txt_admin_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_below="@id/txtAdminDashboard"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="Welcome Back"/>
+
+    <!-- _______________________BUTTONS_______________________ -->
+
+    <!-- Pickup -->
+
+    <ImageView
+        android:id="@+id/btn_number_of_pickup"
+        android:layout_width="400dp"
+        android:layout_height="120dp"
+        android:layout_below="@id/txt_admin_name"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:alpha=".5"
+        android:background="@drawable/baby_blue_round_bg"
+        android:backgroundTint="@color/red"
+        android:elevation="5dp" />
+
+    <TextView
+        android:id="@+id/txt_number_of_delivery"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_below="@id/txt_admin_name"
+        android:layout_marginTop="70dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:elevation="10dp"
+        android:shadowColor="@color/red"
+        android:shadowRadius="5"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:text="NO. OF DELIVERY"/>
+
+
+    <TextView
+        android:id="@+id/txt_display_number_of_delivery"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/txt_number_of_delivery"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="40dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="36sp"
+        android:textColor="@color/white"
+        android:shadowRadius="10"
+        android:elevation="10dp"/>
+
+
+    <ImageView
+        android:id="@+id/img_pick_up_icon"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/out_for_delivery_icon_foreground"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/txt_admin_name"
+        android:elevation="10dp"/>
+
+
+    <!-- Monthly Income -->
+
+    <ImageView
+        android:id="@+id/img_monthly"
+        android:layout_width="400dp"
+        android:layout_height="120dp"
+        android:layout_below="@id/btn_number_of_pickup"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:alpha=".5"
+        android:background="@drawable/baby_blue_round_bg"
+        android:backgroundTint="@color/green"
+        android:elevation="5dp" />
+
+    <TextView
+        android:id="@+id/txt_monthly_income"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_below="@id/txt_display_number_of_delivery"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:elevation="10dp"
+        android:shadowColor="@color/black"
+        android:shadowRadius="5"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:text="NO. OF DELIVERED"/>
+
+    <TextView
+        android:id="@+id/txt_display_delivered"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="40dp"
+        android:layout_below="@id/txt_monthly_income"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="36sp"
+        android:textColor="@color/white"
+        android:shadowColor="@color/black"
+        android:shadowRadius="5"
+        android:elevation="10dp"
+        android:text="0"/>
+
+    <ImageView
+        android:id="@+id/img_delivered_icon"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/delivered_icon_foreground"
+        android:layout_marginTop="-15dp"
+        android:layout_marginLeft="-10dp"
+        android:layout_below="@id/img_pick_up_icon"
+        android:alpha="0.85"
+        android:elevation="10dp"/>
+
+
+</RelativeLayout>

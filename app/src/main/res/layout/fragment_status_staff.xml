@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".USERS.Staff.MainFragments.StaffStatusFragment"
+    android:background="@color/baby_blue">
+
+    <!-- _________________BACKGROUND_________________ -->
+
+    <ImageView
+        android:id="@+id/imgBubbleUp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginRight="-10dp"
+        android:background="@mipmap/bubbles_foreground"
+        android:layout_alignParentRight="true"
+        android:alpha="0.5"/>
+
+
+
+    <ImageView
+        android:id="@+id/imgBubbleDown"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="-10dp"
+        android:layout_marginBottom="-10dp"
+        android:alpha="0.5"
+        android:background="@mipmap/bubbles_foreground"
+        android:rotation="@integer/material_motion_duration_medium_1"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubble1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="200dp"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubbleLeftTop1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubbleLeftTop2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="-20dp"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubbleLeftTop3"
+        android:layout_width="87dp"
+        android:layout_height="79dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="-20dp"
+        android:alpha="0.2"
+        android:background="@mipmap/single_bubble_image_foreground" />
+
+    <ImageView
+        android:id="@+id/imgSingleBubble3"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="250dp"/>
+
+    <ImageView
+        android:id="@+id/imgSingleBubble4"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.5"
+        android:layout_alignParentRight= "true"
+        android:layout_marginRight="-50dp"
+        android:layout_marginTop="580dp"/>
+
+    <!--___________________CONTENTS___________________-->
+
+    <!--__________________TITLE__________________-->
+    <TextView
+        android:id="@+id/txt_out_for_delivery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="12dp"
+        android:textColor="@color/editTextColor"
+        android:textSize="20sp"
+        android:text="OUT FOR DELIVERIES"/>
+
+    <!--__________________SPINNER__________________-->
+    <Spinner
+        android:id="@+id/spinner_out_for_delivery"
+        android:layout_below="@+id/txt_out_for_delivery"
+        android:layout_marginTop="24dp"
+        android:layout_width="250dp"
+        android:layout_marginLeft="12dp"
+        android:layout_height="20dp"
+        android:drawSelectorOnTop="true"
+        android:theme="@style/mySpinnerItemStyle"
+        android:entries="@array/sale_category"
+        android:elevation="10dp"/>
+
+    <ImageView
+        android:layout_below="@id/txt_out_for_delivery"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="12dp"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:background="@drawable/soft_rounded_with_bg_volor"
+        android:backgroundTint="@color/blue_grotto"/>
+
+    <ImageView
+        android:id="@+id/img_choose_spinner_icon"
+        android:layout_below="@id/txt_out_for_delivery"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="220dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/ic_baseline_expand_more_24"
+        android:backgroundTint="@color/white"/>
+
+    <!-- _________________RECYCLERVIEW VIEW_________________ -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_staff_status"
+        android:layout_below="@id/spinner_out_for_delivery"
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"/>
+
+</RelativeLayout>

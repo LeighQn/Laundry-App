@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".USERS.Customer.Screens.DetailedDeliveredActivity"
+    android:background="@color/baby_blue">
+
+    <!-- _________________BACKGROUND_________________ -->
+
+    <ImageView
+        android:id="@+id/img_bubble_up"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginRight="-10dp"
+        android:background="@mipmap/bubbles_foreground"
+        android:layout_alignParentRight="true"
+        android:alpha="0.5"/>
+
+
+
+    <ImageView
+        android:id="@+id/img_bubble_down"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="-10dp"
+        android:layout_marginBottom="-10dp"
+        android:alpha="0.5"
+        android:background="@mipmap/bubbles_foreground"
+        android:rotation="@integer/material_motion_duration_medium_1"/>
+
+    <ImageView
+        android:id="@+id/img_single1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="200dp"/>
+
+    <ImageView
+        android:id="@+id/img_single_top"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <ImageView
+        android:id="@+id/img_single_top2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="-20dp"/>
+
+    <ImageView
+        android:id="@+id/img_single_top3"
+        android:layout_width="87dp"
+        android:layout_height="79dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="-20dp"
+        android:alpha="0.2"
+        android:background="@mipmap/single_bubble_image_foreground" />
+
+    <ImageView
+        android:id="@+id/img_bubble"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="250dp"/>
+
+    <ImageView
+        android:id="@+id/img_bubble4"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.5"
+        android:layout_alignParentRight= "true"
+        android:layout_marginRight="-50dp"
+        android:layout_marginTop="580dp"/>
+
+    <ImageView
+        android:layout_width="350dp"
+        android:layout_height="580dp"
+        android:layout_below="@id/txt_thank_you_message"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:alpha="0.5"
+        android:background="@color/white" />
+
+    <!-- _________________TITLE_________________ -->
+
+    <TextView
+        android:id="@+id/txt_customer_display_detailed_delivered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="BOOKING DETAIL"/>
+
+    <TextView
+        android:id="@+id/txt_thank_you_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_below="@id/txt_customer_display_detailed_delivered"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="Thank you for trust us!"/>
+
+    <!-- RETURN TO HOME-->
+
+    <Button
+        android:id="@+id/btn_customer_delivered_screen"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:textSize="18dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/back_icon"
+        android:backgroundTint="@color/editTextColor" />
+
+    <!--____________________ BODY ____________________-->
+
+    <TextView
+        android:id="@+id/txt_date_detailed_delivered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="80dp"
+        android:layout_below="@id/txt_thank_you_message"
+        android:textColor="@color/editTextColor"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:text="Date:"/>
+
+    <TextView
+        android:id="@+id/txt_weight_detailed_delivered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/txt_date_detailed_delivered"
+        android:textColor="@color/editTextColor"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:text="Weight:"/>
+
+    <TextView
+        android:id="@+id/txt_total_price_detailed_delivered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/txt_weight_detailed_delivered"
+        android:textColor="@color/editTextColor"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:text="Total Price:"/>
+
+    <TextView
+        android:id="@+id/txt_total_status_detailed_delivered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/txt_total_price_detailed_delivered"
+        android:textColor="@color/editTextColor"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:text="Status:"/>
+
+</RelativeLayout>

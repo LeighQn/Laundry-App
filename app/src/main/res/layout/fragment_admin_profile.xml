@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -104,23 +105,26 @@
         android:textColor="@color/editTextColor"
         android:text="PROFILE"/>
 
+
     <!-- _________________PROFILE PICTURE_________________ -->
 
     <ImageView
-        android:id="@+id/imgProfilePic"
+        android:id="@+id/image_profile"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:background="@mipmap/user_icon_foreground" />
+        android:layout_marginTop="80dp"
+        android:src="@drawable/justine"
+        />
+
+
 
     <!-- _________________TEXT FIELDS_________________ -->
 
-
     <TextView
-        android:id="@+id/txtFirstName"
-        android:layout_below="@id/imgProfilePic"
-        android:layout_width="300dp"
+        android:id="@+id/txt_title_firstname"
+        android:layout_below="@id/image_profile"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="50dp"
@@ -128,13 +132,29 @@
         android:backgroundTint="@color/navy_blue"
         android:textSize="20dp"
         android:inputType="text"
-        android:textColor="@color/editTextColor"
-        android:text="First Name" />
+        android:textColor="@color/black"
+        android:textColorHint="@color/editTextColor"
+        android:hint="FirstName:"/>
 
     <TextView
-        android:id="@+id/txtMiddleName"
-        android:layout_below="@id/txtFirstName"
-        android:layout_width="300dp"
+        android:id="@+id/txt_firstname"
+        android:layout_below="@id/image_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="200dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:hint="First Name"
+        android:text="Justine"/>
+
+    <TextView
+        android:id="@+id/txt__title_middlename"
+        android:layout_below="@id/txt_firstname"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="50dp"
@@ -143,12 +163,28 @@
         android:textSize="20dp"
         android:inputType="text"
         android:textColor="@color/editTextColor"
-        android:text="Middle Name" />
+        android:textColorHint="@color/editTextColor"
+        android:hint="Middle Name:" />
 
     <TextView
-        android:id="@+id/txtLastName"
-        android:layout_below="@id/txtMiddleName"
-        android:layout_width="300dp"
+        android:id="@+id/txt_middlename"
+        android:layout_below="@id/txt_firstname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="200dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:hint="Middle Name"
+        android:text="N/A"/>
+
+    <TextView
+        android:id="@+id/txt_title_lastname"
+        android:layout_below="@id/txt_middlename"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="50dp"
@@ -157,12 +193,27 @@
         android:textSize="20dp"
         android:inputType="text"
         android:textColor="@color/editTextColor"
-        android:text="Last Name" />
+        android:textColorHint="@color/editTextColor"
+        android:hint="Last Name:" />
 
     <TextView
-        android:id="@+id/txtPosition"
-        android:layout_below="@id/txtLastName"
-        android:layout_width="300dp"
+        android:id="@+id/txt_lastname"
+        android:layout_below="@id/txt_middlename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="200dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:text="Leyson"/>
+
+    <TextView
+        android:id="@+id/txt_title_username"
+        android:layout_below="@id/txt_lastname"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="50dp"
@@ -171,71 +222,121 @@
         android:textSize="20dp"
         android:inputType="text"
         android:textColor="@color/editTextColor"
-        android:text="Position" />
+        android:textColorHint="@color/editTextColor"
+        android:hint="Username:" />
 
     <TextView
-        android:id="@+id/txtUsername"
-        android:layout_below="@id/txtPosition"
-        android:layout_width="300dp"
+        android:id="@+id/txt_username"
+        android:layout_below="@id/txt_lastname"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="200dp"
         android:ems="10"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/navy_blue"
-        android:textColor="@color/editTextColor"
+        android:textColor="@color/black"
         android:textSize="20dp"
         android:inputType="text"
-        android:text="Username" />
+        android:hint="Username"
+        android:text="just1"/>
+
+    <TextView
+        android:id="@+id/txt_title_email"
+        android:layout_below="@id/txt_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:textColorHint="@color/editTextColor"
+        android:hint="Email Address:" />
 
 
     <TextView
-        android:id="@+id/txtEmailAddress"
-        android:layout_below="@id/txtUsername"
-        android:layout_width="300dp"
+        android:id="@+id/txt_email_address"
+        android:layout_below="@id/txt_username"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="200dp"
         android:textSize="20dp"
         android:ems="10"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/navy_blue"
-        android:textColor="@color/editTextColor"
-        android:text="Email Address"/>
+        android:textColor="@color/black"
+        android:hint="Email Address"
+        android:text="just1@email.com"/>
 
     <TextView
-        android:id="@+id/txtStreet"
-        android:layout_below="@id/txtEmailAddress"
-        android:layout_width="300dp"
+        android:id="@+id/txt_title_street"
+        android:layout_below="@id/txt_email_address"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:textColorHint="@color/editTextColor"
+        android:hint="Street:" />
+
+    <TextView
+        android:id="@+id/txt_street"
+        android:layout_below="@id/txt_email_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
         android:textSize="20dp"
         android:ems="10"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/navy_blue"
-        android:textColor="@color/editTextColor"
-        android:text="Barangay"/>
+        android:textColor="@color/black"
+        android:hint="Barangay"
+        android:text="Balangay 2"/>
 
     <TextView
-        android:id="@+id/txtBarangay"
-        android:layout_below="@id/txtStreet"
-        android:layout_width="300dp"
+        android:id="@+id/txt_title_barangay"
+        android:layout_below="@id/txt_street"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textColorHint="@color/editTextColor"
+        android:textSize="20dp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:hint="Barangay" />
+
+    <TextView
+        android:id="@+id/txt_barangay"
+        android:layout_below="@id/txt_street"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
         android:textSize="20dp"
         android:ems="10"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/navy_blue"
-        android:textColor="@color/editTextColor"
-        android:text="Street"/>
+        android:textColor="@color/black"
+        android:hint="Street"
+        android:text="Poblacion"/>
 
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btn_update_admin_profile"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:textSize="18dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/txtStreet"
-        android:layout_marginTop="80dp"
+        android:layout_below="@id/txt_barangay"
+        android:layout_marginTop="50dp"
         android:background="@drawable/rounded_button"
         android:text="UPDATE" />
 

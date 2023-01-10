@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Customer.StatusFragment"
+    tools:context=".USERS.Customer.MainFragments.StatusFragment"
     android:background="@color/baby_blue">
 
         <!-- _________________BACKGROUND_________________ -->
@@ -124,7 +124,7 @@
         <!-- _________________RECYCLERVIEW VIEW_________________ -->
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_status"
+            android:id="@+id/rv_status_customer"
             android:layout_below="@id/txtTrack"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"

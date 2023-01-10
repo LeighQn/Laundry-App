@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.MainFragments.AdminSalesFragment"
+    tools:context=".USERS.Admin.MainFragments.AdminSalesFragment"
     android:background="@color/baby_blue">
 
     <!-- _________________BACKGROUND_________________ -->
@@ -112,7 +112,7 @@
     <!-- _________________RECYCLERVIEW VIEW_________________ -->
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_sales"
+        android:id="@+id/rv_sales_admin"
         android:layout_below="@id/spinner_admin_sales"
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"

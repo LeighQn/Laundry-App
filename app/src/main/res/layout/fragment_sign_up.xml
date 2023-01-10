@@ -113,113 +113,142 @@
         android:textColor="@color/editTextColor"/>
 
     <EditText
-        android:id="@+id/txtFirstName"
+        android:id="@+id/etxt_firstname"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="250dp"
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:backgroundTint="@color/navy_blue"
-        android:textSize="20dp"
+        android:textSize="18sp"
         android:inputType="text"
         android:textColorHint="@color/light_gray"
         android:textColor="@color/editTextColor"
         android:hint=" First Name" />
 
     <EditText
-        android:id="@+id/txtMiddleName"
+        android:id="@+id/etxt_middlename"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
+        android:layout_below="@+id/etxt_firstname"
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:backgroundTint="@color/navy_blue"
-        android:textSize="20dp"
+        android:textSize="18sp"
         android:inputType="text"
         android:textColorHint="@color/light_gray"
         android:textColor="@color/editTextColor"
         android:hint=" Middle Name" />
 
     <EditText
-        android:id="@+id/txtLastName"
+        android:id="@+id/etxt_lastname"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="350dp"
+        android:layout_below="@+id/etxt_middlename"
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:backgroundTint="@color/navy_blue"
-        android:textSize="20dp"
+        android:textSize="18sp"
         android:inputType="text"
         android:textColorHint="@color/light_gray"
         android:textColor="@color/editTextColor"
         android:hint=" Last Name" />
 
     <EditText
-        android:id="@+id/txtUsername"
+        android:id="@+id/etxt_username"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
+        android:layout_below="@+id/etxt_lastname"
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:backgroundTint="@color/navy_blue"
         android:textColor="@color/editTextColor"
-        android:textSize="20dp"
+        android:textSize="18sp"
         android:inputType="text"
         android:textColorHint="@color/light_gray"
         android:hint="Username" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/etxt_password"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="450dp"
+        android:layout_below="@id/etxt_username"
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="textPassword"
         android:backgroundTint="@color/navy_blue"
         android:textColor="@color/editTextColor"
         android:textColorHint="@color/light_gray"
+        android:textSize="18sp"
         android:hint="Password"/>
 
     <EditText
-        android:id="@+id/txtEmailAddress"
+        android:id="@+id/etxt_phone"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
+        android:layout_below="@id/etxt_password"
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="textEmailAddress"
         android:backgroundTint="@color/navy_blue"
         android:textColor="@color/editTextColor"
         android:textColorHint="@color/light_gray"
-        android:hint="Email Address"/>
+        android:textSize="18sp"
+        android:hint="Phone Number"/>
+
+    <EditText
+        android:id="@+id/etxt_purok"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etxt_phone"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:backgroundTint="@color/navy_blue"
+        android:textColor="@color/editTextColor"
+        android:textColorHint="@color/light_gray"
+        android:textSize="18sp"
+        android:hint="Purok/ Zone"/>
 
     <Spinner
-        android:id="@+id/spinnerBarangay"
+        android:id="@+id/spinner_barangay"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_below="@id/txtEmailAddress"
+        android:layout_below="@id/etxt_purok"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
+        android:elevation="10dp"
         />
 
-    <Spinner
-        android:id="@+id/spinnerCity"
+    <ImageView
+        android:layout_below="@id/etxt_purok"
+        android:layout_marginTop="10dp"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_below="@id/spinnerBarangay"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"/>
+        android:background="@drawable/soft_rounded_with_bg_volor"
+        android:layout_centerHorizontal="true"
+        android:alpha="0.5"
+        android:backgroundTint="@color/editTextColor"/>
 
+    <ImageView
+        android:id="@+id/img_brgy_spinner_icon"
+        android:layout_below="@id/etxt_purok"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="70dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/ic_baseline_expand_more_24"
+        android:backgroundTint="@color/white"/>
 
     <Button
-        android:id="@+id/btnSignUp"
+        android:id="@+id/btn_sign_up"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:textSize="18dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/spinnerCity"
-        android:layout_marginTop="10dp"
+        android:layout_below="@id/img_brgy_spinner_icon"
+        android:layout_marginTop="50dp"
         android:background="@drawable/rounded_button"
         android:text="Register" />
 

@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".USERS.Customer.Screens.BookingActivity"
+    android:background="@color/baby_blue">
+
+
+    <!-- _________________BACKGROUND_________________ -->
+
+    <ImageView
+        android:id="@+id/img_bubble_up"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginRight="-10dp"
+        android:background="@mipmap/bubbles_foreground"
+        android:layout_alignParentRight="true"
+        android:alpha="0.5"/>
+
+
+
+    <ImageView
+        android:id="@+id/img_bubble_down"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="-10dp"
+        android:layout_marginBottom="-10dp"
+        android:alpha="0.5"
+        android:background="@mipmap/bubbles_foreground"
+        android:rotation="@integer/material_motion_duration_medium_1"/>
+
+    <ImageView
+        android:id="@+id/img_single1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="200dp"/>
+
+    <ImageView
+        android:id="@+id/img_single_top"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <ImageView
+        android:id="@+id/img_single_top2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="-20dp"/>
+
+    <ImageView
+        android:id="@+id/img_single_top3"
+        android:layout_width="87dp"
+        android:layout_height="79dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="-20dp"
+        android:alpha="0.2"
+        android:background="@mipmap/single_bubble_image_foreground" />
+
+    <ImageView
+        android:id="@+id/img_single_center"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.2"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="250dp"/>
+
+    <ImageView
+        android:id="@+id/img_single_bottom"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/single_bubble_image_foreground"
+        android:alpha="0.5"
+        android:layout_alignParentRight= "true"
+        android:layout_marginRight="-50dp"
+        android:layout_marginTop="580dp"/>
+
+    <ImageView
+        android:layout_width="350dp"
+        android:layout_height="580dp"
+        android:layout_below="@id/txt_quote"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:alpha="0.5"
+        android:background="@color/white" />
+
+
+    <!-- _________________TITLE_________________ -->
+
+
+    <TextView
+        android:id="@+id/txt_Title_Booking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="BOOK A LAUNDRY"/>
+
+    <TextView
+        android:id="@+id/txt_quote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_below="@id/txt_Title_Booking"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/editTextColor"
+        android:text="Book Now, Pay Later!"/>
+
+    <!-- _________________BODY/ CONTENT_________________ -->
+
+    <TextView
+        android:id="@+id/txt_customer_name"
+        android:layout_below="@id/txt_quote"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="18sp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:text="Name:" />
+
+    <TextView
+        android:id="@+id/txt_customer_name_display"
+        android:layout_below="@id/txt_quote"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="150dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="18sp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:text="Name" />
+
+    <TextView
+        android:id="@+id/txt_address"
+        android:layout_below="@id/txt_customer_name"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="18sp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:text="Address:" />
+
+
+    <RelativeLayout
+        android:id="@+id/rel_lay_out"
+        android:layout_marginLeft="150dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/txt_customer_name">
+
+        <TextView
+            android:id="@+id/etxt_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:backgroundTint="@color/navy_blue"
+            android:textSize="18sp"
+            android:inputType="text"
+            android:textColor="@color/editTextColor"
+            android:text="Address" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txt_contact"
+        android:layout_below="@id/rel_lay_out"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="18sp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:text="Phone:" />
+
+    <TextView
+        android:id="@+id/etxt_contact"
+        android:layout_below="@id/rel_lay_out"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="150dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="18sp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:text="0918-548-7854" />
+
+
+    <TextView
+        android:id="@+id/txt_date"
+        android:layout_below="@id/etxt_contact"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="18sp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:text="Date:" />
+
+    <TextView
+        android:id="@+id/etxt_date_picker"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:layout_below="@id/etxt_contact"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/transparent_background"
+
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
+
+    <ImageView
+        android:id="@+id/img_calendar_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_baseline_calendar_month_24"
+        android:backgroundTint="@color/black"
+        android:layout_below="@id/etxt_contact"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="80dp"/>
+
+    <TextView
+        android:id="@+id/calendar_under_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="_______________________________"
+        android:textColor="@color/black"
+        android:layout_below="@id/img_calendar_icon"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="65dp"
+        android:layout_marginTop="-10dp"/>
+
+    <TextView
+        android:id="@+id/txt_laundry_type"
+        android:layout_below="@id/etxt_date_picker"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="18sp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:text="Laundry:" />
+
+
+    <Button
+        android:id="@+id/btn_add_laundry_booking"
+        android:layout_width="210dp"
+        android:layout_height="40dp"
+        android:textSize="10dp"
+        android:layout_below="@id/etxt_date_picker"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="145dp"
+        android:background="@drawable/secondary_soft_edges_button"
+        android:textColor="@color/black"
+        android:elevation="10dp"
+        android:shadowRadius="50"
+        android:text="Add" />
+
+    <TextView
+        android:id="@+id/divider"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_laundry_type"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="200dp"
+        android:backgroundTint="@color/navy_blue"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="text"
+        android:text="___________________________________________________"
+        android:textColor="@color/baby_blue"
+        android:textSize="18sp"/>
+
+
+    <TextView
+        android:id="@+id/txt_total_booking"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/navy_blue"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Total:"
+        android:textColor="@color/editTextColor"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/divider1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_total_booking"
+        android:layout_marginLeft="50dp"
+        android:backgroundTint="@color/navy_blue"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="text"
+        android:text="___________________________________________________"
+        android:textColor="@color/baby_blue"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/txt_total_booking_display"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="18sp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:text="0.00"
+        android:layout_below="@id/divider"
+        android:layout_marginTop="10dp"/>
+
+
+
+    <!-- CONFIRM BOOKING-->
+
+    <Button
+        android:id="@+id/btn_customer_home"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:textSize="18dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/back_icon"
+        android:backgroundTint="@color/editTextColor" />
+
+
+    <!-- MUST CHANGE TO CONFIRM BOOKING-->
+    <!-- MUST REMOVE-->
+
+    <Button
+        android:id="@+id/btn_to_confirm_booking"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/rounded_button"
+        android:text="CONFIRM" />
+
+
+
+</RelativeLayout>
