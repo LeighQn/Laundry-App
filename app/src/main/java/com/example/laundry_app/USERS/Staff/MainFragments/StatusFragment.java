@@ -1,5 +1,6 @@
 package com.example.laundry_app.USERS.Staff.MainFragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,7 @@ import com.example.laundry_app.API.INTERFACE.NewStatusInterface;
 import com.example.laundry_app.API.MODELCLASS.NewStatusModel;
 import com.example.laundry_app.Global;
 import com.example.laundry_app.R;
+import com.example.laundry_app.USERS.Staff.MapActivity;
 
 import java.util.List;
 
@@ -34,8 +36,9 @@ public class StatusFragment extends Fragment {
     private RecyclerView recyclerView;
     private Button btnTry;
     int userId = 25;
+    private NewStatusAdapter.RecyclerViewClickListener listener;
 
-    String token, finalToken;
+    String token, finalToken, latitude, longitude;
 
     Retrofit retrofit = Global.retrofitConnectFakeApi();
 
@@ -60,6 +63,7 @@ public class StatusFragment extends Fragment {
 
 
         getCustomerDeliverList();
+        setOnClickListener();
 
         return root;
 
@@ -81,8 +85,9 @@ public class StatusFragment extends Fragment {
 
                 List<NewStatusModel> newStatusModelResponse = response.body();
 
-                newStatusAdapter.setNewStatusData(newStatusModelResponse);
+                newStatusAdapter.setNewStatusData(newStatusModelResponse, listener);
                 recyclerView.setAdapter(newStatusAdapter);
+
             }
 
             @Override
@@ -92,5 +97,17 @@ public class StatusFragment extends Fragment {
         });
 
 
+    }
+
+    private void setOnClickListener(){
+        listener = new NewStatusAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Intent intent = new Intent(getActivity(),  MapActivity.class);
+                intent.putExtra("latitude", 7.6742);
+                intent.putExtra("longitude", 124.9897);
+                startActivity(intent);
+            }
+        };
     }
 }

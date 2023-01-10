@@ -16,14 +16,26 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.laundry_app.API.INTERFACE.Customer.CustomerProfileInterface;
+import com.example.laundry_app.Global;
 import com.example.laundry_app.R;
+import com.example.laundry_app.USERS.Customer.Screens.BookingActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import retrofit2.Retrofit;
 
 public class MapActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     WebView webView;
     Spinner spinnerStatus;
     Button btnNavigation;
+    CustomerProfileInterface customerProfileInterface;
+    DashboardActivity dashboardActivity;
+
+
+    String latitude, longitude, token, finalToken;
+
+    Retrofit retrofit = Global.retrofitConnect();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +47,30 @@ public class MapActivity extends AppCompatActivity implements AdapterView.OnItem
         btnNavigation = findViewById(R.id.btn_go_to_nav);
 
 
+        // ====================================== INITIALIZE RETROFIT ====================================== //
+        // ====================================== INITIALIZE RETROFIT ====================================== //
+        customerProfileInterface = retrofit.create(CustomerProfileInterface.class);
+
+
+        // ============================================== CALLING METHODS ================================================//
+
+//
+//        getDataFromActivityStaffProfile();
+//        getCustomerProfile();
+
+
+        String destination = "&daddr=" + latitude + "," + longitude;
+        String navigation = "google.navigation:q=" + latitude + "," + longitude + "&mode=d";
+
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.laudry_status, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerStatus.setAdapter(adapter);
         spinnerStatus.setOnItemSelectedListener(this);
-
         webView.setWebViewClient(new WebViewClient());
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("https://maps.google.com/maps?" + "saddr=43.0054446, -87.9678884" + "&daddr=42.9257104,-88.0508355");
+        webView.loadUrl("https://maps.google.com/maps?" + "saddr=43.0054446, -87.9678884" + destination);
+        Toast.makeText(MapActivity.this, "Latidude is: " + latitude + "Longitude is:" + longitude, Toast.LENGTH_LONG).show();
 
         // GO TO NAVIGATION
 
@@ -51,17 +78,16 @@ public class MapActivity extends AppCompatActivity implements AdapterView.OnItem
         btnNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:q={latitude}, {longitude}&mode=d"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(navigation));
                 intent.setPackage("com.google.android.apps.maps");
 
-                if(intent.resolveActivity(getPackageManager()) != null) {
+                if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 }
             }
         });
 
     }
-
 
 
     @Override
@@ -74,4 +100,15 @@ public class MapActivity extends AppCompatActivity implements AdapterView.OnItem
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
+    private void receiveCoordinates() {
+
+        Intent intent = getIntent();
+        intent.getStringExtra("latitude");
+        intent.getStringExtra("longitude");
+        startActivity(intent);
+    }
+
+
+}
 }

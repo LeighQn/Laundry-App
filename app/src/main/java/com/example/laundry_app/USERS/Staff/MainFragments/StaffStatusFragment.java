@@ -1,5 +1,6 @@
 package com.example.laundry_app.USERS.Staff.MainFragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,7 @@ import com.example.laundry_app.Global;
 import com.example.laundry_app.R;
 import com.example.laundry_app.USERS.Admin.MainFragments.AdaptersAndDataClass.Sales;
 import com.example.laundry_app.USERS.Customer.Screens.BookLaundryTypeActivity;
+import com.example.laundry_app.USERS.Customer.Screens.CustomerProfileUpdate;
 import com.example.laundry_app.USERS.Staff.DashboardActivity;
 
 import java.util.ArrayList;
@@ -55,6 +57,7 @@ public class StaffStatusFragment extends Fragment {
     StaffStatusInterface staffStatusInterface;
     DashboardActivity dashboardActivity;
     LaundryBookModel laundryBookModel = new LaundryBookModel();
+    Intent intent;
 
     Retrofit retrofit = Global.retrofitConnectFakeApi();
 
@@ -203,5 +206,11 @@ public class StaffStatusFragment extends Fragment {
         dashboardActivity = (DashboardActivity) getActivity();
         token = dashboardActivity.getMyToken();
 
+    }
+
+    private void sendDatatoMap(){
+        intent = new Intent(getActivity(), CustomerProfileUpdate.class);
+        intent.putExtra("token", token);
+        startActivity(intent);
     }
 }

@@ -80,7 +80,7 @@ public class CustomerBookingsActivity extends AppCompatActivity {
             public void onResponse(Call<BookingsRequest> call, Response<BookingsRequest> response) {
                 BookingsRequest result = response.body();
                 // data
-                List<BookingModel> bookings = result.getBookings();
+                List<BookingModel> booki = result.getBookings();
                 String message = result.getMessage();
             }
 
