@@ -15,6 +15,7 @@ import com.example.laundry_app.API.MODELCLASS.Customer.NotificationModel;
 import com.example.laundry_app.Global;
 import com.example.laundry_app.USERS.Customer.CustomerDashboard;
 import com.example.laundry_app.R;
+import com.google.android.material.tabs.TabLayout;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +31,7 @@ public class NotificationActivity extends AppCompatActivity {
     NotificationInterface notificationInterface;
     NotificationModel notificationModel;
 
-    String token, finalToken;
+    String token, finalToken, role;
 
 
 
@@ -49,19 +50,21 @@ public class NotificationActivity extends AppCompatActivity {
 
 
         receiverNotif("Received in Notification Page");
-        getNotificationCustomer();
+        getNotificationFromOtherActivity();
+
 
         btnBackToHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                backToCustomerDashboardInNotif();
+                backToDashboardInNotif();
             }
         });
 
     }
 
 
-    public void backToCustomerDashboardInNotif(){
+    public void backToDashboardInNotif(){
+
         intent = new Intent(this, CustomerDashboard.class);
         intent.putExtra("token", token);
         startActivity(intent);
@@ -86,7 +89,7 @@ public class NotificationActivity extends AppCompatActivity {
 //
 //    }
 
-    private void getNotificationCustomer(){
+    private void getNotificationFromOtherActivity(){
         finalToken = "Bearer " + token;
         Call<NotificationModel> call = notificationInterface.getNotification(finalToken);
         call.enqueue(new Callback<NotificationModel>() {
@@ -96,11 +99,16 @@ public class NotificationActivity extends AppCompatActivity {
                     Toast.makeText(NotificationActivity.this, "Notification Page is Not Responding", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                NotificationModel notificationActivityResponse = response.body();
+
+                role = String.valueOf(notificationActivityResponse.getUser().getRole());
+                Toast.makeText(NotificationActivity.this, "Response: " + role, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<NotificationModel> call, Throwable t) {
-                    Toast.makeText(NotificationActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(NotificationActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -108,6 +116,17 @@ public class NotificationActivity extends AppCompatActivity {
     public void receiverNotif(String string){
         intent = getIntent();
         token = intent.getStringExtra("token");
+        String role = intent.getStringExtra("role");
         Toast.makeText(NotificationActivity.this, string, Toast.LENGTH_SHORT).show();
+    }
+
+    public void sendDatatoDashboardAct(){
+        intent = new Intent(this, NotificationActivity.class );
+        intent.putExtra("token", token);
+        startActivity(intent);
+        Toast.makeText(this, "Send to Notification", Toast.LENGTH_SHORT).show();
+
+
+
     }
 }

@@ -23,10 +23,12 @@ public class StaffStatusAdapter extends RecyclerView.Adapter<StaffStatusAdapter.
     public StaffStatusAdapter() {
     }
 
-    public void setStaffStatusData(List<StaffStatus> staffStatusList) {
+    public void setStaffStatusAData(List<StaffStatus> staffStatusList) {
         this.staffStatusList = staffStatusList;
         notifyDataSetChanged();
     }
+
+
 
     @NonNull
     @Override
@@ -41,12 +43,18 @@ public class StaffStatusAdapter extends RecyclerView.Adapter<StaffStatusAdapter.
 
         StaffStatus staffStatus = staffStatusList.get(position);
 
+//        String date = staffStatus.getLaundryBookModel().getDate();
+//        String name = staffStatus.getUser().getName();
+//        float total = staffStatus.getLaundryBookModel().getTotal();
+
         String date = staffStatus.getDate();
-        String customerName = staffStatus.getCustomerName();
-        int total = staffStatus.getTotal();
+        String name = staffStatus.getName();
+        String total = staffStatus.getName();
 
         holder.date.setText(date);
-        holder.customerName.setText(customerName);
+        holder.customerName.setText(name);
+        holder.total.setText(String.valueOf(total));
+
     }
 
     @Override
@@ -56,14 +64,18 @@ public class StaffStatusAdapter extends RecyclerView.Adapter<StaffStatusAdapter.
 
     public class StaffStatusVH extends RecyclerView.ViewHolder {
 
-        TextView date, customerName, total;
+        TextView date;
+        TextView customerName;
+        TextView total;
 
         public StaffStatusVH(@NonNull View itemView) {
             super(itemView);
 
-            date = itemView.findViewById(R.id.rv_staff_status_date);
-            customerName = itemView.findViewById(R.id.rv_staff_status_customer_name);
-            total = itemView.findViewById(R.id.rv_staff_status_total);
+            // using status_item layout that's why total is equal to txt_status_status
+
+            date = itemView.findViewById(R.id.txt_date_status);
+            customerName = itemView.findViewById(R.id.txt_payables_status);
+            total = itemView.findViewById(R.id.txt_status_status);
         }
     }
 }

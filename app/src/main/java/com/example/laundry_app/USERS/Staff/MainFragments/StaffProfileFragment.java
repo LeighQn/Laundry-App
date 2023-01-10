@@ -17,6 +17,7 @@ import com.example.laundry_app.API.MODELCLASS.Customer.CustomerProfileModel;
 import com.example.laundry_app.Global;
 import com.example.laundry_app.R;
 import com.example.laundry_app.USERS.Customer.CustomerDashboard;
+import com.example.laundry_app.USERS.Customer.Screens.CustomerProfileUpdate;
 import com.example.laundry_app.USERS.Staff.DashboardActivity;
 
 import retrofit2.Call;
@@ -31,7 +32,7 @@ public class StaffProfileFragment extends Fragment {
     Button btnUpdate, btnBack;
     CustomerProfileModel customerProfileModel;
     CustomerProfileInterface customerProfileInterface;
-    TextView txtName, txtMn, txtLastName, txtuserName, txtPhone, txtAddress;
+    TextView txtName, txtMn, txtLastName, txtUserName, txtPhone, txtAddress;
     String name, token, finalToken, phone, address;
     DashboardActivity dashboardActivity;
     Intent intent;
@@ -48,6 +49,8 @@ public class StaffProfileFragment extends Fragment {
         btnBack = root.findViewById(R.id.btn_to_home_profile_customer);
         txtName = root.findViewById(R.id.txt_customer_name);
         txtPhone = root.findViewById(R.id.txt_customer_phone);
+        txtUserName = root.findViewById(R.id.txt_customer_username);
+        txtAddress = root.findViewById(R.id.txt_customer_address);
 
         // ====================================== INITIALIZE RETROFIT ====================================== //
         // ====================================== INITIALIZE RETROFIT ====================================== //
@@ -57,9 +60,9 @@ public class StaffProfileFragment extends Fragment {
 
         // ============================================== CALLING METHODS ================================================//
 
-        getDataFromActivity();
-        getCustomerProfile();
 
+        getDataFromActivityStaffProfile();
+        getCustomerProfile();
 
 
         // ==============================================================================================//
@@ -69,12 +72,8 @@ public class StaffProfileFragment extends Fragment {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), CustomerProfileUpdate.class);
-//                startActivity(intent);
-                getCustomerProfile();
 
-
-                txtPhone.setText(phone);
+                sendDatatoUpdateProfileStaff();
 
             }
         });
@@ -82,8 +81,7 @@ public class StaffProfileFragment extends Fragment {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CustomerDashboard.class);
-                startActivity(intent);
+                toStaffDashboard();
             }
         });
 
@@ -108,13 +106,14 @@ public class StaffProfileFragment extends Fragment {
 
                 String name = String.valueOf(response.body().getUser().getName());
                 String phone = String.valueOf(response.body().getUser().getMobileNumber());
-                //               String username = String.valueOf(response.body().getUser().getUsername());
-                //              String address = String.valueOf(response.body().getUser().getAddress());
+                String username = String.valueOf(response.body().getUser().getUsername());
+                String address = String.valueOf(response.body().getUser().getAddress());
+                String token = String.valueOf(response.body().getUser().getToken());
 
                 txtName.setText(name);
                 txtPhone.setText(phone);
-//               txtuserName.setText(username);
-//                txtAddress.setText(address);
+                txtUserName.setText(username);
+                txtAddress.setText(address);
 
             }
 
@@ -125,9 +124,23 @@ public class StaffProfileFragment extends Fragment {
         });
     }
 
-    private void getDataFromActivity(){
+    private void getDataFromActivityStaffProfile(){
         dashboardActivity = (DashboardActivity) getActivity();
         token = dashboardActivity.getMyToken();
 
     }
+
+    private void toStaffDashboard(){
+        intent = new Intent(getActivity(), DashboardActivity.class);
+        intent.putExtra("token", token);
+        startActivity(intent);
+    }
+
+    private void sendDatatoUpdateProfileStaff(){
+        intent = new Intent(getActivity(), CustomerProfileUpdate.class);
+        intent.putExtra("token", token);
+        startActivity(intent);
+    }
+
+
 }

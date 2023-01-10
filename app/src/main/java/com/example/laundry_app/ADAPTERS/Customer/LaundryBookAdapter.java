@@ -46,7 +46,7 @@ public class LaundryBookAdapter extends RecyclerView.Adapter<LaundryBookAdapter.
     public void onBindViewHolder(@NonNull LaundryBookAdapter.BookActivityVH holder, int position) {
 
         LaundryBookModel laundryBookModel = laundryBookModelList.get(position);
-        
+
 
     }
 

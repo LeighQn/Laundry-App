@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.laundry_app.API.INTERFACE.Customer.CustomerProfileInterface;
 import com.example.laundry_app.API.MODELCLASS.Customer.CustomerProfileModel;
+import com.example.laundry_app.Global;
 import com.example.laundry_app.USERS.Customer.MainFragments.CustomerStatusFragment;
 import com.example.laundry_app.USERS.Customer.MainFragments.HomeFragment;
 import com.example.laundry_app.USERS.Customer.MainFragments.ProfileFragment;
@@ -28,6 +29,7 @@ import com.google.android.material.navigation.NavigationBarView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class CustomerDashboard extends AppCompatActivity {
 
@@ -46,8 +48,9 @@ public class CustomerDashboard extends AppCompatActivity {
     ProfileFragment profileFragment = new ProfileFragment();
     CustomerProfileModel customerProfileModel;
     CustomerProfileInterface customerProfileInterface;
+    Retrofit retrofit = Global.retrofitConnect();
 
-    public String token, userId, phone;
+    public String token, userId, phone, role, finalToken;
 
     // ============================================================================ //
     // ============================================================================ //
@@ -65,6 +68,11 @@ public class CustomerDashboard extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         btnNotificationBell = findViewById(R.id.btn_notification_bell);
         btnLogout = findViewById(R.id.btn_logout);
+
+
+        // ====================================== INITIALIZE RETROFIT ====================================== //
+        // ====================================== INITIALIZE RETROFIT ====================================== //
+        customerProfileInterface = retrofit.create(CustomerProfileInterface.class);
 
 
         // ============================== FUNCTION ============================== //
@@ -139,6 +147,7 @@ public class CustomerDashboard extends AppCompatActivity {
         });
 
 
+        getCustomerProfile();
 
 
     }
@@ -167,10 +176,35 @@ public class CustomerDashboard extends AppCompatActivity {
     public void sendDataToNotif(){
         intent = new Intent(this, NotificationActivity.class );
         intent.putExtra("token", token);
+        intent.putExtra("role", role);
         startActivity(intent);
-        Toast.makeText(this, "Send to Notification", Toast.LENGTH_SHORT).show();
+        Toast.makeText(CustomerDashboard.this, "Role in Customer Dashboard is: " + role, Toast.LENGTH_SHORT).show();
 
 
+    }
+
+
+
+    private void getCustomerProfile(){
+
+        finalToken = "Bearer " + token;
+        Call<CustomerProfileModel> call = customerProfileInterface.getCustomerInfo(finalToken);
+        call.enqueue(new Callback<CustomerProfileModel>() {
+            @Override
+            public void onResponse(Call<CustomerProfileModel> call, Response<CustomerProfileModel> response) {
+                if (!response.isSuccessful()){
+                    Toast.makeText(CustomerDashboard.this, response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                role = String.valueOf(response.body().getUser().getRole());
+            }
+
+            @Override
+            public void onFailure(Call<CustomerProfileModel> call, Throwable t) {
+
+            }
+        });
     }
 
 

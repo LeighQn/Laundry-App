@@ -37,8 +37,8 @@ public class ProfileFragment extends Fragment {
 
     Button btnUpdate, btnBack, notificationBell, btnLogOut;
     CustomerProfileInterface customerProfileInterface;
-    TextView txtName, txtMn, txtLastName, txtuserName, txtPhone, txtAddress;
-    String name, token, finalToken, phone, address;
+    TextView txtName, txtMn, txtLastName, txtUserName, txtPhone, txtAddress;
+    String name, token, finalToken, phone, address, username;
     CustomerDashboard customerDashboard;
     Intent intent;
     Retrofit retrofit = Global.retrofitConnect();
@@ -55,6 +55,9 @@ public class ProfileFragment extends Fragment {
         txtPhone = root.findViewById(R.id.txt_customer_phone);
         notificationBell = root.findViewById(R.id.btn_notification_bell);
         btnLogOut = root.findViewById(R.id.btn_logout);
+        txtUserName = root.findViewById(R.id.txt_customer_username);
+        txtAddress = root.findViewById(R.id.txt_customer_address);
+
 
 
         // ====================================== INITIALIZE RETROFIT ====================================== //
@@ -117,14 +120,15 @@ public class ProfileFragment extends Fragment {
                     return;
                 }
 
+
                 String name = String.valueOf(response.body().getUser().getName());
                 String phone = String.valueOf(response.body().getUser().getMobileNumber());
-//                String username = String.valueOf(response.body().getUser().getUsername());
+                String username = String.valueOf(response.body().getUser().getUsername());
                 String address = String.valueOf(response.body().getUser().getAddress());
 
                 txtName.setText(name);
                 txtPhone.setText(phone);
-//                txtuserName.setText(username);
+                txtUserName.setText(username);
                 txtAddress.setText(address);
 
             }

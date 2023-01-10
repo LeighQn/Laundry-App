@@ -81,16 +81,16 @@ public class BookLaundryTypeActivity extends AppCompatActivity implements Adapte
 
 
         // ============================================== RECYCLERVIEW ================================================//
-//
+
 //        recyclerView.setLayoutManager(new LinearLayoutManager(BookLaundryTypeActivity.this));
 //        recyclerView.addItemDecoration(new DividerItemDecoration(BookLaundryTypeActivity.this, DividerItemDecoration.VERTICAL));
 //        laundryBookAdapter = new LaundryBookAdapter();
-//
-        recyclerView. findViewById(R.id.rv_laundry_price_list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(BookLaundryTypeActivity.this));
-        recyclerView.setHasFixedSize(true);
-        LaundryBookAdapter laundryBookAdapter = new LaundryBookAdapter(BookLaundryTypeActivity.this, laundryPriceModelArrayList);
-        laundryBookAdapter.notifyDataSetChanged();
+
+//        recyclerView. findViewById(R.id.rv_laundry_price_list);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(BookLaundryTypeActivity.this));
+//        recyclerView.setHasFixedSize(true);
+//        LaundryBookAdapter laundryBookAdapter = new LaundryBookAdapter(BookLaundryTypeActivity.this, laundryPriceModelArrayList);
+//        laundryBookAdapter.notifyDataSetChanged();
 
 
         // ============================================== CALLING METHODS ================================================//
@@ -130,10 +130,6 @@ public class BookLaundryTypeActivity extends AppCompatActivity implements Adapte
                     return;
                 }
 
-                List<LaundryBookModel> laundryBookModelsResponse = response.body();
-
-                laundryBookAdapter.setLaundryBookData(laundryBookModelsResponse);
-                recyclerView.setAdapter(laundryBookAdapter);
             }
 
             @Override

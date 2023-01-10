@@ -15,9 +15,11 @@ import android.widget.Toast;
 import com.example.laundry_app.API.INTERFACE.Customer.CustomerProfileInterface;
 import com.example.laundry_app.API.MODELCLASS.Customer.CustomerProfileModel;
 import com.example.laundry_app.AdminProfileUpdate;
+import com.example.laundry_app.Global;
 import com.example.laundry_app.R;
 import com.example.laundry_app.USERS.Admin.AdminDashboard;
 import com.example.laundry_app.USERS.Customer.CustomerDashboard;
+import com.example.laundry_app.USERS.Customer.Screens.CustomerProfileUpdate;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,10 +32,14 @@ public class AdminProfileFragment extends Fragment {
     Button btnUpdate, btnBack;
     CustomerProfileModel customerProfileModel;
     CustomerProfileInterface customerProfileInterface;
-    TextView txtName, txtMn, txtLastName, txtuserName, txtPhone, txtAddress;
+    TextView txtName, txtMn, txtLastName, txtUserName, txtPhone, txtAddress;
     String name, token, finalToken, phone, address;
-    AdminDashboard customerDashboard;
+    AdminDashboard adminDashboard;
+    CustomerProfileUpdate customerProfileUpdate;
     Intent intent;
+
+    Retrofit retrofit = Global.retrofitConnect();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,15 +52,11 @@ public class AdminProfileFragment extends Fragment {
         btnBack = root.findViewById(R.id.btn_to_home_profile_customer);
         txtName = root.findViewById(R.id.txt_customer_name);
         txtPhone = root.findViewById(R.id.txt_customer_phone);
+        txtUserName = root.findViewById(R.id.txt_customer_username);
+        txtAddress = root.findViewById(R.id.txt_customer_address);
 
         // ====================================== INITIALIZE RETROFIT ====================================== //
         // ====================================== INITIALIZE RETROFIT ====================================== //
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.254.104:8000/api/v1/auth/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-
         customerProfileInterface = retrofit.create(CustomerProfileInterface.class);
 
 
@@ -87,8 +89,7 @@ public class AdminProfileFragment extends Fragment {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CustomerDashboard.class);
-                startActivity(intent);
+                customerProfileUpdate.backToDashboard();
             }
         });
 //        getDataFromActivity();
@@ -115,14 +116,14 @@ public class AdminProfileFragment extends Fragment {
 
                 String name = String.valueOf(response.body().getUser().getName());
                 String phone = String.valueOf(response.body().getUser().getMobileNumber());
-      //          String username = String.valueOf(response.body().getUser().getUsername());
-                //              String address = String.valueOf(response.body().getUser().getAddress());
+                String username = String.valueOf(response.body().getUser().getUsername());
+                String address = String.valueOf(response.body().getUser().getAddress());
 
 
                 txtName.setText(name);
                 txtPhone.setText(phone);
-      //          txtuserName.setText(username);
-//                txtAddress.setText(address);
+                txtUserName.setText(username);
+                txtAddress.setText(address);
 
             }
 
@@ -134,8 +135,12 @@ public class AdminProfileFragment extends Fragment {
     }
 
     private void getDataFromActivity(){
-        customerDashboard = (AdminDashboard) getActivity();
-        token = customerDashboard.getMyToken();
+        adminDashboard = (AdminDashboard) getActivity();
+        token = adminDashboard.getMyToken();
+
+    }
+
+    private void receiverInAdminProfile(){
 
     }
 }

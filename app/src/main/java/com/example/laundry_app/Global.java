@@ -31,7 +31,7 @@ public class Global extends Application {
         return retrofit;
     }
 
-    public static Retrofit retrofitConnectFakeApi(){
+    public static Retrofit retrofitConnectFakeApi() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(fakeApiIpAddress)
                 .addConverterFactory(GsonConverterFactory.create())

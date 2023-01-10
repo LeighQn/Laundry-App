@@ -20,7 +20,7 @@
 
     <ImageView
         android:layout_width="350dp"
-        android:layout_height="550dp"
+        android:layout_height="500dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="120dp"
         android:layout_centerHorizontal="true"
@@ -119,11 +119,12 @@
 
     <ImageView
         android:id="@+id/image_profile_customer"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:src="@drawable/justine"
+        android:src="@drawable/username_24"
+        android:backgroundTint="@color/blue_grotto"
         android:clickable="true"
         />
 
@@ -249,7 +250,7 @@
         android:backgroundTint="@color/navy_blue"
         android:textColor="@color/black"
         android:hint="Barangay"
-        android:text="Balangay 2"/>
+        android:text="Balangay 2" />
 
 
 
@@ -259,8 +260,8 @@
         android:layout_height="wrap_content"
         android:textSize="18dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/txt_customer_address"
-        android:layout_marginTop="180dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/rounded_button"
         android:text="UPDATE" />
 

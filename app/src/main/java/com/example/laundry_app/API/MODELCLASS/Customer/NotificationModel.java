@@ -51,4 +51,5 @@ public class NotificationModel {
     public void setNotification(String notification) {
         this.notification = notification;
     }
+
 }

@@ -9,13 +9,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.laundry_app.MainActivity;
 import com.example.laundry_app.R;
 import com.example.laundry_app.USERS.Admin.AdminDashboard;
 import com.example.laundry_app.USERS.Customer.CustomerDashboard;
 import com.example.laundry_app.USERS.Customer.Screens.BookingActivity;
+import com.example.laundry_app.USERS.Customer.Screens.NotificationActivity;
 import com.example.laundry_app.USERS.Staff.MainFragments.StaffHomeFragment;
 import com.example.laundry_app.USERS.Staff.MainFragments.StaffProfileFragment;
 import com.example.laundry_app.USERS.Staff.MainFragments.StaffStatusFragment;
+import com.example.laundry_app.USERS.Staff.MainFragments.StatusFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -30,11 +33,11 @@ public class DashboardActivity extends AppCompatActivity {
     // ============================== Objects ============================== //
 
     StaffHomeFragment staffHomeFragment = new StaffHomeFragment();
-    StaffStatusFragment staffStatusFragment = new StaffStatusFragment();
+    StatusFragment staffStatusFragment = new StatusFragment();
     StaffProfileFragment staffProfileFragment = new StaffProfileFragment();
     CustomerDashboard customerDashboard;
 
-    String token, phone;
+    String token, phone, role;
 
 
     // ============================================================================ //
@@ -60,8 +63,6 @@ public class DashboardActivity extends AppCompatActivity {
         token = intent.getStringExtra("token");
         Toast.makeText(DashboardActivity.this, "Admin: " + token, Toast.LENGTH_SHORT).show();
 
-        staffNotificationBellVisible(btnNotificationBell, btnLogout);
-
         // ============================== Bottom Navigation ============================== //
 
 
@@ -73,12 +74,12 @@ public class DashboardActivity extends AppCompatActivity {
 
                     case R.id.dasboard:
                         getSupportFragmentManager().beginTransaction().replace(R.id.staff_frame_layout, staffHomeFragment).commit();
-                        staffNotificationBellVisible(btnNotificationBell, btnLogout);
+                        noNotifBell(btnLogout, btnNotificationBell);
                         return true;
 
                     case R.id.status:
                         getSupportFragmentManager().beginTransaction().replace(R.id.staff_frame_layout, staffStatusFragment).commit();
-                        staffNotificationBellVisible(btnNotificationBell, btnLogout);
+                        noNotifBell(btnLogout, btnNotificationBell);
                         return true;
 
                     case R.id.profile:
@@ -89,6 +90,29 @@ public class DashboardActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
+
+        receiver("Dashboard Activity");
+
+
+        btnNotificationBell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendDataToNotifFromStaff();
+            }
+        });
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(DashboardActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
 
     }
 
@@ -109,4 +133,27 @@ public class DashboardActivity extends AppCompatActivity {
         visible.setVisibility(View.VISIBLE);
         invisible.setVisibility(View.INVISIBLE);
     }
+
+    public void noNotifBell(Button invisible, Button invisible2){
+        invisible.setVisibility(View.INVISIBLE);
+        invisible2.setVisibility(View.INVISIBLE);
+    }
+
+
+    public void sendDataToNotifFromStaff(){
+        intent = new Intent(this, NotificationActivity.class );
+        intent.putExtra("token", token);
+        intent.putExtra("role", "2");
+        startActivity(intent);
+        Toast.makeText(this, "Send to Notification", Toast.LENGTH_SHORT).show();
+
+
+    }
+
+    public void receiver(String string){
+        intent = getIntent();
+        token = intent.getStringExtra("token");
+        Toast.makeText(DashboardActivity.this, "Booking Activity", Toast.LENGTH_SHORT).show();
+    }
+
 }
