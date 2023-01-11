@@ -1,5 +1,6 @@
 package com.example.laundry_app.API.MODELCLASS.Admin;
 
+import com.example.laundry_app.API.MODELCLASS.Login;
 import com.example.laundry_app.API.MODELCLASS.User;
 
 public class AdminHomeModel {
@@ -9,6 +10,7 @@ public class AdminHomeModel {
     private int dailyIncome;
     private int monthlyIncome;
     private User user;
+    private Login login;
 
     public AdminHomeModel() {
     }
@@ -58,5 +60,13 @@ public class AdminHomeModel {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Login getLogin() {
+        return login;
+    }
+
+    public void setLogin(Login login) {
+        this.login = login;
     }
 }

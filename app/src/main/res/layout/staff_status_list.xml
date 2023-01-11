@@ -7,14 +7,14 @@
         android:layout_margin="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/soft_rounded_with_bg_volor">
+        android:background="@drawable/soft_edges_transparent">
 
         <TextView
             android:id="@+id/rv_staff_status_date"
             android:layout_marginLeft="24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="Date"/>
 
         <TextView
@@ -22,7 +22,7 @@
             android:layout_marginRight="4dp"
             android:layout_marginLeft="4dp"
             android:layout_marginBottom="4dp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -34,7 +34,7 @@
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="Total"/>
 
     </RelativeLayout>

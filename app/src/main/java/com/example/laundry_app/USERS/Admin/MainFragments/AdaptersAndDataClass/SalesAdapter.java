@@ -13,11 +13,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.laundry_app.API.MODELCLASS.BookingModel;
 import com.example.laundry_app.USERS.Admin.DetailedActivities.DetailedSales;
 import com.example.laundry_app.R;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SalesAdapter extends RecyclerView.Adapter<SalesAdapter.SalesViewHolder>{
 
@@ -25,10 +27,10 @@ public class SalesAdapter extends RecyclerView.Adapter<SalesAdapter.SalesViewHol
     ArrayList<Sales> salesArrayList;
 
 
-    public SalesAdapter(Context context, ArrayList<Sales> salesArrayList) {
+    public SalesAdapter(Context context, List<BookingModel> salesArrayList) {
 
         this.context = context;
-        this.salesArrayList = salesArrayList;
+//        this.salesArrayList = salesArrayList;
 
     }
 

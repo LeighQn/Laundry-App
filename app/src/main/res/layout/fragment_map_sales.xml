@@ -108,7 +108,7 @@
         android:layout_height="20dp"
         android:drawSelectorOnTop="true"
         android:theme="@style/mySpinnerItemStyle"
-        android:entries="@array/sale_category"
+        android:entries="@array/type"
         android:elevation="10dp"/>
 
     <ImageView

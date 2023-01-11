@@ -104,7 +104,9 @@ public class StaffProfileFragment extends Fragment {
                     return;
                 }
 
-                String name = String.valueOf(response.body().getUser().getName());
+                CustomerProfileModel customerProfileModelResponse = response.body();
+
+                String name = String.valueOf(customerProfileModelResponse.getUser().getName());
                 String phone = String.valueOf(response.body().getUser().getMobileNumber());
                 String username = String.valueOf(response.body().getUser().getUsername());
                 String address = String.valueOf(response.body().getUser().getAddress());

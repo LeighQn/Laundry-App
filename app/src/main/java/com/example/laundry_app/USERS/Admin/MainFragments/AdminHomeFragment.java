@@ -56,7 +56,7 @@ public class AdminHomeFragment extends Fragment {
     int numberOfBookings1;
     String token, finalToken;
 
-    Retrofit retrofit = Global.retrofitConnectFakeApi();
+    Retrofit retrofit = Global.retrofitConnect();
     AdminHomeInterface adminHomeInterface;
     AdminHomeModel adminHomeModel;
     AdminDashboard adminDashboard;
@@ -85,7 +85,7 @@ public class AdminHomeFragment extends Fragment {
 
         // ============================================== CALLING METHODS ================================================//
 
-        getDataFromActivity();
+        getDataFromActivityAdmin();
         getAdminHomeInfo();
 
 
@@ -127,7 +127,7 @@ public class AdminHomeFragment extends Fragment {
         barArrayList.add(new BarEntry(8f, entry7));
     }
 
-    private void getDataFromActivity(){
+    private void getDataFromActivityAdmin(){
         adminDashboard = (AdminDashboard) getActivity();
         token = adminDashboard.getMyToken();
 
@@ -155,8 +155,9 @@ public class AdminHomeFragment extends Fragment {
 ////                txtPhone.setText(phone);
 ////                txtUserName.setText(username);
 ////                txtAddress.setText(address);
-                getDataFromActivity();   // temporary
+
                 token = String.valueOf(response.body().getUser().getToken());
+                Global.setToken(token);
 
 //
             }

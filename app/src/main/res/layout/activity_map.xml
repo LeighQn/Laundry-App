@@ -28,7 +28,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="-10dp"
         android:layout_marginBottom="-10dp"
-        android:alpha="0.5"
+        android:alpha="0.2"
         android:background="@mipmap/bubbles_foreground"
         android:rotation="@integer/material_motion_duration_medium_1"/>
 
@@ -113,150 +113,215 @@
         android:textColor="@color/editTextColor"
         android:text="Book Now, Pay Later!"/>
 
+    <ImageView
+        android:layout_width="350dp"
+        android:layout_height="500dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="120dp"
+        android:layout_centerHorizontal="true"
+        android:alpha="0.5"
+        android:background="@color/white" />
+
     <!-- _________________BODY/ CONTENT_________________ -->
 
-    <TextView
-        android:id="@+id/txt_customer_name_title_admin"
-        android:layout_below="@id/txt_quote_admin"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="50dp"
-        android:ems="10"
-        android:backgroundTint="@color/navy_blue"
-        android:textSize="15dp"
-        android:inputType="text"
-        android:textColor="@color/editTextColor"
-        android:text="Name:" />
+    <ImageView
+        android:id="@+id/image_profile_customer"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/navigation_icon"
+        android:alpha="0.8"
+        android:clickable="true"
+        />
+
+
 
     <TextView
-        android:id="@+id/txt_customer_name_admin"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_quote_admin"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/navy_blue"
-        android:ems="10"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:text="Name"
-        android:textColor="@color/editTextColor"
-        android:textSize="15dp" />
-
-    <TextView
-        android:id="@+id/txt_address_title_admin"
-        android:layout_below="@id/txt_customer_name_admin"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:ems="10"
-        android:backgroundTint="@color/navy_blue"
-        android:textSize="15dp"
-        android:inputType="text"
-        android:textColor="@color/editTextColor"
-        android:layout_marginTop="-20dp"
-        android:text="Address:" />
-
-    <TextView
-        android:id="@+id/etxt_address_admin"
-        android:layout_below="@id/txt_customer_name_admin"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        android:ems="10"
-        android:layout_marginTop="-20dp"
-        android:backgroundTint="@color/navy_blue"
-        android:textSize="15dp"
-        android:inputType="text"
-        android:textColor="@color/editTextColor"
-        android:text="Address:" />
-
-    <TextView
-        android:id="@+id/txt_contact_title_admin"
-        android:layout_below="@id/etxt_address_admin"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="50dp"
-        android:ems="10"
-        android:backgroundTint="@color/navy_blue"
-        android:textSize="15dp"
-        android:inputType="text"
-        android:textColor="@color/editTextColor"
-        android:text="Phone:" />
-
-    <TextView
-        android:id="@+id/etxt_contact_admin"
-        android:layout_below="@id/etxt_address_admin"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="150dp"
-        android:ems="10"
-        android:backgroundTint="@color/navy_blue"
-        android:textSize="15dp"
-        android:inputType="text"
-        android:textColor="@color/editTextColor"
-        android:text="0918-548-7854" />
-
-    <TextView
-        android:id="@+id/txt_laundry_type_admin"
-        android:layout_below="@id/etxt_contact_admin"
+        android:id="@+id/txt_title_customer_name"
+        android:layout_below="@id/image_profile_customer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="50dp"
         android:ems="10"
         android:backgroundTint="@color/navy_blue"
-        android:textSize="15dp"
+        android:textSize="18sp"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:textColorHint="@color/editTextColor"
+        android:hint="Name:"/>
+
+    <TextView
+        android:id="@+id/txt_customer_name"
+        android:layout_below="@id/image_profile_customer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="150dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="18sp"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:hint="First Name"
+        android:text="Justine Leyson"/>
+
+
+    <TextView
+        android:id="@+id/txt_title_username"
+        android:layout_below="@id/txt_customer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="18sp"
         android:inputType="text"
         android:textColor="@color/editTextColor"
+        android:textColorHint="@color/editTextColor"
+        android:hint="Username:" />
+
+    <TextView
+        android:id="@+id/txt_customer_username"
+        android:layout_below="@id/txt_customer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:ems="10"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/navy_blue"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:inputType="text"
+        android:hint="Username"
+        android:text="just1"/>
+
+    <TextView
+        android:id="@+id/txt_title_customer_email"
+        android:layout_below="@id/txt_customer_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="18sp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:textColorHint="@color/editTextColor"
+        android:hint="Phone:" />
+
+
+    <TextView
+        android:id="@+id/txt_customer_phone"
+        android:layout_below="@id/txt_customer_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:textSize="18sp"
+        android:ems="10"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/navy_blue"
+        android:textColor="@color/black"
+        android:hint="Email Address"
+        android:text="09154584569"/>
+
+    <TextView
+        android:id="@+id/txt_title_street"
+        android:layout_below="@id/txt_customer_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="18sp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:textColorHint="@color/editTextColor"
+        android:hint="Address:" />
+
+
+    <TextView
+        android:id="@+id/txt_customer_address"
+        android:layout_below="@id/txt_title_customer_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:textSize="18sp"
+        android:ems="10"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/navy_blue"
+        android:textColor="@color/black"
+        android:hint="Barangay"
+        android:text="Balangay 2" />
+
+    <TextView
+        android:id="@+id/txt_set_status"
+        android:layout_below="@id/txt_customer_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="50dp"
+        android:ems="10"
+        android:backgroundTint="@color/navy_blue"
+        android:textSize="18sp"
+        android:inputType="text"
+        android:textColor="@color/editTextColor"
+        android:textColorHint="@color/editTextColor"
         android:text="Status:" />
 
+
+
+
+
     <ImageView
-        android:layout_below="@id/etxt_contact_admin"
+        android:layout_below="@id/txt_customer_address"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="120dp"
-        android:layout_width="220dp"
+        android:layout_width="200dp"
         android:layout_height="30dp"
         android:background="@drawable/soft_rounded_with_bg_volor"
         android:alpha="0.5"
+        android:layout_marginRight="65dp"
+        android:layout_alignParentRight="true"
         android:backgroundTint="@color/editTextColor"/>
+
+    <ImageView
+        android:layout_below="@id/txt_customer_address"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="70dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/ic_baseline_expand_more_24"
+        android:backgroundTint="@color/white"/>
 
     <Spinner
         android:id="@+id/spinner_status"
         android:layout_height="30dp"
-        android:layout_below="@id/etxt_contact_admin"
+        android:layout_below="@id/txt_customer_address"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="120dp"
-        android:layout_width="220dp"
+        android:layout_marginLeft="150dp"
+        android:layout_width="200dp"
         android:theme="@style/mySpinnerItemStyle" />
-
-    <WebView
-        android:id="@+id/webView"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_below="@id/spinner_status"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"/>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="80dp"
-        android:background="@color/white"/>
-
 
     <Button
         android:id="@+id/btn_go_to_nav"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_below="@id/spinner_status"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/transparent_background"/>
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:layout_marginLeft="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/button_transparent_background"
+        android:text="NAVIGATE"
+        android:textColor="@color/black"/>
+
+
+
+
 
 
 
@@ -279,15 +344,18 @@
 
     <Button
         android:id="@+id/btn_to_confirm_booking_admin"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="100dp"
         android:background="@drawable/rounded_button"
-        android:textColor="@color/white"
-        android:text="CONFIRM" />
+        android:text="CONFIRM"
+        android:textSize="18dp" />
 
 
 

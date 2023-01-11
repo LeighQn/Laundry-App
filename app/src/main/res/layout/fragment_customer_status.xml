@@ -11,9 +11,10 @@
         android:id="@+id/customer_status_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="LAUNDRY STATUS"
         android:textSize="18sp"
-        android:layout_marginTop="16dp"/>
+        android:textColor="@color/black"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_customer_status"

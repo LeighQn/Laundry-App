@@ -19,12 +19,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.laundry_app.API.INTERFACE.LoginInterface;
 import com.example.laundry_app.API.INTERFACE.SignUpInterface;
-import com.example.laundry_app.API.MODELCLASS.Login;
 import com.example.laundry_app.API.MODELCLASS.SignUp;
 import com.example.laundry_app.USERS.Admin.AdminDashboard;
-import com.example.laundry_app.USERS.SampleUIForApi;
 
 import java.io.IOException;
 import java.util.List;
@@ -33,7 +30,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SignUpFragment extends Fragment {
 

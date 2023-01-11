@@ -59,7 +59,7 @@ public class StaffStatusFragment extends Fragment {
     LaundryBookModel laundryBookModel = new LaundryBookModel();
     Intent intent;
 
-    Retrofit retrofit = Global.retrofitConnectFakeApi();
+    Retrofit retrofit = Global.retrofitConnect();
 
     // ====================================== VARIABLES ====================================== //
     // ====================================== VARIABLES ====================================== //
@@ -115,11 +115,11 @@ public class StaffStatusFragment extends Fragment {
         getDataFromActivityHomeStaff();
         getStaffStatus();
 
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-        staffStatusAdapter = new StaffStatusAdapter();
-
+//
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+//        staffStatusAdapter = new StaffStatusAdapter();
+//
 
 
 //        displayRecyclerView();
@@ -169,7 +169,7 @@ public class StaffStatusFragment extends Fragment {
 //        progressBar.setVisibility(View.VISIBLE);
 
         // must put finalToken in the parameter
-        Call<List<StaffStatus>> call = staffStatusInterface.getCustomerStatusInStaff(2);
+        Call<List<StaffStatus>> call = staffStatusInterface.getCustomerStatusInStaff(finalToken);
         call.enqueue(new Callback<List<StaffStatus>>() {
             @Override
             public void onResponse(Call<List<StaffStatus>> call, Response<List<StaffStatus>> response) {

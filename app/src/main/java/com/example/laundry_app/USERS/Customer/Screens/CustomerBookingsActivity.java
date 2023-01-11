@@ -34,7 +34,7 @@ public class CustomerBookingsActivity extends AppCompatActivity {
 
     Button btnBackToCustomerHome;
 
-    private ArrayList<CustomerBookings> cBookingsArrayList;
+    private List<BookingModel> cBookingsArrayList;
     private String[] cBookingDates;
     private String[] cBookingPayables;
     private String[] cBookingStatus;
@@ -74,13 +74,14 @@ public class CustomerBookingsActivity extends AppCompatActivity {
 
 
     private void cBookingDataInitialize() {
+        token = Global.token;
         Call<BookingsRequest> request = bookingInterface.getBookings(token);
         request.enqueue(new Callback<BookingsRequest>() {
             @Override
             public void onResponse(Call<BookingsRequest> call, Response<BookingsRequest> response) {
                 BookingsRequest result = response.body();
                 // data
-                List<BookingModel> bookings = result.getBookings();
+                cBookingsArrayList = result.getBookings();
                 String message = result.getMessage();
             }
 
@@ -89,28 +90,28 @@ public class CustomerBookingsActivity extends AppCompatActivity {
 
             }
         });
-        cBookingsArrayList = new ArrayList<CustomerBookings>();
-        cBookingDates = new String[]{
-                getString(R.string.date1),
-                getString(R.string.date2),
-                getString(R.string.date3),
-        };
-
-        cBookingPayables = new String[]{
-                getString(R.string.total1),
-                getString(R.string.total2),
-                getString(R.string.total3),
-        };
-
-        cBookingStatus = new String[]{
-                getString(R.string.status1),
-                getString(R.string.status2),
-                getString(R.string.status3),
-        };
-        for(int i=0; i < cBookingDates.length; i++){
-
-            CustomerBookings cBookings = new CustomerBookings(cBookingDates[i], cBookingPayables[i], cBookingStatus[i] );
-            cBookingsArrayList.add(cBookings);
-        }
+//        cBookingsArrayList = new ArrayList<CustomerBookings>();
+//        cBookingDates = new String[]{
+//                getString(R.string.date1),
+//                getString(R.string.date2),
+//                getString(R.string.date3),
+//        };
+//
+//        cBookingPayables = new String[]{
+//                getString(R.string.total1),
+//                getString(R.string.total2),
+//                getString(R.string.total3),
+//        };
+//
+//        cBookingStatus = new String[]{
+//                getString(R.string.status1),
+//                getString(R.string.status2),
+//                getString(R.string.status3),
+//        };
+//        for(int i=0; i < cBookingDates.length; i++){
+//
+//            CustomerBookings cBookings = new CustomerBookings(cBookingDates[i], cBookingPayables[i], cBookingStatus[i] );
+//            cBookingsArrayList.add(cBookings);
+//        }
     }
 }

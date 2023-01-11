@@ -31,7 +31,13 @@ public interface StaffStatusInterface {
     // posts temporary
     // must put @Header("Authorization") String token in parameter
     @GET("posts")
-    Call<List<StaffStatus>> getCustomerStatusInStaff(@Query("id") int id);
+    Call<List<StaffStatus>> getCustomerStatusInStaff1(@Query("id") int id);
+
+
+    @GET("profile")
+    Call<List<StaffStatus>> getCustomerStatusInStaff(@Header("Authorization") String token);
+
+
 
 
     // Sending data

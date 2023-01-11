@@ -11,7 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.laundry_app.ADAPTERS.NewStatusAdapter;
@@ -37,6 +40,8 @@ public class StatusFragment extends Fragment {
     private Button btnTry;
     int userId = 25;
     private NewStatusAdapter.RecyclerViewClickListener listener;
+    Spinner spinnerType;
+    String bookingType;
 
     String token, finalToken, latitude, longitude;
 
@@ -47,9 +52,10 @@ public class StatusFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_admin_sales, null);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_status_staff, null);
 
-        recyclerView = root.findViewById(R.id.rv_sales_admin);
+        recyclerView = root.findViewById(R.id.rv_staff_status);
+        spinnerType = root.findViewById(R.id.spinner_out_for_delivery);
 
 
         // ====================================== RETROFIT ====================================== //
@@ -62,6 +68,7 @@ public class StatusFragment extends Fragment {
         newStatusAdapter = new NewStatusAdapter();
 
 
+        spinnerExecution();
         getCustomerDeliverList();
         setOnClickListener();
 
@@ -109,5 +116,26 @@ public class StatusFragment extends Fragment {
                 startActivity(intent);
             }
         };
+    }
+
+    // ______________________________ SPINNER EXECUTION ______________________________ //
+    // ______________________________ SPINNER EXECUTION ______________________________ //
+
+    private void spinnerExecution(){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.type, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerType.setAdapter(adapter);
+        spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                bookingType = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(adapterView.getContext(), bookingType, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 }

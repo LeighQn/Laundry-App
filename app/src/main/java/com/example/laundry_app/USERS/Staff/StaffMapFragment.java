@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.laundry_app.Global;
 import com.example.laundry_app.R;
 import com.example.laundry_app.USERS.Staff.AdapterAndDataClass.StaffMap;
 import com.example.laundry_app.USERS.Staff.AdapterAndDataClass.StaffMapAdapter;
@@ -26,6 +28,9 @@ public class StaffMapFragment extends Fragment {
     private String[] mapCustomerName;
     private String[] mapTotal;
     private RecyclerView recyclerView;
+    String token = Global.token;
+    MapActivity mapActivity;
+
 
 
 
@@ -41,6 +46,8 @@ public class StaffMapFragment extends Fragment {
         StaffMapAdapter mapAdapter = new StaffMapAdapter(getContext(), mapArrayList);
         recyclerView.setAdapter(mapAdapter);
         mapAdapter.notifyDataSetChanged();
+
+        Toast.makeText(getActivity(), "Token from Navigation Map" + token, Toast.LENGTH_SHORT).show();
     }
 
     private void mapDataInitialize() {

@@ -1,7 +1,5 @@
 package com.example.laundry_app;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -17,19 +15,14 @@ import android.widget.Toast;
 
 import com.example.laundry_app.API.INTERFACE.LoginInterface;
 import com.example.laundry_app.API.MODELCLASS.Login;
-import com.example.laundry_app.API.MODELCLASS.User;
 import com.example.laundry_app.USERS.Admin.AdminDashboard;
 import com.example.laundry_app.USERS.Customer.CustomerDashboard;
-import com.example.laundry_app.USERS.SampleUIForApi;
 import com.example.laundry_app.USERS.Staff.DashboardActivity;
-import com.example.laundry_app.USERS.Staff.StaffDashboard;
-import com.google.android.gms.maps.model.Dash;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class LoginFragment extends Fragment{

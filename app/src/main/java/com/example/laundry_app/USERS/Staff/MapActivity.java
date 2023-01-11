@@ -17,23 +17,29 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.laundry_app.API.INTERFACE.Customer.CustomerProfileInterface;
+import com.example.laundry_app.API.MODELCLASS.Customer.CustomerProfileModel;
+import com.example.laundry_app.API.MODELCLASS.User;
 import com.example.laundry_app.Global;
 import com.example.laundry_app.R;
 import com.example.laundry_app.USERS.Customer.Screens.BookingActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class MapActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    WebView webView;
     Spinner spinnerStatus;
     Button btnNavigation;
     CustomerProfileInterface customerProfileInterface;
     DashboardActivity dashboardActivity;
+    String token = Global.token;
 
 
-    String latitude, longitude, token, finalToken;
+    String latitude = "7.6809", longitude = "124.9865", status;
+
 
     Retrofit retrofit = Global.retrofitConnect();
 
@@ -43,7 +49,6 @@ public class MapActivity extends AppCompatActivity implements AdapterView.OnItem
         setContentView(R.layout.activity_map);
 
         spinnerStatus = findViewById(R.id.spinner_status);
-        webView = findViewById(R.id.webView);
         btnNavigation = findViewById(R.id.btn_go_to_nav);
 
 
@@ -57,20 +62,23 @@ public class MapActivity extends AppCompatActivity implements AdapterView.OnItem
 //
 //        getDataFromActivityStaffProfile();
 //        getCustomerProfile();
+        spinnerExecution();
 
 
         String destination = "&daddr=" + latitude + "," + longitude;
         String navigation = "google.navigation:q=" + latitude + "," + longitude + "&mode=d";
 
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.laudry_status, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerStatus.setAdapter(adapter);
-        spinnerStatus.setOnItemSelectedListener(this);
-        webView.setWebViewClient(new WebViewClient());
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("https://maps.google.com/maps?" + "saddr=43.0054446, -87.9678884" + destination);
-        Toast.makeText(MapActivity.this, "Latidude is: " + latitude + "Longitude is:" + longitude, Toast.LENGTH_LONG).show();
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.laudry_status, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinnerStatus.setAdapter(adapter);
+//        spinnerStatus.setOnItemSelectedListener(this);
+//        webView.setWebViewClient(new WebViewClient());
+//        webView.getSettings().setJavaScriptEnabled(true);
+//        webView.loadUrl("https://maps.google.com/maps?" + "saddr=43.0054446, -87.9678884" + destination);
+//        Toast.makeText(MapActivity.this, "Latidude is: " + latitude + "Longitude is:" + longitude, Toast.LENGTH_LONG).show();
+
+        Toast.makeText(MapActivity.this, "Token from map:" + token, Toast.LENGTH_LONG).show();
 
         // GO TO NAVIGATION
 
@@ -101,14 +109,43 @@ public class MapActivity extends AppCompatActivity implements AdapterView.OnItem
 
     }
 
-    private void receiveCoordinates() {
+    private void getCoordinates(){
+        Call<CustomerProfileModel> call = customerProfileInterface.getCustomerInfo(token);
+        call.enqueue(new Callback<CustomerProfileModel>() {
+            @Override
+            public void onResponse(Call<CustomerProfileModel> call, Response<CustomerProfileModel> response) {
+                if(!response.isSuccessful()){
+//                    Toast.makeText(MapActivity.this, "Code from MapACti")
+                }
+            }
 
-        Intent intent = getIntent();
-        intent.getStringExtra("latitude");
-        intent.getStringExtra("longitude");
-        startActivity(intent);
+            @Override
+            public void onFailure(Call<CustomerProfileModel> call, Throwable t) {
+
+            }
+        });
+
     }
 
+    // ______________________________ SPINNER EXECUTION ______________________________ //
+    // ______________________________ SPINNER EXECUTION ______________________________ //
 
-}
+    private void spinnerExecution(){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(MapActivity.this, R.array.laudry_status, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerStatus.setAdapter(adapter);
+        spinnerStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                status = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(adapterView.getContext(), status, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
 }

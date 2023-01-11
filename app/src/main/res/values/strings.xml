@@ -45,7 +45,7 @@
     <string name="position3">Laundry Staff</string>
 
 
-    <string-array name="sale_category">
+    <string-array name="type">
         <item>WALK-IN</item>
         <item>BOOKING</item>
     </string-array>
@@ -92,6 +92,12 @@
     <string-array name="barangay">
         <item>Don Carlos Sur</item>
         <item>Don Carlos Norte</item>
+    </string-array>
+
+    <string-array name="employee_role">
+        <item>Admin</item>
+        <item>Staff</item>
+        <item>Delivery Staff</item>
     </string-array>
 
     <string name="google_maps_API_key">AIzaSyBX3_hs7gm86HS-0zrlx228Gbf6B9dxbj8</string>
