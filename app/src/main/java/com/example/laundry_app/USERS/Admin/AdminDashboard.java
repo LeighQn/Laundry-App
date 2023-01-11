@@ -67,7 +67,7 @@ public class AdminDashboard extends AppCompatActivity {
         btnNotif = findViewById(R.id.btn_notification_bell);
 
         setFloatingActionButton(floatingActionBtn);
-        adminNotificationBellVisible(btnNotif, btnLogout);
+        btnLogout.setVisibility(View.GONE);
 
         // ====================================== INITIALIZE RETROFIT ====================================== //
         // ====================================== INITIALIZE RETROFIT ====================================== //
@@ -89,31 +89,31 @@ public class AdminDashboard extends AppCompatActivity {
                     case R.id.admin_dasboard:
                         getSupportFragmentManager().beginTransaction().replace(R.id.admin_frame_layout, adminHomeFragment).commit();
                         receiver("Dashboard: ");
-                        adminNotificationBellVisible(btnNotif, btnLogout);
+                        btnLogout.setVisibility(View.GONE);
                         return true;
 
                     case R.id.sales:
                         getSupportFragmentManager().beginTransaction().replace(R.id.admin_frame_layout, adminSalesFragment).commit();
                         receiver("Sales: ");
-                        adminNotificationBellVisible(btnNotif, btnLogout);
+                        btnLogout.setVisibility(View.GONE);
                         return true;
 
                     case R.id.record:
                         getSupportFragmentManager().beginTransaction().replace(R.id.admin_frame_layout, adminRecordFragment).commit();
                         receiver("Record: ");
-                        adminNotificationBellVisible(btnNotif, btnLogout);
+                        btnLogout.setVisibility(View.GONE);
                         return true;
 
                     case R.id.staffs:
                         getSupportFragmentManager().beginTransaction().replace(R.id.admin_frame_layout, adminStaffFragment).commit();
                         receiver("Staff: ");
-                        adminNotificationBellVisible(btnNotif, btnLogout);
+                        btnLogout.setVisibility(View.GONE);
                         return true;
 
                     case R.id.admin_profile:
                         getSupportFragmentManager().beginTransaction().replace(R.id.admin_frame_layout, adminProfileFragment).commit();
                         setLogoutIntent(btnLogout);
-                        adminNotificationBellVisible(btnLogout, btnNotif);
+                        adminNotificationBellVisible(btnLogout);
                         receiver("Profile: ");
                         return true;
 
@@ -201,9 +201,8 @@ public class AdminDashboard extends AppCompatActivity {
         return token;
     }
 
-    public void adminNotificationBellVisible(Button visible, Button invisible){
+    public void adminNotificationBellVisible(Button visible){
         visible.setVisibility(View.VISIBLE);
-        invisible.setVisibility(View.INVISIBLE);
     }
 
     public void sendDataToAddEmployee(){

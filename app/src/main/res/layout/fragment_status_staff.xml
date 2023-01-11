@@ -112,13 +112,23 @@
         android:elevation="10dp"/>
 
     <ImageView
+        android:layout_width="350dp"
+        android:layout_height="550dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="120dp"
+        android:alpha="0.2"
+        android:background="@color/white" />
+
+
+    <ImageView
         android:layout_below="@id/txt_out_for_delivery"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="12dp"
         android:layout_width="250dp"
         android:layout_height="30dp"
         android:background="@drawable/soft_rounded_with_bg_volor"
-        android:backgroundTint="@color/blue_grotto"/>
+        android:backgroundTint="@color/blue_grotto"
+        android:id="@+id/img_comforter_spinner_bg"/>
 
     <ImageView
         android:id="@+id/img_choose_spinner_icon"

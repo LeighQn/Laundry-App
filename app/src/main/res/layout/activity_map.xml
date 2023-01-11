@@ -115,7 +115,7 @@
 
     <ImageView
         android:layout_width="350dp"
-        android:layout_height="500dp"
+        android:layout_height="480dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="120dp"
         android:layout_centerHorizontal="true"
@@ -309,12 +309,12 @@
 
     <Button
         android:id="@+id/btn_go_to_nav"
-        android:layout_width="150dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:textSize="18dp"
-        android:layout_marginLeft="50dp"
+android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="140dp"
         android:background="@drawable/button_transparent_background"
         android:text="NAVIGATE"
         android:textColor="@color/black"/>
@@ -344,15 +344,11 @@
 
     <Button
         android:id="@+id/btn_to_confirm_booking_admin"
-        android:layout_width="150dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="80dp"
         android:background="@drawable/rounded_button"
         android:text="CONFIRM"
         android:textSize="18dp" />

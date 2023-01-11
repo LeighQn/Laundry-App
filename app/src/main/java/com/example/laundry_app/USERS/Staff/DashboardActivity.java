@@ -128,6 +128,10 @@ public class DashboardActivity extends AppCompatActivity {
         return token;
     }
 
+    public String getMyRole(){
+        return role;
+    }
+
 
     public void staffNotificationBellVisible(Button visible, Button invisible){
         visible.setVisibility(View.VISIBLE);

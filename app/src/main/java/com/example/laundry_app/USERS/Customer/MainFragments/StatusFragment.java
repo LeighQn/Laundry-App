@@ -82,36 +82,36 @@ public class StatusFragment extends Fragment {
         customerAdapter.notifyDataSetChanged();
     }
 
-    private void dataInitialized() {
-        statusArrayList = new ArrayList<>();
-
-        //statusPicture = new
-
-        statusDate = new String[]{
-                getString(R.string.date1),
-                getString(R.string.date2),
-                getString(R.string.date3),
-        };
-
-        statusPayable = new String[]{
-                getString(R.string.total1),
-                getString(R.string.total2),
-                getString(R.string.total3),
-
-        };
-        statusStatus = new String[]{
-                getString(R.string.status1),
-                getString(R.string.status2),
-                getString(R.string.status3),
-        };
-
-        for(int i=0; i < statusDate.length; i++){
-
-            Status status = new Status(statusDate[i], statusPayable[i], statusStatus[i] );
-            statusArrayList.add(status);
-        }
-
-    }
+//    private void dataInitialized() {
+//        statusArrayList = new ArrayList<>();
+//
+//        //statusPicture = new
+//
+//        statusDate = new String[]{
+//                getString(R.string.date1),
+//                getString(R.string.date2),
+//                getString(R.string.date3),
+//        };
+//
+//        statusPayable = new String[]{
+//                getString(R.string.total1),
+//                getString(R.string.total2),
+//                getString(R.string.total3),
+//
+//        };
+//        statusStatus = new String[]{
+//                getString(R.string.status1),
+//                getString(R.string.status2),
+//                getString(R.string.status3),
+//        };
+//
+//        for(int i=0; i < statusDate.length; i++){
+//
+//            Status status = new Status(statusDate[i], statusPayable[i], statusStatus[i] );
+//            statusArrayList.add(status);
+//        }
+//
+//    }
 
 
     // ============================== GET RETROFIT ============================== //

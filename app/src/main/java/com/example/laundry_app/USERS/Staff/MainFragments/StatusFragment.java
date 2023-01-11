@@ -17,13 +17,23 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.laundry_app.ADAPTERS.Customer.BookingAdapter;
 import com.example.laundry_app.ADAPTERS.NewStatusAdapter;
+import com.example.laundry_app.API.INTERFACE.BookingInterface;
 import com.example.laundry_app.API.INTERFACE.NewStatusInterface;
+import com.example.laundry_app.API.INTERFACE.SalesInterface;
+import com.example.laundry_app.API.MODELCLASS.BookingModel;
+import com.example.laundry_app.API.MODELCLASS.BookingsRequest;
 import com.example.laundry_app.API.MODELCLASS.NewStatusModel;
+import com.example.laundry_app.APIClient;
 import com.example.laundry_app.Global;
 import com.example.laundry_app.R;
+import com.example.laundry_app.USERS.Admin.AdminDashboard;
+import com.example.laundry_app.USERS.Customer.Screens.CustomerProfileUpdate;
+import com.example.laundry_app.USERS.Staff.DashboardActivity;
 import com.example.laundry_app.USERS.Staff.MapActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,20 +42,35 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 
-public class StatusFragment extends Fragment {
+public class StatusFragment extends Fragment implements BookingAdapter.RecyclerViewClickListener {
 
-    NewStatusAdapter newStatusAdapter;
-    NewStatusInterface newStatusInterface;
-    private RecyclerView recyclerView;
-    private Button btnTry;
-    int userId = 25;
-    private NewStatusAdapter.RecyclerViewClickListener listener;
-    Spinner spinnerType;
-    String bookingType;
+//    NewStatusAdapter newStatusAdapter;
+//    NewStatusInterface newStatusInterface;
+//    private RecyclerView recyclerView;
+//    private Button btnTry;
+//    int userId = 25;
+//    private NewStatusAdapter.RecyclerViewClickListener listener;
+//    Spinner spinnerType;
+//    String bookingType;
+//
+//    String token, finalToken, latitude, longitude;
+//
+//    Retrofit retrofit = Global.retrofitConnectFakeApi();
 
-    String token, finalToken, latitude, longitude;
+    DashboardActivity dashboardActivity;
+    BookingInterface bookingInterface;
+    SalesInterface salesInterface;
+    BookingAdapter bookingAdapter;
+    RecyclerView recyclerView;
+    Spinner spinner;
+    private BookingAdapter.RecyclerViewClickListener listener;
 
-    Retrofit retrofit = Global.retrofitConnectFakeApi();
+    private ArrayList<BookingModel> bookingModelList = new ArrayList<BookingModel>();
+
+    String token, finalToken, role, type;
+    Retrofit retrofit = APIClient.getClient();
+    Intent intent;
+
 
 
     @Override
@@ -55,68 +80,60 @@ public class StatusFragment extends Fragment {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_status_staff, null);
 
         recyclerView = root.findViewById(R.id.rv_staff_status);
-        spinnerType = root.findViewById(R.id.spinner_out_for_delivery);
+        spinner = (Spinner) root.findViewById(R.id.spinner_out_for_delivery);
 
 
-        // ====================================== RETROFIT ====================================== //
-        // ====================================== RETROFIT ====================================== //
+        bookingInterface = retrofit.create(BookingInterface.class);
 
-        newStatusInterface = retrofit.create(NewStatusInterface.class);
+        // ====================================== EXECUTE METHODS ====================================== //
+        // ====================================== EXECUTE METHODS ====================================== //
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-        newStatusAdapter = new NewStatusAdapter();
+        bookingAdapter = new BookingAdapter();
 
 
+        getDataFromActivity();
+        getBookings();
         spinnerExecution();
-        getCustomerDeliverList();
-        setOnClickListener();
+        setOnClickListerner();
+
+
+
 
         return root;
-
-
     }
 
 
-    private void getCustomerDeliverList(){
+    private void getBookings(){
         finalToken = "Bearer " + token;
-
-        Call<List<NewStatusModel>> call = newStatusInterface.getAllForDeliveryStatus();
-        call.enqueue(new Callback<List<NewStatusModel>>() {
+        Call<BookingsRequest> call = bookingInterface.getBookings(finalToken);
+        call.enqueue(new Callback<BookingsRequest>() {
             @Override
-            public void onResponse(Call<List<NewStatusModel>> call, Response<List<NewStatusModel>> response) {
+            public void onResponse(Call<BookingsRequest> call, Response<BookingsRequest> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(getActivity(), "Code: " + response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Admin Sale Fragment Code:" + response.code(), Toast.LENGTH_SHORT).show();
+                    bookingModelList.clear();
                     return;
                 }
 
-                List<NewStatusModel> newStatusModelResponse = response.body();
+                BookingsRequest  bookingsRequestResponse= response.body();
+                bookingModelList = bookingsRequestResponse.getBookings();
 
-                newStatusAdapter.setNewStatusData(newStatusModelResponse, listener);
-                recyclerView.setAdapter(newStatusAdapter);
+                bookingAdapter.setBookingsListDatas(bookingModelList, listener);
+                recyclerView.setAdapter(bookingAdapter);
+
+
 
             }
 
             @Override
-            public void onFailure(Call<List<NewStatusModel>> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<BookingsRequest> call, Throwable t) {
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-
-
     }
 
-    private void setOnClickListener(){
-        listener = new NewStatusAdapter.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View v, int position) {
-                Intent intent = new Intent(getActivity(),  MapActivity.class);
-                intent.putExtra("latitude", 7.6742);
-                intent.putExtra("longitude", 124.9897);
-                startActivity(intent);
-            }
-        };
-    }
 
     // ______________________________ SPINNER EXECUTION ______________________________ //
     // ______________________________ SPINNER EXECUTION ______________________________ //
@@ -124,12 +141,12 @@ public class StatusFragment extends Fragment {
     private void spinnerExecution(){
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.type, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerType.setAdapter(adapter);
-        spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                bookingType = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(adapterView.getContext(), bookingType, Toast.LENGTH_SHORT).show();
+                type = adapterView.getItemAtPosition(i).toString();
+                convertSpinnerValue();
             }
 
             @Override
@@ -138,4 +155,109 @@ public class StatusFragment extends Fragment {
             }
         });
     }
+
+    private void convertSpinnerValue(){
+        if(type.equals("WALK-IN")){
+            role ="1";
+            Toast.makeText(dashboardActivity, type + "is " + role, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void setOnClickListerner(){
+        listener = (v, position) -> sendTokenToMap();
+    }
+
+
+    private void getDataFromActivity(){
+        dashboardActivity = (DashboardActivity) getActivity();
+        token = dashboardActivity.getMyToken();
+        role = dashboardActivity.getMyRole();
+
+    }
+
+
+    private void sendTokenToMap(){
+        intent = new Intent(getActivity(), MapActivity.class);
+        intent.putExtra("token", token);
+        startActivity(intent);
+
+    }
+
+
+    @Override
+    public void onClick(View v, int position) {
+
+    }
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//    private void getCustomerDeliverList(){
+//        finalToken = "Bearer " + token;
+//
+//        Call<List<NewStatusModel>> call = newStatusInterface.getAllForDeliveryStatus();
+//        call.enqueue(new Callback<List<NewStatusModel>>() {
+//            @Override
+//            public void onResponse(Call<List<NewStatusModel>> call, Response<List<NewStatusModel>> response) {
+//                if(!response.isSuccessful()){
+//                    Toast.makeText(getActivity(), "Code: " + response.code(), Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//
+//                List<NewStatusModel> newStatusModelResponse = response.body();
+//
+//                newStatusAdapter.setNewStatusData(newStatusModelResponse, listener);
+//                recyclerView.setAdapter(newStatusAdapter);
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<NewStatusModel>> call, Throwable t) {
+//                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//
+//    }
+//
+//    private void setOnClickListener(){
+//        listener = new NewStatusAdapter.RecyclerViewClickListener() {
+//            @Override
+//            public void onClick(View v, int position) {
+//                Intent intent = new Intent(getActivity(),  MapActivity.class);
+//                intent.putExtra("latitude", 7.6742);
+//                intent.putExtra("longitude", 124.9897);
+//                startActivity(intent);
+//            }
+//        };
+//    }
+//
+//    // ______________________________ SPINNER EXECUTION ______________________________ //
+//    // ______________________________ SPINNER EXECUTION ______________________________ //
+//
+//    private void spinnerExecution(){
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.type, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinnerType.setAdapter(adapter);
+//        spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                bookingType = adapterView.getItemAtPosition(i).toString();
+//                Toast.makeText(adapterView.getContext(), bookingType, Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//            }
+//        });
+//    }
 }

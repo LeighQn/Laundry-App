@@ -6,6 +6,7 @@ import java.util.List;
 public class BookingsRequest {
     private ArrayList<BookingModel> bookings;
     private String message;
+    private User user;
 
     public BookingsRequest() {
     }
@@ -29,5 +30,13 @@ public class BookingsRequest {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

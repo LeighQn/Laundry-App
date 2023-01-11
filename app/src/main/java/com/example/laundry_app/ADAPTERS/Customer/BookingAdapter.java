@@ -19,12 +19,18 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.SalesAda
 
     private ArrayList<BookingModel> bookingsList;
     private Context context;
+    private RecyclerViewClickListener listener;
 
     public BookingAdapter() {
     }
 
     public void setBookingsListData(ArrayList<BookingModel> bookingsList) {
         this.bookingsList = bookingsList;
+    }
+
+    public void setBookingsListDatas(ArrayList<BookingModel> bookingsList, RecyclerViewClickListener listener){
+        this.bookingsList = bookingsList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -62,8 +68,12 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.SalesAda
         return bookingsList.size();
     }
 
+    public interface RecyclerViewClickListener{
+        void onClick(View v, int position);
+    }
 
-    public class SalesAdapterVH extends RecyclerView.ViewHolder {
+
+    public class SalesAdapterVH extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView date, customerName, status;
 
 
@@ -73,6 +83,12 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.SalesAda
             date = itemView.findViewById(R.id.rv_staff_status_date);
             customerName = itemView.findViewById(R.id.rv_staff_status_customer_name);
             status = itemView.findViewById(R.id.rv_staff_status_total);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            listener.onClick(view, getAdapterPosition());
         }
     }
 }

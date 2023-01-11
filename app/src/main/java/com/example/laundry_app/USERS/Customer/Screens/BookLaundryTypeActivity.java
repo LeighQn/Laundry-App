@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,15 +20,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.laundry_app.ADAPTERS.Customer.LaundryBookAdapter;
+import com.example.laundry_app.API.INTERFACE.BookingInterface;
 import com.example.laundry_app.API.INTERFACE.Customer.LaundryBookInterface;
+import com.example.laundry_app.API.MODELCLASS.BookingModel;
 import com.example.laundry_app.API.MODELCLASS.Customer.LaundryBookModel;
 import com.example.laundry_app.API.MODELCLASS.LaundryPriceModel;
+import com.example.laundry_app.API.MODELCLASS.SignUp;
+import com.example.laundry_app.APIClient;
 import com.example.laundry_app.Global;
 import com.example.laundry_app.R;
 import com.example.laundry_app.USERS.Customer.CustomerDashboard;
 import com.example.laundry_app.USERS.Customer.MainFragments.AdaptersAndDataClass.CustomerAdapter;
 import com.example.laundry_app.USERS.Customer.MainFragments.AdaptersAndDataClass.Status;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +45,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BookLaundryTypeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
+
+    private ArrayList<LaundryPriceModel> laundryPriceModelArrayList;
+    String token, finalToken;
+    String regClothes, allWhite, maong, comforter;
+    BookingModel bookingModel;
+    BookingInterface createBooking;
     Intent intent;
     LaundryBookAdapter laundryBookAdapter;
     LaundryBookInterface laundryBookInterface;
@@ -46,10 +58,8 @@ public class BookLaundryTypeActivity extends AppCompatActivity implements Adapte
     RecyclerView recyclerView;
     Spinner spinnerRegClothes, spinnerAllWhite, spinnerMaong, spinnerComforter;
     Button btnOkay, btnBack;
-    Retrofit retrofit = Global.retrofitConnect();
-    private ArrayList<LaundryPriceModel> laundryPriceModelArrayList;
-    String token, finalToken;
-    String regClothes, allWhite, maong, comforter;
+    Retrofit retrofit = APIClient.getClient();
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -233,6 +243,32 @@ public class BookLaundryTypeActivity extends AppCompatActivity implements Adapte
         AlertDialog alert = alertDialog.create();
         alert.setTitle("Dialog Header");
         alert.show();
+    }
+
+    private void createBookings(){
+
+
+//        finalToken = "Bearer " + token;
+//        Call<BookingModel> call = signUpInterface.createSignUp(signUp);
+//        call.enqueue(new Callback<SignUp>() {
+//            @Override
+//            public void onResponse(Call<SignUp> call, Response<SignUp> response) {
+//                if(!response.isSuccessful()){
+//                    Toast.makeText(getActivity(), "Code: " + response.code(), Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//
+//                // Code: 201 means created
+//                // Code: 200 mean successful
+//                SignUp signResponse = response.body();
+//                Toast.makeText(getActivity(), "Code: " + response.code(), Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<SignUp> call, Throwable t) {
+//                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
 }
