@@ -7,7 +7,7 @@ public class BookingModel {
     private User customer;
     private int type;
     private String date;
-    private List<BookingLaundryModel> laundries;
+    private BookingLaundryModel laundry;
     private int subTotal;
     private int total;
     private boolean paid;
@@ -16,12 +16,12 @@ public class BookingModel {
     public BookingModel() {
     }
 
-    public BookingModel(String _id, User customer, int type, String date, List<BookingLaundryModel> laundries, int subTotal, int total, boolean paid, int status) {
+    public BookingModel(String _id, User customer, int type, String date, BookingLaundryModel laundry, int subTotal, int total, boolean paid, int status) {
         this._id = _id;
         this.customer = customer;
         this.type = type;
         this.date = date;
-        this.laundries = laundries;
+        this.laundry = laundry;
         this.subTotal = subTotal;
         this.total = total;
         this.paid = paid;
@@ -60,12 +60,12 @@ public class BookingModel {
         this.date = date;
     }
 
-    public List<BookingLaundryModel> getLaundries() {
-        return laundries;
+    public BookingLaundryModel getLaundry() {
+        return laundry;
     }
 
-    public void setLaundries(List<BookingLaundryModel> laundries) {
-        this.laundries = laundries;
+    public void setLaundry(BookingLaundryModel laundry) {
+        this.laundry = laundry;
     }
 
     public int getSubTotal() {

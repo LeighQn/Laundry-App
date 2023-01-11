@@ -51,7 +51,7 @@ public class AdminSalesFragment extends Fragment {
     private String[] salesCustomerName;
     private String[] salesTotal;
     private RecyclerView recyclerView;
-    private List<BookingModel> bookingModelList;
+    private ArrayList<BookingModel> bookingModelList;
 
     AdminDashboard adminDashboard;
     BookingInterface bookingInterface;
@@ -97,7 +97,7 @@ public class AdminSalesFragment extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-        bookingAdapter = new BookingAdapter(bookingModelList, getContext());
+        bookingAdapter = new BookingAdapter();
 
         getDataFromActivity();
         getBookings();

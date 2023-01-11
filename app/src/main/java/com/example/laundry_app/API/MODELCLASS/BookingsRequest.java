@@ -1,24 +1,25 @@
 package com.example.laundry_app.API.MODELCLASS;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookingsRequest {
-    private List<BookingModel> bookings;
+    private ArrayList<BookingModel> bookings;
     private String message;
 
     public BookingsRequest() {
     }
 
-    public BookingsRequest(List<BookingModel> bookings, String message) {
+    public BookingsRequest(ArrayList<BookingModel> bookings, String message) {
         this.bookings = bookings;
         this.message = message;
     }
 
-    public List<BookingModel> getBookings() {
+    public ArrayList<BookingModel> getBookings() {
         return bookings;
     }
 
-    public void setBookings(List<BookingModel> bookings) {
+    public void setBookings(ArrayList<BookingModel> bookings) {
         this.bookings = bookings;
     }
 

@@ -12,17 +12,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.laundry_app.API.MODELCLASS.BookingModel;
 import com.example.laundry_app.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.SalesAdapterVH>{
 
-    private List<BookingModel> bookingsList;
+    private ArrayList<BookingModel> bookingsList;
     private Context context;
 
+    public BookingAdapter() {
+    }
 
-    public BookingAdapter(List<BookingModel> bookingsList, Context context) {
+    public void setBookingsListData(ArrayList<BookingModel> bookingsList) {
         this.bookingsList = bookingsList;
-        this.context = context;
     }
 
     @NonNull
@@ -35,15 +37,24 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.SalesAda
 
     @Override
     public void onBindViewHolder(@NonNull BookingAdapter.SalesAdapterVH holder, int position) {
-            BookingModel bookingModel = bookingsList.get(position);
+        BookingModel bookingModel = bookingsList.get(position);
 
-            String date = bookingModel.getDate();
-            String customerName = bookingModel.getCustomer().getName();
-            int status = bookingModel.getStatus();
+        String date = bookingModel.getDate();
+        String customerName = bookingModel.getCustomer().getName();
+        int status = bookingModel.getStatus();
+        ArrayList<String> converter = new ArrayList<>();
 
-            holder.date.setText(date);
-            holder.customerName.setText(customerName);
-            holder.status.setText(status);
+        converter.add("Pick-up");
+        converter.add("Washing");
+        converter.add("Preparing for Delivery");
+        converter.add("Out for Delivery");
+        converter.add("Delivered");
+
+
+
+        holder.date.setText(date);
+        holder.customerName.setText(customerName);
+        holder.status.setText(converter.get(status -1));
     }
 
     @Override
