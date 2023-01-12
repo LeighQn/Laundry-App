@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.laundry_app.ADAPTERS.Customer.BookingAdapter;
@@ -18,6 +21,7 @@ import com.example.laundry_app.API.INTERFACE.SalesInterface;
 import com.example.laundry_app.API.MODELCLASS.BookingModel;
 import com.example.laundry_app.API.MODELCLASS.BookingsRequest;
 import com.example.laundry_app.APIClient;
+import com.example.laundry_app.Global;
 import com.example.laundry_app.R;
 import com.example.laundry_app.USERS.Admin.AdminDashboard;
 
@@ -37,10 +41,12 @@ public class NewAdminSalesFragment extends Fragment {
     SalesInterface salesInterface;
     BookingAdapter bookingAdapter;
     RecyclerView recyclerView;
+    Spinner spinner;
     private ArrayList<BookingModel> bookingModelList = new ArrayList<BookingModel>();
 
-    String token, finalToken, role;
-    Retrofit retrofit = APIClient.getClient();
+    String token, finalToken, role, type;
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
 
 
     @Override
@@ -63,6 +69,7 @@ public class NewAdminSalesFragment extends Fragment {
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         bookingAdapter = new BookingAdapter();
 
+        spinnerExecution();
         getDataFromActivity();
         getBookings();
 
@@ -100,6 +107,37 @@ public class NewAdminSalesFragment extends Fragment {
             @Override
             public void onFailure(Call<BookingsRequest> call, Throwable t) {
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void getSpinnerData(){
+        if(type.equals("WALK-IN")){
+            role = "1";
+        }else if(type.equals("BOOKING")){
+            role = "2";
+        }else{
+            Toast.makeText(getActivity(), "Please choose form the dropdown field.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // ______________________________ SPINNER EXECUTION ______________________________ //
+    // ______________________________ SPINNER EXECUTION ______________________________ //
+
+    private void spinnerExecution(){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.barangay, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                type = adapterView.getItemAtPosition(i).toString();
+                //Toast.makeText(adapterView.getContext(), barangay, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
     }

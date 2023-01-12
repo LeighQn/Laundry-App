@@ -68,8 +68,10 @@ public class StatusFragment extends Fragment implements BookingAdapter.RecyclerV
     private ArrayList<BookingModel> bookingModelList = new ArrayList<BookingModel>();
 
     String token, finalToken, role, type;
-    Retrofit retrofit = APIClient.getClient();
     Intent intent;
+
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
 
 
 
@@ -159,7 +161,11 @@ public class StatusFragment extends Fragment implements BookingAdapter.RecyclerV
     private void convertSpinnerValue(){
         if(type.equals("WALK-IN")){
             role ="1";
-            Toast.makeText(dashboardActivity, type + "is " + role, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), type + "is " + role, Toast.LENGTH_SHORT).show();
+        }else if(type.equals("BOOKING")){
+            role ="3";
+        }else{
+            Toast.makeText(getActivity(), "Kindly choose from the dropdown.", Toast.LENGTH_SHORT).show();
         }
     }
 

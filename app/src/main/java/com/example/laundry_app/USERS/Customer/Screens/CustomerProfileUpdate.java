@@ -52,7 +52,8 @@ public class CustomerProfileUpdate extends AppCompatActivity {
     String address;
     static String role;
 
-    Retrofit retrofit = Global.retrofitConnect();
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
 
 
     @Override
@@ -88,7 +89,10 @@ public class CustomerProfileUpdate extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Global.setIp(ip);
+                intent = new Intent(CustomerProfileUpdate.this, DashboardActivity.class);
                 Toast.makeText(CustomerProfileUpdate.this, role, Toast.LENGTH_SHORT).show();
+                startActivity(intent);
             }
         });
 
@@ -267,6 +271,7 @@ public class CustomerProfileUpdate extends AppCompatActivity {
 
     public void openNewDashboard(Class classes){
         intent = new Intent(this, classes);
+        Global.setIp(ip);
         intent.putExtra("token", token);
         startActivity(intent);
     }

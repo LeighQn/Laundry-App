@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".USERS.Staff.MainFragments.StaffStatusFragment"
+    tools:context=".USERS.Staff.MainFragments.StatusFragment"
     android:background="@color/baby_blue">
 
     <!-- _________________BACKGROUND_________________ -->

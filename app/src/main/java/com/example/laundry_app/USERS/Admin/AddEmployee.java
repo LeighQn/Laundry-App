@@ -41,7 +41,8 @@ public class AddEmployee extends AppCompatActivity {
     TextView txtTitle;
     Spinner spinnerBarangay;
     Intent intent;
-    Retrofit retrofit = Global.retrofitConnect();
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
 
 
 
@@ -111,6 +112,7 @@ public class AddEmployee extends AppCompatActivity {
         btnSignUpConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Global.setIp(ip);
                 redirectToLogin();
             }
         });
@@ -121,6 +123,7 @@ public class AddEmployee extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 intent = new Intent(AddEmployee.this, AdminDashboard.class);
+                Global.setIp(ip);
                 intent.putExtra("token", token);
                 startActivity(intent);
             }

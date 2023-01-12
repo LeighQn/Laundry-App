@@ -34,7 +34,8 @@ public class StaffHomeFragment extends Fragment {
     StaffHomeInterface staffHomeInterface;
     DashboardActivity dashboardActivity;
 
-    Retrofit retrofit = Global.retrofitConnect();
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
 
 
 

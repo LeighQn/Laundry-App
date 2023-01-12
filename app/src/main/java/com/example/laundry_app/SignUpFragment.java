@@ -46,7 +46,8 @@ public class SignUpFragment extends Fragment {
     Button btnSignUpConfirm;
     EditText etxtFirstname, etxtMiddleName, etxtLastName, etxtUsername, etxtPhone, etxtPassword, etxtPurok;
     Spinner spinnerBarangay;
-    Retrofit retrofit = Global.retrofitConnect();
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
 
 
 
@@ -112,6 +113,8 @@ public class SignUpFragment extends Fragment {
         btnSignUpConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Global.setIp(ip);
                 redirectToLogin();
             }
         });

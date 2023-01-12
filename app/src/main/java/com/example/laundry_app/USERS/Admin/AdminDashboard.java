@@ -22,6 +22,7 @@ import com.example.laundry_app.R;
 import com.example.laundry_app.USERS.Admin.MainFragments.NewAdminSalesFragment;
 import com.example.laundry_app.USERS.Customer.CustomerDashboard;
 import com.example.laundry_app.USERS.Customer.Screens.BookingActivity;
+import com.example.laundry_app.USERS.Customer.Screens.CustomerBookingsActivity;
 import com.example.laundry_app.USERS.Customer.Screens.NotificationActivity;
 import com.example.laundry_app.USERS.Staff.DashboardActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -47,8 +48,8 @@ public class AdminDashboard extends AppCompatActivity {
     NewAdminSalesFragment adminSalesFragment = new NewAdminSalesFragment();
     CustomerDashboard customerDashboard;
     CustomerProfileInterface customerProfileInterface;
-    Retrofit retrofit = Global.retrofitConnect();
-
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
     Boolean isBol = true;
     String token, phone, role, finalToken;
 
@@ -127,7 +128,8 @@ public class AdminDashboard extends AppCompatActivity {
         floatingBtnAddLaundry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminDashboard.this, AdminBookActivity.class);
+                Global.setIp(ip);
+                Intent intent = new Intent(AdminDashboard.this, BookingActivity.class);
                 startActivity(intent);
             }
         });
@@ -135,6 +137,7 @@ public class AdminDashboard extends AppCompatActivity {
         floatingBtnAddUnit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Global.setIp(ip);
                 Intent intent1 = new Intent(AdminDashboard.this, UnitActivity.class);
                 startActivity(intent1);
             }
@@ -143,6 +146,7 @@ public class AdminDashboard extends AppCompatActivity {
         floatingBtnAddStaff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Global.setIp(ip);
                 Intent intent2 = new Intent(AdminDashboard.this, AddEmployee.class);
                 startActivity(intent2);
             }

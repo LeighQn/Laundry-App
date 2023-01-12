@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.laundry_app.ADAPTERS.Customer.BookingAdapter;
@@ -46,7 +47,7 @@ public class AdminSalesFragment extends Fragment {
     // ====================================== COMPONENTS ====================================== //
     // ====================================== COMPONENTS ====================================== //
 
-  //  private ArrayList<Sales> salesArrayList;
+    //  private ArrayList<Sales> salesArrayList;
     private String[] salesDate;
     private String[] salesCustomerName;
     private String[] salesTotal;
@@ -57,6 +58,7 @@ public class AdminSalesFragment extends Fragment {
     BookingInterface bookingInterface;
     SalesInterface salesInterface;
     BookingAdapter bookingAdapter;
+    TextView txtTitle;
 
 
     String token, finalToken, role;
@@ -64,15 +66,19 @@ public class AdminSalesFragment extends Fragment {
 
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_status_staff, null);
 
 
         // ====================================== INITIALIZE ====================================== //
         // ====================================== INITIALIZE ====================================== //
 
-        recyclerView = view.findViewById(R.id.rv_sales_admin);
+        recyclerView = root.findViewById(R.id.rv_sales_admin);
+        txtTitle = root.findViewById(R.id.txt_out_for_delivery);
+
+        txtTitle.setText("SALES");
 
 
         bookingInterface = retrofit.create(BookingInterface.class);
@@ -89,11 +95,6 @@ public class AdminSalesFragment extends Fragment {
 
         // ====================================== RecyclerView ====================================== //
 
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//        recyclerView.setHasFixedSize(true);
-//        BookingAdapter bookingAdapter = new BookingAdapter(getContext(), bookingModelList);
-//        recyclerView.setAdapter(salesAdapter);
-//        salesAdapter.notifyDataSetChanged();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
@@ -104,37 +105,11 @@ public class AdminSalesFragment extends Fragment {
 
 
 
-//        getDataFromActivity();
-//        getCustomerProfile();
+
+
+        return root;
 
     }
-//
-//    private void salesDataInitialize() {
-//        salesArrayList = new ArrayList<Sales>();
-//
-//        salesDate = new String[]{
-//                getString(R.string.date1),
-//                getString(R.string.date2),
-//                getString(R.string.date3),
-//        };
-//        salesCustomerName = new String[]{
-//                getString(R.string.customer1),
-//                getString(R.string.customer2),
-//                getString(R.string.customer3),
-//        };
-//
-//        salesTotal = new String[]{
-//                getString(R.string.total1),
-//                getString(R.string.total2),
-//                getString(R.string.total3),
-//        };
-//
-//        for(int i=0; i < salesDate.length; i++){
-//
-//            Sales sales = new Sales(salesDate[i], salesCustomerName[i], salesTotal[i] );
-//            salesArrayList.add(sales);
-//        }
-//    }
 
     private void getDataFromActivity(){
         adminDashboard = (AdminDashboard) getActivity();

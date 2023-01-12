@@ -37,7 +37,8 @@ public class StaffProfileFragment extends Fragment {
     DashboardActivity dashboardActivity;
     Intent intent;
 
-    Retrofit retrofit = Global.retrofitConnect();
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,7 +73,7 @@ public class StaffProfileFragment extends Fragment {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Global.setIp(ip);
                 sendDatatoUpdateProfileStaff();
 
             }
@@ -81,6 +82,7 @@ public class StaffProfileFragment extends Fragment {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Global.setIp(ip);
                 toStaffDashboard();
             }
         });

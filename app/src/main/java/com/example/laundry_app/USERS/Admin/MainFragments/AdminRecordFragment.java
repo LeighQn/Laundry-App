@@ -11,12 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.example.laundry_app.Global;
 import com.example.laundry_app.USERS.Admin.MainFragments.AdaptersAndDataClass.Records;
 import com.example.laundry_app.USERS.Admin.MainFragments.AdaptersAndDataClass.RecordsAdapter;
 import com.example.laundry_app.R;
 
 import java.util.ArrayList;
+
+import retrofit2.Retrofit;
 
 
 public class AdminRecordFragment extends Fragment {
@@ -27,27 +34,44 @@ public class AdminRecordFragment extends Fragment {
     private String[] recordTotal;
     private RecyclerView recyclerView;
 
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
+
+    String type;
+    Spinner spinner;
+    TextView txtTitle;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_record, container, false);
-    }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_status_staff, null);
+
+
+        spinner = root.findViewById(R.id.spinner_out_for_delivery);
+        txtTitle = root.findViewById(R.id.txt_out_for_delivery);
+
+        txtTitle.setText("MATERIALS AVAILABILITY");
+
+
 
         recordDataInitialize();
 
-        recyclerView = view.findViewById(R.id.rv_record);
+        recyclerView = root.findViewById(R.id.rv_record);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         RecordsAdapter recordsAdapter = new RecordsAdapter(getContext(), recordsArrayList);
         recyclerView.setAdapter(recordsAdapter);
         recordsAdapter.notifyDataSetChanged();
+
+
+
+
+
+        return root;
     }
+
 
     private void recordDataInitialize() {
 
@@ -77,5 +101,26 @@ public class AdminRecordFragment extends Fragment {
             Records record = new Records(recordDate[i], recordCustomerName[i], recordTotal[i] );
             recordsArrayList.add(record);
         }
+    }
+
+    // ______________________________ SPINNER EXECUTION ______________________________ //
+    // ______________________________ SPINNER EXECUTION ______________________________ //
+
+    private void spinnerExecution(){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.barangay, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                type = adapterView.getItemAtPosition(i).toString();
+                //Toast.makeText(adapterView.getContext(), barangay, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 }

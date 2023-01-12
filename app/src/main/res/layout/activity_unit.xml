@@ -145,17 +145,17 @@
         android:textSize="15dp"
         android:text="Material:"/>
 
-<!--    <TextView-->
-<!--        android:id="@+id/txt_customer_name_admin_unit_display"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="150dp"-->
-<!--        android:layout_marginTop="50dp"-->
-<!--        android:layout_below="@id/txt_thank_you_message_unit"-->
-<!--        android:textColor="@color/editTextColor"-->
-<!--        android:textStyle="bold"-->
-<!--        android:textSize="15dp"-->
-<!--        android:text="Detergent                               "/>-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/txt_customer_name_admin_unit_display"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginLeft="150dp"-->
+    <!--        android:layout_marginTop="50dp"-->
+    <!--        android:layout_below="@id/txt_thank_you_message_unit"-->
+    <!--        android:textColor="@color/editTextColor"-->
+    <!--        android:textStyle="bold"-->
+    <!--        android:textSize="15dp"-->
+    <!--        android:text="Detergent                               "/>-->
 
     <TextView
         android:id="@+id/txt_weight_detailed_unit"
@@ -230,60 +230,15 @@
         android:text="Add stock"/>
 
 
-    <TextView
-        android:id="@+id/txt_add_detergent_unit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_detergent_title_unit"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="50dp"
-        android:textColor="@color/black"
-        android:textSize="18dp"
-        android:text="Weight:"/>
-
-    <TextView
-        android:id="@+id/etxt_add_detergent_unit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_detergent_title_unit"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="120dp"
-        android:textColor="@color/black"
-        android:textSize="18dp"
-        android:enabled="false"
-        android:text="0"/>
-
-    <Button
-        android:id="@+id/btn_add_detergent_unit"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="240dp"
-        android:layout_below="@id/txt_detergent_title_unit"
-        android:background="@drawable/secondary_rounded_button"
-        android:textColor="@color/black"
-        android:text="+"/>
-
-    <Button
-        android:id="@+id/btn_minus_detergent_unit"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="300dp"
-        android:layout_below="@id/txt_detergent_title_unit"
-        android:background="@drawable/secondary_rounded_button"
-        android:textColor="@color/editTextColor"
-        android:textSize="16dp"
-        android:text="-"/>
 
     <Button
         android:id="@+id/btn_confirm_detergent_add_unit"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_add_detergent_unit"
-        android:layout_marginTop="180dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/baby_blue_round_bg"
+        android:background="@drawable/rounded_button"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:text="Confirm"/>
@@ -291,12 +246,24 @@
 
     <ImageView
         android:layout_below="@id/txt_thank_you_message_unit"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/soft_rounded_with_bg_volor"
+        android:alpha="0.5"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="150dp"
-        android:layout_width="200dp"
+        android:backgroundTint="@color/editTextColor"/>
+
+    <ImageView
+        android:id="@+id/img_material_spinner_icon"
+        android:layout_below="@id/txt_thank_you_message_unit"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="80dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="20dp"
         android:layout_height="20dp"
-        android:background="@drawable/soft_rounded_with_bg_volor"
-        android:alpha="0.5"/>
+        android:background="@drawable/ic_baseline_expand_more_24"
+        android:backgroundTint="@color/white"/>
 
 
     <Spinner
@@ -308,16 +275,55 @@
         android:layout_marginTop="50dp"
         android:theme="@style/mySpinnerItemStyle" />
 
-    <ImageView
-        android:layout_below="@id/txt_thank_you_message_unit"
-        android:layout_marginTop="50dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="75dp"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:backgroundTint="@color/blue_grotto"
-        android:background="@drawable/ic_baseline_expand_more_24"
-        android:alpha="0.5"/>
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/txt_detergent_title_unit">
+
+        <TextView
+            android:id="@+id/txt_add_detergent_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:text="Weight:"/>
+
+
+        <Spinner
+            android:id="@+id/spinner_weight"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/txt_detergent_title_unit"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="20dp"
+            android:theme="@style/mySpinnerItemStyle" />
+
+    </LinearLayout>
+
+        <ImageView
+            android:layout_below="@id/txt_detergent_title_unit"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:background="@drawable/soft_rounded_with_bg_volor"
+            android:alpha="0.5"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/editTextColor"/>
+
+        <ImageView
+            android:id="@+id/img_brgy_spinner_icon"
+            android:layout_below="@id/txt_detergent_title_unit"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="70dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ic_baseline_expand_more_24"
+            android:backgroundTint="@color/white"/>
+
 
 
 </RelativeLayout>

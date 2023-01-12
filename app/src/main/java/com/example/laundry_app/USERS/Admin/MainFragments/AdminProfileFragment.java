@@ -38,7 +38,8 @@ public class AdminProfileFragment extends Fragment {
     CustomerProfileUpdate customerProfileUpdate;
     Intent intent;
 
-    Retrofit retrofit = Global.retrofitConnect();
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
 
 
     @Override
@@ -78,6 +79,7 @@ public class AdminProfileFragment extends Fragment {
             public void onClick(View view) {
 //                Intent intent = new Intent(getActivity(), CustomerProfileUpdate.class);
 //                startActivity(intent);
+                Global.setIp(ip);
                 getCustomerProfile();
 
 
@@ -89,6 +91,7 @@ public class AdminProfileFragment extends Fragment {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Global.setIp(ip);
                 customerProfileUpdate.backToDashboard();
             }
         });

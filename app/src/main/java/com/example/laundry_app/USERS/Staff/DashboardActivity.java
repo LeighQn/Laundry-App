@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.laundry_app.Global;
 import com.example.laundry_app.MainActivity;
 import com.example.laundry_app.R;
 import com.example.laundry_app.USERS.Admin.AdminDashboard;
@@ -21,6 +22,8 @@ import com.example.laundry_app.USERS.Staff.MainFragments.StaffStatusFragment;
 import com.example.laundry_app.USERS.Staff.MainFragments.StatusFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+
+import retrofit2.Retrofit;
 
 public class DashboardActivity extends AppCompatActivity {
     // ============================== COMPONENTS ============================== //
@@ -38,6 +41,9 @@ public class DashboardActivity extends AppCompatActivity {
     CustomerDashboard customerDashboard;
 
     String token, phone, role;
+
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
 
 
     // ============================================================================ //
@@ -99,6 +105,7 @@ public class DashboardActivity extends AppCompatActivity {
         btnNotificationBell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Global.setIp(ip);
                 sendDataToNotifFromStaff();
             }
         });
@@ -107,6 +114,7 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 intent = new Intent(DashboardActivity.this, MainActivity.class);
+                Global.setIp(ip);
                 startActivity(intent);
             }
         });

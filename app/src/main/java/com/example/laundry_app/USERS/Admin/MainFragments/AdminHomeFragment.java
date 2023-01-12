@@ -56,7 +56,8 @@ public class AdminHomeFragment extends Fragment {
     int numberOfBookings1;
     String token, finalToken;
 
-    Retrofit retrofit = Global.retrofitConnect();
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
     AdminHomeInterface adminHomeInterface;
     AdminHomeModel adminHomeModel;
     AdminDashboard adminDashboard;

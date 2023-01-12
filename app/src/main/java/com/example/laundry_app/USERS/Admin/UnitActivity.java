@@ -14,7 +14,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.laundry_app.Global;
 import com.example.laundry_app.R;
+
+import retrofit2.Retrofit;
 
 public class UnitActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -25,6 +28,9 @@ public class UnitActivity extends AppCompatActivity implements AdapterView.OnIte
     Spinner spinner;
     private static final String[] paths = {"item 1", "item 2", "item 3"};
 
+    String ip = Global.getIp();
+    Retrofit retrofit = Global.setIpRetrofit(ip);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +39,6 @@ public class UnitActivity extends AppCompatActivity implements AdapterView.OnIte
         btnBack = findViewById(R.id.btn_back_to_home_unit);
         btnConfirm = findViewById(R.id.btn_confirm_detergent_add_unit);
         itemUnit = findViewById(R.id.txt_weight_detailed_unit_display);
-        txtAddedUnit = findViewById(R.id.etxt_add_detergent_unit);
-        btnAdd = findViewById(R.id.btn_add_detergent_unit);
-        btnMinus = findViewById(R.id.btn_minus_detergent_unit);
         spinner = findViewById(R.id.spinner);
 
 
@@ -76,7 +79,7 @@ public class UnitActivity extends AppCompatActivity implements AdapterView.OnIte
                                 dialogInterface.cancel();
 //                                Intent intent = new Intent(UnitActivity.this, AdminDashboard.class);
 //                                startActivity(intent);
-
+                                Global.setIp(ip);
                             }
                         });
                         yesAlert.show();

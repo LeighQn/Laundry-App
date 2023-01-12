@@ -33,6 +33,9 @@ public class NotificationActivity extends AppCompatActivity {
 
     String token, finalToken, role;
 
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
+
 
 
 
@@ -41,11 +44,9 @@ public class NotificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
 
-        Retrofit retrofit = Global.retrofitConnect();
+
 
         btnBackToHome = findViewById(R.id.btn_back_to_home);
-
-
         notificationInterface = retrofit.create(NotificationInterface.class);
 
 
@@ -56,6 +57,7 @@ public class NotificationActivity extends AppCompatActivity {
         btnBackToHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Global.setIp(ip);
                 backToDashboardInNotif();
             }
         });
@@ -67,6 +69,7 @@ public class NotificationActivity extends AppCompatActivity {
 
         intent = new Intent(this, CustomerDashboard.class);
         intent.putExtra("token", token);
+        Global.setIp(ip);
         startActivity(intent);
     }
 
