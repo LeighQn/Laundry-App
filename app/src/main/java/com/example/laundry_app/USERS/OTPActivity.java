@@ -5,19 +5,33 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.laundry_app.API.INTERFACE.AuthInterface;
+import com.example.laundry_app.API.MODELCLASS.ActivationRequest;
+import com.example.laundry_app.API.MODELCLASS.OtpModel;
+import com.example.laundry_app.API.MODELCLASS.User;
+import com.example.laundry_app.Global;
 import com.example.laundry_app.R;
+import com.example.laundry_app.USERS.Admin.AdminDashboard;
+import com.example.laundry_app.USERS.Customer.CustomerDashboard;
 import com.example.laundry_app.USERS.Staff.DashboardActivity;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class OTPActivity extends AppCompatActivity {
 
     EditText etxtOtp;
     Button btnSubmit;
+    String token;
 
-    @SuppressLint("MissingInflatedId")
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +41,72 @@ public class OTPActivity extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btn_submit_otp);
 
         Intent intent = getIntent();
-        String token = intent.getStringExtra("token");
-        startActivity(intent);
+        token = intent.getStringExtra("token");
 
-        Toast.makeText(OTPActivity.this, "OTP: " + token, Toast.LENGTH_SHORT).show();
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activateOtp();
+            }
+        });
     }
+
+    private void activateOtp(){
+        String finalToken = "Bearer " + token;
+        String otp = etxtOtp.getText().toString();
+        Toast.makeText(OTPActivity.this, otp, Toast.LENGTH_LONG).show();
+        OtpModel otpModel = new OtpModel(otp);
+        Toast.makeText(OTPActivity.this, otpModel.toString(), Toast.LENGTH_LONG).show();
+        Retrofit retrofit = Global.retrofitConnect();
+        AuthInterface authInterface = retrofit.create(AuthInterface.class);
+        Call<ActivationRequest> request = authInterface.activateWithOTP(finalToken, otpModel);
+        request.enqueue(new Callback<ActivationRequest>() {
+            @Override
+            public void onResponse(Call<ActivationRequest> call, Response<ActivationRequest> response) {
+                if(!response.isSuccessful() || response.code() != 200){
+                    Toast.makeText(OTPActivity.this, response.body() == null ? "OTP is invalid" : response.body().getMessage(), Toast.LENGTH_LONG);
+                    return;
+                }
+                ActivationRequest res = (ActivationRequest) response.body();
+                User user = res.getUser();
+                redirectedToAssignedRoleScreen(String.valueOf(user.getRole()));
+            }
+
+            @Override
+            public void onFailure(Call<ActivationRequest> call, Throwable t) {
+
+            }
+        });
+    }
+
+
+
+    private void redirectedToAssignedRoleScreen(String role){
+
+        if(role.equals("1")){
+
+            passData(AdminDashboard.class, "Admin: ");
+
+        }else if(role.equals("2")){
+
+            passData(DashboardActivity.class, "Staff: ");
+
+        }else if(role.equals("3")){
+
+            passData(CustomerDashboard.class, "Customer: ");
+
+        }else {
+            Toast.makeText(OTPActivity.this, "Invalid Username or Password.", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+
+    private void passData(Class classes, String string){
+        intent = new Intent(OTPActivity.this, classes);
+        intent.putExtra("token", token);
+        startActivity(intent);
+    }
+
 }

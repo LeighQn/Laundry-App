@@ -110,6 +110,7 @@ public class ProfileFragment extends Fragment {
     private void getCustomerProfile() {
 
         finalToken = "Bearer " + token;
+        Toast.makeText(getActivity(), finalToken, Toast.LENGTH_LONG).show();
         Call<CustomerProfileModel> call = customerProfileInterface.getCustomerInfo(finalToken);
         call.enqueue(new Callback<CustomerProfileModel>() {
             @Override

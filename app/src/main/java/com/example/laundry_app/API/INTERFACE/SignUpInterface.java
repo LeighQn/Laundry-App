@@ -18,6 +18,6 @@ import retrofit2.http.Query;
 public interface SignUpInterface {
 
     // must change "posts" to the right endpoint
-    @POST("register")
+    @POST("auth/register")
     Call<SignUp> createSignUp(@Body SignUp signUp);
 }

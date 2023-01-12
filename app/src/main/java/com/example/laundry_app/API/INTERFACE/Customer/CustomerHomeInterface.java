@@ -12,6 +12,6 @@ public interface CustomerHomeInterface {
     @GET("customerDashboard")
     Call<CustomerHomeModel> getCustomerDashboard();
 
-    @GET("profile")
+    @GET("auth/profile")
     Call<CustomerHomeModel> getCustomerInfoInHome(@Header("Authorization") String token);
 }

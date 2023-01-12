@@ -73,6 +73,7 @@ public class HomeFragment extends Fragment {
 
     private void getCustomerInfofromProfileToHome(){
         finalToken = "Bearer " + token;
+        Toast.makeText(getActivity(), finalToken, Toast.LENGTH_LONG).show();
         Call<CustomerHomeModel> call = customerHomeInterface.getCustomerInfoInHome(finalToken);
         call.enqueue(new Callback<CustomerHomeModel>() {
             @Override
@@ -99,7 +100,6 @@ public class HomeFragment extends Fragment {
     private void getDataFromActivityHome(){
         customerDashboard = (CustomerDashboard) getActivity();
         token = customerDashboard.getMyToken();
-
     }
 
 

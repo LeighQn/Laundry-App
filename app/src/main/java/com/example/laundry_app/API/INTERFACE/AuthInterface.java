@@ -1,25 +1,26 @@
 package com.example.laundry_app.API.INTERFACE;
 
+import com.example.laundry_app.API.MODELCLASS.ActivationRequest;
 import com.example.laundry_app.API.MODELCLASS.Login;
-
-import java.util.List;
+import com.example.laundry_app.API.MODELCLASS.OtpModel;
+import com.example.laundry_app.API.MODELCLASS.SignUp;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.DELETE;
-import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
-import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
 
-public interface LoginInterface {
+public interface AuthInterface {
 
-    @POST("login")
+    @POST("auth/login")
     Call<Login> handleLogin(@Body Login login);
+
+    @POST("auth/register")
+    Call<SignUp> createSignUp(@Body SignUp signUp);
+
+    @PUT("auth/activate")
+    Call<ActivationRequest> activateWithOTP(@Header("Authorization") String token, @Body OtpModel otpModel);
 
 
 

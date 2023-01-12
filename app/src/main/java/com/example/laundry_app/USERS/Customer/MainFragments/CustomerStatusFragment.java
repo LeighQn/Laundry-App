@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ import com.example.laundry_app.API.MODELCLASS.BookingModel;
 import com.example.laundry_app.API.MODELCLASS.BookingsRequest;
 import com.example.laundry_app.API.MODELCLASS.Customer.CustomerStatusModel;
 import com.example.laundry_app.APIClient;
+import com.example.laundry_app.Global;
 import com.example.laundry_app.MainActivity;
 import com.example.laundry_app.R;
 import com.example.laundry_app.USERS.Customer.CustomerDashboard;
@@ -61,7 +63,7 @@ public class CustomerStatusFragment extends Fragment {
     private ArrayList<BookingModel> bookingModelList = new ArrayList<BookingModel>();
 
     String token, finalToken, role, type;
-    Retrofit retrofit = APIClient.getClient();
+    Retrofit retrofit = Global.retrofitConnect();
     Intent intent;
 
 
@@ -111,14 +113,16 @@ public class CustomerStatusFragment extends Fragment {
         call.enqueue(new Callback<BookingsRequest>() {
             @Override
             public void onResponse(Call<BookingsRequest> call, Response<BookingsRequest> response) {
-                if(!response.isSuccessful()){
-                    Toast.makeText(getActivity(), "Admin Sale Fragment Code:" + response.code(), Toast.LENGTH_SHORT).show();
+                if(!response.isSuccessful() || response.code() != 200){
+                    Toast.makeText(getActivity(), response.body() != null ? response.body().getMessage() : "Something went wrong", Toast.LENGTH_SHORT).show();
                     bookingModelList.clear();
                     return;
                 }
 
                 BookingsRequest  bookingsRequestResponse= response.body();
                 bookingModelList = bookingsRequestResponse.getBookings();
+
+                Toast.makeText(getActivity(), "Got the bookings with size: " + bookingModelList.size(), Toast.LENGTH_SHORT).show();
 
                 bookingAdapter.setStatusDatas(bookingModelList, listener);
                 recyclerView.setAdapter(bookingAdapter);
@@ -129,7 +133,7 @@ public class CustomerStatusFragment extends Fragment {
 
             @Override
             public void onFailure(Call<BookingsRequest> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                Log.d("SOME", t.getMessage());
             }
         });
     }
@@ -150,12 +154,12 @@ public class CustomerStatusFragment extends Fragment {
 
     }
 
-
-    private void sendTokenToMap(){
-        intent = new Intent(getActivity(), MapActivity.class);
-        intent.putExtra("token", token);
-        startActivity(intent);
-
-    }
+//
+//    private void sendTokenToMap(){
+//        intent = new Intent(getActivity(), MapActivity.class);
+//        intent.putExtra("token", token);
+//        startActivity(intent);
+//
+//    }
 
 }

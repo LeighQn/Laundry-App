@@ -5,31 +5,52 @@ public class User {
     private String username;
     private String mobileNumber;
     private String address;
+    private String otpActivated;
+    private String otpForgotten;
     private int role;
     private String token;
     private String longitude;
     private String latitude;
     private String _id;
 
- //   public User(){}
+    public User(){}
 
-    public User(String name, String username, String mobileNumber, String address, int role, String longitude, String latitude, String _id) {
+    public User(String name, String username, String mobileNumber, String address, String otpActivated, String otpForgotten, int role, String token, String longitude, String latitude, String _id) {
         this.name = name;
         this.username = username;
         this.mobileNumber = mobileNumber;
         this.address = address;
+        this.otpActivated = otpActivated;
+        this.otpForgotten = otpForgotten;
         this.role = role;
+        this.token = token;
         this.longitude = longitude;
         this.latitude = latitude;
         this._id = _id;
     }
 
-//    public User(String name, String mobileNumber, String address, int role) {
-//        this.name = name;
-//        this.mobileNumber = mobileNumber;
-//        this.address = address;
-//        this.role = role;
-//    }
+    public String getOtpActivated() {
+        return otpActivated;
+    }
+
+    public void setOtpActivated(String otpActivated) {
+        this.otpActivated = otpActivated;
+    }
+
+    public String getOtpForgotten() {
+        return otpForgotten;
+    }
+
+    public void setOtpForgotten(String otpForgotten) {
+        this.otpForgotten = otpForgotten;
+    }
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
 
     public String getName() {
         return name;

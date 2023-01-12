@@ -22,9 +22,12 @@ import android.widget.Toast;
 import com.example.laundry_app.ADAPTERS.Customer.LaundryBookAdapter;
 import com.example.laundry_app.API.INTERFACE.BookingInterface;
 import com.example.laundry_app.API.INTERFACE.Customer.LaundryBookInterface;
+import com.example.laundry_app.API.INTERFACE.PriceInterface;
 import com.example.laundry_app.API.MODELCLASS.BookingModel;
 import com.example.laundry_app.API.MODELCLASS.Customer.LaundryBookModel;
 import com.example.laundry_app.API.MODELCLASS.LaundryPriceModel;
+import com.example.laundry_app.API.MODELCLASS.PriceModel;
+import com.example.laundry_app.API.MODELCLASS.PriceRequest;
 import com.example.laundry_app.API.MODELCLASS.SignUp;
 import com.example.laundry_app.APIClient;
 import com.example.laundry_app.Global;
@@ -45,21 +48,34 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BookLaundryTypeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-
-    private ArrayList<LaundryPriceModel> laundryPriceModelArrayList;
-    String token, finalToken;
-    String regClothes, allWhite, maong, comforter;
-    BookingModel bookingModel;
-    BookingInterface createBooking;
-    Intent intent;
-    LaundryBookAdapter laundryBookAdapter;
+    // API
+    Retrofit retrofit = Global.retrofitConnect();
+    BookingInterface bookingInterface;
+    PriceInterface priceInterface;
     LaundryBookInterface laundryBookInterface;
+
+    // DATA CLASS
+    PriceModel priceModel;
+    LaundryBookAdapter laundryBookAdapter;
     LaundryBookModel laundryBookModel;
+
+    // Intent and Extras
+    Intent intent;
+    String token, finalToken;
+    BookingModel bookingModel;
+
+    // VARS
+    String regClothes, allWhite, maong, comforter;
+    // Get prices
+    private ArrayList<LaundryPriceModel> laundryPriceModelArrayList;
+
+    // COMPONENTS
     RecyclerView recyclerView;
     Spinner spinnerRegClothes, spinnerAllWhite, spinnerMaong, spinnerComforter;
     Button btnOkay, btnBack;
-    Retrofit retrofit = APIClient.getClient();
 
+
+    //
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -83,10 +99,14 @@ public class BookLaundryTypeActivity extends AppCompatActivity implements Adapte
 
 
 
+
+
+
         // ====================================== RETROFIT ====================================== //
         // ====================================== RETROFIT ====================================== //
 
         laundryBookInterface = retrofit.create(LaundryBookInterface.class);
+        priceInterface = retrofit.create(PriceInterface.class);
 
 
 
@@ -110,8 +130,9 @@ public class BookLaundryTypeActivity extends AppCompatActivity implements Adapte
         spinnerExecution(spinnerComforter);
 
         receiver("Booking Laundry Type");
-        getLaundryPriceList();
-        getInfoFromLaundry();
+//        getLaundryPriceList();
+//        getInfoFromLaundry();
+        getPriceData();
 
 
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -127,10 +148,31 @@ public class BookLaundryTypeActivity extends AppCompatActivity implements Adapte
     public void receiver(String string){
         intent = getIntent();
         token = intent.getStringExtra("token");
-        Toast.makeText(BookLaundryTypeActivity.this, string + token, Toast.LENGTH_SHORT).show();
+        bookingModel = (BookingModel) intent.getSerializableExtra("booking");
+        Toast.makeText(BookLaundryTypeActivity.this, bookingModel.getDate(), Toast.LENGTH_SHORT).show();
+    }
+
+    private void getPriceData(){
+        finalToken = "Bearer " + token;
+        Call<PriceRequest> call = priceInterface.getPrice(token);
+        call.enqueue(new Callback<PriceRequest>() {
+            @Override
+            public void onResponse(Call<PriceRequest> call, Response<PriceRequest> response) {
+                if(!response.isSuccessful() || response.code() != 200){
+                    return;
+                }
+                priceModel = response.body().getLaundry();
+            }
+
+            @Override
+            public void onFailure(Call<PriceRequest> call, Throwable t) {
+
+            }
+        });
     }
 
     private void getLaundryPriceList(){
+
         Call<List<LaundryBookModel>> call = laundryBookInterface.getLaundryBook();
         call.enqueue(new Callback<List<LaundryBookModel>>() {
             @Override

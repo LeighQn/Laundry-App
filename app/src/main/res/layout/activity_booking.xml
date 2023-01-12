@@ -87,19 +87,19 @@
         android:layout_marginRight="-50dp"
         android:layout_marginTop="580dp"/>
 
+
+    <!-- _________________TITLE_________________ -->
+
+
     <ImageView
         android:layout_width="350dp"
         android:layout_height="580dp"
         android:layout_below="@id/txt_quote"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
         android:alpha="0.5"
         android:background="@color/white" />
-
-
-    <!-- _________________TITLE_________________ -->
-
 
     <TextView
         android:id="@+id/txt_Title_Booking"
@@ -300,6 +300,84 @@
         android:shadowRadius="50"
         android:text="Add" />
 
+    <LinearLayout
+        android:id="@+id/ll_laundries_valued"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginVertical="24dp"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:layout_below="@id/txt_laundry_type">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            >
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:textSize="20sp"
+                android:text="Regular"/>
+            <TextView
+                android:id="@+id/txt_laundry_regular"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:text="0"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            >
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:textSize="20sp"
+                android:text="White"/>
+            <TextView
+                android:id="@+id/txt_laundry_white"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:text="0"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            >
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:textSize="20sp"
+                android:text="Maong"/>
+            <TextView
+                android:id="@+id/txt_laundry_maong"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:text="0"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            >
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:textSize="20sp"
+                android:text="Regular"/>
+            <TextView
+                android:id="@+id/txt_laundry_comforter"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:text="0"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
     <TextView
         android:id="@+id/divider"
         android:layout_width="300dp"
@@ -386,7 +464,6 @@
         android:layout_marginBottom="80dp"
         android:background="@drawable/rounded_button"
         android:text="CONFIRM" />
-
 
 
 </RelativeLayout>

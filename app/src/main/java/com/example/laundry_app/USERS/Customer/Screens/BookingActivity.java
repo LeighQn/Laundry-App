@@ -2,6 +2,7 @@ package com.example.laundry_app.USERS.Customer.Screens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -10,16 +11,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.laundry_app.API.INTERFACE.Customer.CustomerProfileInterface;
+import com.example.laundry_app.API.MODELCLASS.BookingModel;
 import com.example.laundry_app.API.MODELCLASS.Customer.CustomerProfileModel;
+import com.example.laundry_app.API.MODELCLASS.User;
 import com.example.laundry_app.Global;
 import com.example.laundry_app.USERS.Customer.CustomerDashboard;
 import com.example.laundry_app.R;
 import com.example.laundry_app.USERS.Customer.MainFragments.ProfileFragment;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -43,6 +48,12 @@ public class BookingActivity extends AppCompatActivity {
     CustomerProfileInterface customerProfileInterface;
     Retrofit retrofit = Global.retrofitConnect();
 
+    // CALCULATION
+    BookingModel bookingModel;
+    User user;
+    TextView txtRegular, txtWhite, txtMaong, txtComforter;
+
+
     Intent intent;
 
     String token, finalToken;
@@ -64,6 +75,14 @@ public class BookingActivity extends AppCompatActivity {
         txtTotal = findViewById(R.id.txt_total_booking_display);
         txtName = findViewById(R.id.txt_customer_name_display);
         txtPhone = findViewById(R.id.etxt_contact);
+
+        //? CALCULATION
+        bookingModel = new BookingModel();
+        txtRegular = findViewById(R.id.txt_laundry_regular);
+        txtWhite = findViewById(R.id.txt_laundry_white);
+        txtMaong = findViewById(R.id.txt_laundry_maong);
+        txtComforter = findViewById(R.id.txt_laundry_comforter);
+
 
 
         // ====================================== INITIALIZE RETROFIT ====================================== //
@@ -101,6 +120,8 @@ public class BookingActivity extends AppCompatActivity {
 
 
         etDatePicker.setText(dtf.format(now));
+
+        bookingModel.setDate(etDatePicker.getText().toString());
         etDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -174,6 +195,7 @@ public class BookingActivity extends AppCompatActivity {
     public void toLaundryType(){
         intent = new Intent(this, BookLaundryTypeActivity.class);
         intent.putExtra("token", token);
+        intent.putExtra("booking", (Serializable) bookingModel);
         startActivity(intent);
     }
 
@@ -194,12 +216,13 @@ public class BookingActivity extends AppCompatActivity {
         call.enqueue(new Callback<CustomerProfileModel>() {
             @Override
             public void onResponse(Call<CustomerProfileModel> call, Response<CustomerProfileModel> response) {
-                if(!response.isSuccessful()){
+                if(!response.isSuccessful() || response.code() != 200){
 //                    txtName.setText("Code: " + String.valueOf(response.code()) );
-                    Toast.makeText(BookingActivity.this, response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BookingActivity.this, response.body() != null ? response.body().getMessage() : "Something went wrong", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
+                user = response.body().getUser();
+                bookingModel.setCustomer(user);
                 String name = String.valueOf(response.body().getUser().getName());
                 String phone = String.valueOf(response.body().getUser().getMobileNumber());
                 //               String username = String.valueOf(response.body().getUser().getUsername());

@@ -12,6 +12,7 @@ public class SignUp {
     private String latitude;
     private String longitude;
     private String address;
+    private String message;
 
     //Post
 
@@ -25,5 +26,13 @@ public class SignUp {
         this.latitude = latitude;
         this.longitude = longitude;
         this.address = address;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

@@ -25,6 +25,8 @@ public class Global extends Application {
 
     public static String baseAddress = "http://192.168.254.104:8000/api/v1/";
 
+    public static String garkIP = "http://192.168.1.6:8000/api/v1/";
+
     public static String token;
     public static int role;
 
@@ -38,7 +40,7 @@ public class Global extends Application {
 
     public static Retrofit retrofitConnect(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(myIpAddress)
+                .baseUrl(garkIP)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofit;

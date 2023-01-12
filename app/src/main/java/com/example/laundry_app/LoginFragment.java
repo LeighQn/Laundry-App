@@ -13,10 +13,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.laundry_app.API.INTERFACE.LoginInterface;
+import com.example.laundry_app.API.INTERFACE.AuthInterface;
 import com.example.laundry_app.API.MODELCLASS.Login;
 import com.example.laundry_app.USERS.Admin.AdminDashboard;
 import com.example.laundry_app.USERS.Customer.CustomerDashboard;
+import com.example.laundry_app.USERS.OTPActivity;
 import com.example.laundry_app.USERS.Staff.DashboardActivity;
 
 import retrofit2.Call;
@@ -47,7 +48,7 @@ public class LoginFragment extends Fragment{
     // ______________________________ OBJECTS ______________________________ //
     // ______________________________ OBJECTS ______________________________ //
     //JsonPlaceHolderApi is a DataClass/ Interface
-    private LoginInterface loginInterface;
+    private AuthInterface authInterface;
     private Login login;
     private Intent intent;
 
@@ -75,11 +76,14 @@ public class LoginFragment extends Fragment{
         txtForgotPass = (TextView) root.findViewById(R.id.txt_forgot_pass_link);
 
 
+        etxtUsername.setText("gark");
+        etxtPassword.setText("12345");
+
 
         // ============================== RETROFIT ============================== //
         // ============================== RETROFIT ============================== //
 
-        loginInterface = retrofit.create(LoginInterface.class);
+        authInterface = retrofit.create(AuthInterface.class);
 
 
         // ============================================================ FUNCTIONS ============================================================ //
@@ -110,23 +114,17 @@ public class LoginFragment extends Fragment{
         login = new Login(username, password);
 
 
-        Call<Login> call = loginInterface.handleLogin(login);
+        Call<Login> call = authInterface.handleLogin(login);
         call.enqueue(new Callback<Login>() {
             @Override
             public void onResponse(Call<Login> call, Response<Login> response) {
 
                 if(username.isEmpty() || password.isEmpty()){
-
                     Toast.makeText(getActivity(), "The fields must not be empty", Toast.LENGTH_SHORT).show();
-
                 }else if(!response.isSuccessful()){
-
                     Toast.makeText(getActivity(), "Wrong username or password.", Toast.LENGTH_LONG).show();
-
                     return;
                 }else {
-
-                    // add response.body().getUserId() to the parameter
                     Login loginResponse = new Login(response.body().getMessage(), response.body().getToken(), response.body().getUser());
                     role = String.valueOf(loginResponse.getUser().getRole());
                     token = response.body().getToken().toString();
@@ -134,11 +132,20 @@ public class LoginFragment extends Fragment{
                     name = String.valueOf(loginResponse.getUser().getName());
                     address = String.valueOf(loginResponse.getUser().getAddress());
                     username = String.valueOf(loginResponse.getUser().getUsername());
-
                     //  userId = "24";
-
                     Global.setToken(token);
-                    redirectedToAssignedRoleScreen(role, token);
+                    // add response.body().getUserId() to the parameter
+                    if(loginResponse.getUser().getOtpActivated() != null){
+                        // redirect to otp screen
+                        intent = new Intent(getActivity(), OTPActivity.class);
+                        intent.putExtra("token", loginResponse.getToken());
+                        startActivity(intent);
+                        Toast.makeText(getActivity(), loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        // redirect to login
+                        redirectedToAssignedRoleScreen(role, token);
+                    }
 
                 }
             }

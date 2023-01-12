@@ -139,7 +139,6 @@ public class SignUpFragment extends Fragment {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
 
-                    createSignUp();
                 }
             });
             AlertDialog alert = alertDialog.create();
@@ -147,13 +146,10 @@ public class SignUpFragment extends Fragment {
             alert.show();
 
         }else{
-            alertDialog.setMessage("You have successfully Sign Up").setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+            alertDialog.setMessage("Signing Up").setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-
                     createSignUp();
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    startActivity(intent);
                 }
             });
             AlertDialog alert = alertDialog.create();
@@ -214,7 +210,7 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onResponse(Call<SignUp> call, Response<SignUp> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(getActivity(), "Code: " + response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), response.body() == null ? "Something went wrong with status code: " + response.code(): response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -222,6 +218,8 @@ public class SignUpFragment extends Fragment {
                 // Code: 200 mean successful
                 SignUp signResponse = response.body();
                 Toast.makeText(getActivity(), "Code: " + response.code(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
             }
 
             @Override

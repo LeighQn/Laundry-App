@@ -15,16 +15,16 @@ import retrofit2.http.Path;
 
 public interface CustomerProfileInterface {
 
-    @GET("profile")
+    @GET("auth/profile")
     Call<CustomerProfileModel> getCustomerInfo(@Header("Authorization") String token);
 
-    @GET("profile")
+    @GET("auth/profile")
     Call<User> getUserInfo(@Header("Authorization") String token);
 
 //
 //    @GET("posts")
 //    Call <List<CustomerProfileModel>> getAllInfo(@Header("Authorization") String token);
 
-    @PATCH("profile")
+    @PATCH("auth/profile")
     Call<CustomerProfileModel> putCustomerInfo(@Path("id") int id, @Body CustomerProfileModel customerProfileModel);
 }

@@ -15,6 +15,9 @@ public class Login {
     // __________ POST __________ //
 
 
+    public Login(){
+
+    }
     // add String userId to the parameter
     public Login(String message, String token, User user) {
         this.message = message;
