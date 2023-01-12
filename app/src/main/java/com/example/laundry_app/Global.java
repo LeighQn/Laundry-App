@@ -20,6 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Global extends Application {
 
     public static String myIpAddress = "http://192.168.254.104:8000/api/v1/auth/";
+    public static String myIpAddress1 = "http://192.168.254.104:8000/api/v1/";
     public static String homeIpAddress = "";
     public static String fakeApiIpAddress = "https://jsonplaceholder.typicode.com/";
 
@@ -27,7 +28,7 @@ public class Global extends Application {
 
     public static String garkIP = "http://192.168.1.6:8000/api/v1/";
 
-    public static String token;
+    public static String token, ip;
     public static int role;
 
     public static Retrofit getClient(){
@@ -38,9 +39,17 @@ public class Global extends Application {
         return retrofit;
     }
 
+    public static Retrofit setIpRetrofit(String ip){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ip)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        return retrofit;
+    }
+
     public static Retrofit retrofitConnect(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(garkIP)
+                .baseUrl(myIpAddress1)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofit;
@@ -69,5 +78,17 @@ public class Global extends Application {
 
     public static void setRole(int role) {
         Global.role = role;
+    }
+
+    public String setIp(){
+        return ip;
+    }
+
+    public static String getIp() {
+        return ip;
+    }
+
+    public static void setIp(String ip) {
+        Global.ip = ip;
     }
 }

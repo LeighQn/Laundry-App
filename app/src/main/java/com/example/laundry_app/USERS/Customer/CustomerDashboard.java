@@ -48,7 +48,10 @@ public class CustomerDashboard extends AppCompatActivity {
     ProfileFragment profileFragment = new ProfileFragment();
     CustomerProfileModel customerProfileModel;
     CustomerProfileInterface customerProfileInterface;
-    Retrofit retrofit = Global.retrofitConnect();
+    //    Retrofit retrofit = Global.retrofitConnect();
+//    String ip = Global.getIp();
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
 
     public String token, userId, phone, role, finalToken;
 
@@ -94,6 +97,7 @@ public class CustomerDashboard extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(CustomerDashboard.this, MainActivity.class);
                 startActivity(intent);
+                Global.setIp(ip);
                 Toast.makeText(CustomerDashboard.this, "floating btn", Toast.LENGTH_SHORT).show();
             }
         });
@@ -104,6 +108,7 @@ public class CustomerDashboard extends AppCompatActivity {
         addLaundry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Global.setIp(ip);
                 sendDataToBook();
             }
         });
@@ -125,23 +130,23 @@ public class CustomerDashboard extends AppCompatActivity {
 
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
-                    switch (item.getItemId()) {
+                switch (item.getItemId()) {
 
-                        case R.id.dasboard:
-                            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, homeFragment).commit();
-                            notificationBellVisible(btnNotificationBell, btnLogout);
-                            return true;
+                    case R.id.dasboard:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, homeFragment).commit();
+                        notificationBellVisible(btnNotificationBell, btnLogout);
+                        return true;
 
-                        case R.id.status:
-                            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, statusFragment).commit();
-                            notificationBellVisible(btnNotificationBell, btnLogout);
-                            return true;
+                    case R.id.status:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, statusFragment).commit();
+                        notificationBellVisible(btnNotificationBell, btnLogout);
+                        return true;
 
-                        case R.id.profile:
-                            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, profileFragment).commit();
-                            notificationBellVisible(btnLogout, btnNotificationBell);
-                            return true;
-                    }
+                    case R.id.profile:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, profileFragment).commit();
+                        notificationBellVisible(btnLogout, btnNotificationBell);
+                        return true;
+                }
                 return false;
             }
         });

@@ -33,13 +33,14 @@ public class LoginFragment extends Fragment{
     private String username, password, role, token, phone, name, address;
 
 
-
     // ______________________________ COMPONENTS ______________________________ //
     // ______________________________ COMPONENTS ______________________________ //
     private Button btnLogin;
-    private EditText etxtUsername, etxtPassword;
+    private EditText etxtUsername, etxtPassword, etxtGetIp;
     private TextView txtForgotPass;
+    String ip;
     Retrofit retrofit = Global.retrofitConnect();
+        MainActivity mainActivity;
 
 
 
@@ -51,6 +52,7 @@ public class LoginFragment extends Fragment{
     private AuthInterface authInterface;
     private Login login;
     private Intent intent;
+
 
 
     MainActivity m = (MainActivity) getActivity();
@@ -66,7 +68,6 @@ public class LoginFragment extends Fragment{
 
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_login, null);
 
-
         // ============================== INITIALIZE ============================== //
         // ============================== INITIALIZE ============================== //
 
@@ -80,10 +81,8 @@ public class LoginFragment extends Fragment{
         etxtPassword.setText("12345");
 
 
-        // ============================== RETROFIT ============================== //
-        // ============================== RETROFIT ============================== //
 
-        authInterface = retrofit.create(AuthInterface.class);
+
 
 
         // ============================================================ FUNCTIONS ============================================================ //
@@ -96,9 +95,15 @@ public class LoginFragment extends Fragment{
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ip = Global.getIp();
+                Retrofit retrofit =Global.setIpRetrofit(ip);
+                authInterface = retrofit.create(AuthInterface.class);
+                Toast.makeText(getActivity(), ip, Toast.LENGTH_SHORT).show();
                 getLogin();
+
             }
         });
+
 
         return root;
     }

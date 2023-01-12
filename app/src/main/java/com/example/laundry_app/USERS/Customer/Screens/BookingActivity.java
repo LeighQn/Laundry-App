@@ -46,7 +46,9 @@ public class BookingActivity extends AppCompatActivity {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
     LocalDateTime now = LocalDateTime.now();
     CustomerProfileInterface customerProfileInterface;
-    Retrofit retrofit = Global.retrofitConnect();
+//    Retrofit retrofit = Global.retrofitConnect();
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
 
     // CALCULATION
     BookingModel bookingModel;
@@ -57,7 +59,6 @@ public class BookingActivity extends AppCompatActivity {
     Intent intent;
 
     String token, finalToken;
-    String ipAddress = Global.myIpAddress;
 
 //    Date date = Calendar.getInstance().getTime();
 //    DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -71,7 +72,7 @@ public class BookingActivity extends AppCompatActivity {
         etDatePicker = findViewById(R.id.etxt_date_picker);
         btnBackToCustomerDashboard = findViewById(R.id.btn_customer_home);
         btnConfirmBooking = findViewById(R.id.btn_to_confirm_booking);
-        btnBookLaundry = findViewById(R.id.btn_add_laundry_booking);
+     //   btnBookLaundry = findViewById(R.id.btn_add_laundry_booking);
         txtTotal = findViewById(R.id.txt_total_booking_display);
         txtName = findViewById(R.id.txt_customer_name_display);
         txtPhone = findViewById(R.id.etxt_contact);
@@ -134,6 +135,8 @@ public class BookingActivity extends AppCompatActivity {
         btnBackToCustomerDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Global.setIp(ip);
                 toCustomerDashboard();
             }
         });
@@ -158,6 +161,7 @@ public class BookingActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dialogInterface.cancel();
                                 // ADD TO DATABASE
+                                Global.setIp(ip);
                                 toCustomerDashboard();
                             }
                         });
@@ -175,14 +179,14 @@ public class BookingActivity extends AppCompatActivity {
             }
         });
 
-        // --------------------- TO CHOOSE LAUNDRY TYPE --------------------/
-
-        btnBookLaundry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toLaundryType();
-            }
-        });
+//        // --------------------- TO CHOOSE LAUNDRY TYPE --------------------/
+//
+//        btnBookLaundry.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                toLaundryType();
+//            }
+//        });
     }
 
 

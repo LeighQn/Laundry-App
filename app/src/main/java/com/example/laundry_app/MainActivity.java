@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -18,9 +20,14 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     TextView t1, t2;
     String username, password;
+    MainActivity mainActivity;
+    String ip;
+
+
 
     LoginFragment loginFragment = new LoginFragment();
     SignUpFragment signUpFragment = new SignUpFragment();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         // ============================== Home Visibility ============================== //
         getSupportFragmentManager().beginTransaction().replace(R.id.container_main, loginFragment).commit();
-
+        getIp();
 
         // ============================== Fragment View Changing ============================== //
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -51,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.signIn:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container_main, loginFragment).commit();
+                    //    Toast.makeText(MainActivity.this, ip, Toast.LENGTH_SHORT).show();
                         return true;
 
                     case R.id.signUp:
@@ -83,4 +91,16 @@ public class MainActivity extends AppCompatActivity {
         t2.setText(password);
 
     }
+
+    private void getIp(){
+        Intent intent = getIntent();
+        ip = intent.getStringExtra("ip");
+
+    }
+
+    public String sendIp(){
+        return ip;
+    }
+
+
 }

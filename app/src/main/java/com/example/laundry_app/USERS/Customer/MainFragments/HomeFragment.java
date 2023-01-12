@@ -39,8 +39,10 @@ public class HomeFragment extends Fragment {
     CustomerHomeInterface customerHomeInterface;
 
     String token, finalToken;
-
-    Retrofit retrofit = Global.retrofitConnect();
+//
+//    Retrofit retrofit = Global.retrofitConnect();
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

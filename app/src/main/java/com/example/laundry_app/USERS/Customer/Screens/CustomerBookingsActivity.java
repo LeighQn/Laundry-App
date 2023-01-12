@@ -47,7 +47,7 @@ public class CustomerBookingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_bookings);
 
-        retrofit = Global.getClient();
+        Retrofit retrofit = Global.retrofitConnect();
         bookingInterface = retrofit.create(BookingInterface.class);
 
         btnBackToCustomerHome = findViewById(R.id.btn_customer_home);

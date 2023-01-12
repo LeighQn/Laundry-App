@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.laundry_app.API.INTERFACE.AuthInterface;
 import com.example.laundry_app.API.INTERFACE.Customer.CustomerProfileInterface;
 import com.example.laundry_app.API.MODELCLASS.Customer.CustomerProfileModel;
 import com.example.laundry_app.API.MODELCLASS.Login;
@@ -41,7 +42,10 @@ public class ProfileFragment extends Fragment {
     String name, token, finalToken, phone, address, username;
     CustomerDashboard customerDashboard;
     Intent intent;
-    Retrofit retrofit = Global.retrofitConnect();
+//    Retrofit retrofit = Global.retrofitConnect();
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
+
 
 
     @Override

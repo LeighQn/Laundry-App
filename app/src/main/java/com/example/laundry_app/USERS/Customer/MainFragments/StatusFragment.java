@@ -47,7 +47,8 @@ public class StatusFragment extends Fragment {
     CustomerStatusInterface customerStatusInterface;
     CustomerStatusAdapter customerStatusAdapter;
 
-    Retrofit retrofit = Global.retrofitConnectFakeApi();
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
 
 
     @Nullable
