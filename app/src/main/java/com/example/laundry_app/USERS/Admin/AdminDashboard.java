@@ -221,15 +221,14 @@ public class AdminDashboard extends AppCompatActivity {
 
     public void requestTokenInAdminDashboard(String finalToken){
 //        finalToken = "Bearer " + token;
-        Call<CustomerProfileModel> call = customerProfileInterface.getCustomerInfo(finalToken);
+        finalToken = "Bearer " + token;
+        Call<CustomerProfileModel> call = customerProfileInterface.getUserInfo(finalToken);
         call.enqueue(new Callback<CustomerProfileModel>() {
             @Override
             public void onResponse(Call<CustomerProfileModel> call, Response<CustomerProfileModel> response) {
-                if (!response.isSuccessful()){
-                    Toast.makeText(AdminDashboard.this, response.code(), Toast.LENGTH_SHORT).show();
+                if(!response.isSuccessful()){
                     return;
                 }
-
                 role = String.valueOf(response.body().getUser().getRole());
                 token = String.valueOf(response.body().getUser().getToken());
             }

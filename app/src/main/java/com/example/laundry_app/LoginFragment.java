@@ -78,8 +78,8 @@ public class LoginFragment extends Fragment{
         txtForgotPass = (TextView) root.findViewById(R.id.txt_forgot_pass_link);
 
 
-        etxtUsername.setText("staff");
-        etxtPassword.setText("staff");
+        etxtUsername.setText("admin");
+        etxtPassword.setText("admin");
 
 
 

@@ -234,7 +234,6 @@ public class MapActivity extends AppCompatActivity implements AdapterView.OnItem
 
                 BookingRequest bookingRequest= response.body();
                 bookingModel = bookingRequest.getBooking();
-                token = bookingRequest.getBooking().getCustomer().getToken();
                 latitude = bookingRequest.getBooking().getCustomer().getLatitude();
                 longitude = bookingRequest.getBooking().getCustomer().getLongitude();
 
@@ -261,18 +260,17 @@ public class MapActivity extends AppCompatActivity implements AdapterView.OnItem
     private void updateBookingStatus(){
         finalToken = "Bearer " + token;
         bookingModel.setStatus(spinnerStatus.getSelectedItemPosition() + 1);
+        Log.d("MAP_TEST_UPDATE", finalToken);
         Call<BookingRequest> request = bookingInterface.updateBookingStatus(finalToken, bookingID, bookingModel);
         request.enqueue(new Callback<BookingRequest>() {
             @Override
             public void onResponse(Call<BookingRequest> call, Response<BookingRequest> response) {
                 if(!response.isSuccessful()){
+                    Log.d("MAP_TEST_UPDATE", String.valueOf(response.code()));
                     Toast.makeText(MapActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-                intent = new Intent(MapActivity.this, DashboardActivity.class);
-                intent.putExtra("token", token);
-                startActivity(intent);
+                Toast.makeText(MapActivity.this, "Status is now updated", Toast.LENGTH_LONG).show();
             }
 
             @Override
