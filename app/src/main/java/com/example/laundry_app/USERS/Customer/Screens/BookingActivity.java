@@ -9,6 +9,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
@@ -16,9 +18,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.laundry_app.API.INTERFACE.BookingInterface;
 import com.example.laundry_app.API.INTERFACE.Customer.CustomerProfileInterface;
+import com.example.laundry_app.API.INTERFACE.PriceInterface;
+import com.example.laundry_app.API.MODELCLASS.BookingLaundryModel;
 import com.example.laundry_app.API.MODELCLASS.BookingModel;
+import com.example.laundry_app.API.MODELCLASS.BookingRequest;
 import com.example.laundry_app.API.MODELCLASS.Customer.CustomerProfileModel;
+import com.example.laundry_app.API.MODELCLASS.Customer.LaundryBookModel;
+import com.example.laundry_app.API.MODELCLASS.LaundryModel;
+import com.example.laundry_app.API.MODELCLASS.PriceModel;
+import com.example.laundry_app.API.MODELCLASS.PriceRequest;
 import com.example.laundry_app.API.MODELCLASS.User;
 import com.example.laundry_app.Global;
 import com.example.laundry_app.USERS.Customer.CustomerDashboard;
@@ -47,6 +57,9 @@ public class BookingActivity extends AppCompatActivity {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
     LocalDateTime now = LocalDateTime.now();
     CustomerProfileInterface customerProfileInterface;
+    PriceInterface priceInterface;
+    BookingInterface bookingInterface;
+    PriceModel priceModel = new PriceModel();
     //    Retrofit retrofit = Global.retrofitConnect();
     String ip = Global.getIp();
     Retrofit retrofit =Global.setIpRetrofit(ip);
@@ -61,7 +74,7 @@ public class BookingActivity extends AppCompatActivity {
     Intent intent;
 
     String token, finalToken;
-
+    String customerID;
 //    Date date = Calendar.getInstance().getTime();
 //    DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 //    String strDate = dateFormat.format(date);
@@ -97,12 +110,14 @@ public class BookingActivity extends AppCompatActivity {
         // ====================================== INITIALIZE RETROFIT ====================================== //
 
         customerProfileInterface = retrofit.create(CustomerProfileInterface.class);
+        priceInterface = retrofit.create(PriceInterface.class);
+        bookingInterface = retrofit.create(BookingInterface.class);
 
 
 
         // ============================================== CALLING METHODS ================================================//
         receiver("User Id (BookingActivity): ");
-        getCustomerProfile();
+        getDataForCreationOfBooking();
 
 
         // --------------------- DATE PICKER --------------------/
@@ -158,10 +173,15 @@ public class BookingActivity extends AppCompatActivity {
 
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(BookingActivity.this);
 
-                alertDialog.setMessage("Would you like to confirm the booking information?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                alertDialog.setMessage("Would you like to confirm the booking information? The subtotal is "
+                                + String.valueOf(bookingModel.getSubTotal())
+                                + ", delivery fee is " + String.valueOf(user.getRole() ==1 ? '0' : "20")
+                                + ", and with the total " + String.valueOf(bookingModel.getTotal()))
+                        .setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // ADD TO DATABASE
+                        createBooking();
                         AlertDialog.Builder yesAlert = new AlertDialog.Builder(BookingActivity.this);
                         yesAlert.setMessage("You have successfully booked your laundry").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
@@ -200,7 +220,13 @@ public class BookingActivity extends AppCompatActivity {
     public void receiver(String string){
         intent = getIntent();
         token = intent.getStringExtra("token");
-        Toast.makeText(BookingActivity.this, "Booking Activity", Toast.LENGTH_SHORT).show();
+        if(intent.getStringExtra("customerID") == null){
+            customerID = "";
+        }
+        else{
+            customerID = intent.getStringExtra("customerID");
+        }
+
     }
 
     public void toLaundryType(){
@@ -220,37 +246,220 @@ public class BookingActivity extends AppCompatActivity {
     // _________ GET _________ /
 
 
-    private void getCustomerProfile(){
-
+    private void getDataForCreationOfBooking(){
         finalToken = "Bearer " + token;
-        Call<CustomerProfileModel> call = customerProfileInterface.getCustomerInfo(finalToken);
-        call.enqueue(new Callback<CustomerProfileModel>() {
-            @Override
-            public void onResponse(Call<CustomerProfileModel> call, Response<CustomerProfileModel> response) {
-                if(!response.isSuccessful() || response.code() != 200){
+        if(customerID == ""){
+            // logged in is customer
+            Call<CustomerProfileModel> call = customerProfileInterface.getCustomerInfo(finalToken);
+            call.enqueue(new Callback<CustomerProfileModel>() {
+                @Override
+                public void onResponse(Call<CustomerProfileModel> call, Response<CustomerProfileModel> response) {
+                    if(!response.isSuccessful() || response.code() != 200){
 //                    txtName.setText("Code: " + String.valueOf(response.code()) );
-                    Toast.makeText(BookingActivity.this, response.body() != null ? response.body().getMessage() : "Something went wrong", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                user = response.body().getUser();
-                bookingModel.setCustomer(user);
-                String name = String.valueOf(response.body().getUser().getName());
-                String phone = String.valueOf(response.body().getUser().getMobileNumber());
-                //               String username = String.valueOf(response.body().getUser().getUsername());
-                //              String address = String.valueOf(response.body().getUser().getAddress());
+                        Toast.makeText(BookingActivity.this, response.body() != null ? response.body().getMessage() : "Something went wrong", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    user = response.body().getUser();
+                    bookingModel.setCustomer(user);
+                    String name = String.valueOf(response.body().getUser().getName());
+                    String phone = String.valueOf(response.body().getUser().getMobileNumber());
+                    //               String username = String.valueOf(response.body().getUser().getUsername());
+                    //              String address = String.valueOf(response.body().getUser().getAddress());
 
-                txtName.setText(name);
-                txtPhone.setText(phone);
+                    txtName.setText(name);
+                    txtPhone.setText(phone);
 //               txtuserName.setText(username);
 //                txtAddress.setText(address);
 
+                }
+
+                @Override
+                public void onFailure(Call<CustomerProfileModel> call, Throwable t) {
+                    Toast.makeText(BookingActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+        else{
+            // logged in is admin
+            //TODO: fetch customer info to set in booking customer data
+        }
+        Call<PriceRequest> priceRequest = priceInterface.getPrice(finalToken);
+        priceRequest.enqueue(new Callback<PriceRequest>() {
+            @Override
+            public void onResponse(Call<PriceRequest> call, Response<PriceRequest> response) {
+                if(response.code() != 200){
+                    //TODO: GO BACK TO PREVIOUS ACTIVITY
+                    return;
+                }
+                PriceRequest result = response.body();
+                priceModel = result.getLaundry();
+                Toast.makeText(BookingActivity.this, "REGULAR PRICE" + String.valueOf(priceModel.getRegularPrice()), Toast.LENGTH_LONG).show();
+                populateMinimumTexts();
             }
 
             @Override
-            public void onFailure(Call<CustomerProfileModel> call, Throwable t) {
-                Toast.makeText(BookingActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+            public void onFailure(Call<PriceRequest> call, Throwable t) {
+                //DO NOTHING
+                //TODO: GO BACK TO PREVIOUS ACTIVITY
+                return;
+            }
+        });
+
+        populateSpinners();
+    }
+
+
+    private void populateSpinners(){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(BookingActivity.this, R.array.laudry_unit_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerRegClothes.setAdapter(adapter);
+        spinnerMaong.setAdapter(adapter);
+        spinnerWhite.setAdapter(adapter);
+        spinnerComforter.setAdapter(adapter);
+        spinnerRegClothes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                calculate();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                return;
+            }
+        });
+        spinnerWhite.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                calculate();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                return;
+            }
+        });
+        spinnerMaong.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                calculate();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                return;
+            }
+        });
+        spinnerComforter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                calculate();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                return;
             }
         });
     }
 
+    private void populateMinimumTexts(){
+        txtComforter.setText(String.valueOf(priceModel.getComforterMin()));
+        txtMaong.setText(String.valueOf(priceModel.getMaongMin()));
+        txtWhite.setText(String.valueOf(priceModel.getWhiteMin()));
+        txtRegular.setText(String.valueOf(priceModel.getRegularMin()));
+    }
+
+    private void calculate(){
+        //TODO: calculate here
+        //? FROM PRICE MODEL MINIMUM KG
+        int kgRegMin = priceModel.getRegularMin();
+        int kgWhiMin = priceModel.getWhiteMin();
+        int kgMaoMin = priceModel.getMaongMin();
+        int kgComMin = priceModel.getComforterMin();
+        // MINIMUM KG FROM DATABASE
+        int minmin = kgRegMin;
+        if(minmin > kgWhiMin){
+            minmin = kgWhiMin;
+        }
+        if(minmin > kgMaoMin){
+            minmin = kgMaoMin;
+        }
+        if(minmin > kgComMin){
+            minmin = kgComMin;
+        }
+
+        // SPINNER VALUES
+        int kgReg = spinnerRegClothes.getSelectedItemPosition();
+        int kgWhi = spinnerWhite.getSelectedItemPosition();
+        int kgMao = spinnerMaong.getSelectedItemPosition();
+        int kgCom = spinnerComforter.getSelectedItemPosition();
+
+        // CHECK IF TOTAL KG IS 0
+        int total = kgReg + kgWhi + kgMao + kgCom;
+        if(total == 0){
+            txtTotal.setText("0.00");
+            Toast.makeText(BookingActivity.this, "Please select at least " + String.valueOf(minmin), Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        // REAL CALCULATION
+        int priWhi = priceModel.getWhitePrice();
+        int priReg = priceModel.getRegularPrice();
+        int priMao = priceModel.getMaongPrice();
+        int priCom = priceModel.getComforterPrice();
+
+        // Regular calculation
+        int subReg = calculateSubTotal(kgReg, kgRegMin, priReg);
+        int subWhi = calculateSubTotal(kgWhi, kgWhiMin, priWhi);
+        int subMao = calculateSubTotal(kgMao, kgMaoMin, priMao);
+        int subCom = calculateSubTotal(kgCom, kgComMin, priCom);
+        int fee = user.getRole() == 1 ? 0 : 20;
+        int subTotal =subReg + subWhi + subMao + subCom;
+        int finalTotal = subTotal+ fee;
+        txtTotal.setText(String.valueOf(finalTotal));
+
+
+        int type = user.getRole() == 1 ? 1 : 2;
+
+        // set model values
+        BookingLaundryModel laundryData = new BookingLaundryModel(subReg, subWhi, subMao, subCom);
+        bookingModel.setLaundry(laundryData);
+        bookingModel.setSubTotal(subTotal);
+        bookingModel.setTotal(finalTotal);
+        bookingModel.setType(type);
+        bookingModel.setDate(etDatePicker.getText().toString());
+    }
+
+
+    private int calculateSubTotal (int kgSp, int kgDbMin, int dbPri){
+        int total = 0;
+        if(kgSp < kgDbMin){
+            if(kgSp == 0) total =0;
+            else total = dbPri * kgDbMin;
+        }
+        else total = kgSp * dbPri;
+        return total;
+    }
+
+
+    private void createBooking(){
+        Call<BookingRequest> request = bookingInterface.createBooking(finalToken, customerID, bookingModel);
+        request.enqueue(new Callback<BookingRequest>() {
+            @Override
+            public void onResponse(Call<BookingRequest> call, Response<BookingRequest> response) {
+                if(response.code() != 200){
+                    //
+                    Toast.makeText(BookingActivity.this, "Something went wrong", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Toast.makeText(BookingActivity.this, response.body().getMessage(), Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onFailure(Call<BookingRequest> call, Throwable t) {
+
+            }
+        });
+    }
 }

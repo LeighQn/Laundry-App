@@ -20,6 +20,6 @@ public interface BookingInterface {
     @GET("bookings/detail/{id}")
     Call<BookingRequest> getBooking(@Header("Authorization") String token);
 
-    @POST("bookings/book")
-    Call<List<BookingModel>> createBooking(@Header("Authorization") String token, @Path("id") String id, @Body BookingModel booking);
+    @POST("bookings/book/{id}")
+    Call<BookingRequest> createBooking(@Header("Authorization") String token, @Path("id") String id, @Body BookingModel booking);
 }
