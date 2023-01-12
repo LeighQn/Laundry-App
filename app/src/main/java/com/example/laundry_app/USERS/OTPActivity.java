@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +32,9 @@ public class OTPActivity extends AppCompatActivity {
     Button btnSubmit;
     String token;
 
+    String ip = Global.getIp();
+    Retrofit retrofit = Global.setIpRetrofit(ip);
+
     Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +48,12 @@ public class OTPActivity extends AppCompatActivity {
         token = intent.getStringExtra("token");
 
 
+
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Global.setIp(ip);
                 activateOtp();
             }
         });
@@ -55,17 +62,16 @@ public class OTPActivity extends AppCompatActivity {
     private void activateOtp(){
         String finalToken = "Bearer " + token;
         String otp = etxtOtp.getText().toString();
-        Toast.makeText(OTPActivity.this, otp, Toast.LENGTH_LONG).show();
         OtpModel otpModel = new OtpModel(otp);
-        Toast.makeText(OTPActivity.this, otpModel.toString(), Toast.LENGTH_LONG).show();
-        Retrofit retrofit = Global.retrofitConnect();
         AuthInterface authInterface = retrofit.create(AuthInterface.class);
         Call<ActivationRequest> request = authInterface.activateWithOTP(finalToken, otpModel);
         request.enqueue(new Callback<ActivationRequest>() {
             @Override
             public void onResponse(Call<ActivationRequest> call, Response<ActivationRequest> response) {
+                Log.d("OTP_TEST", String.valueOf(response.code()));
                 if(!response.isSuccessful() || response.code() != 200){
                     Toast.makeText(OTPActivity.this, response.body() == null ? "OTP is invalid" : response.body().getMessage(), Toast.LENGTH_LONG);
+                    Log.d("OTP_TEST", response.body().getMessage());
                     return;
                 }
                 ActivationRequest res = (ActivationRequest) response.body();
@@ -75,7 +81,7 @@ public class OTPActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ActivationRequest> call, Throwable t) {
-
+                Log.d("OTP_TEST", t.getMessage());
             }
         });
     }

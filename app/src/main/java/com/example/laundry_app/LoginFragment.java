@@ -38,11 +38,12 @@ public class LoginFragment extends Fragment{
     private Button btnLogin;
     private EditText etxtUsername, etxtPassword, etxtGetIp;
     private TextView txtForgotPass;
-    String ip;
-    Retrofit retrofit = Global.retrofitConnect();
         MainActivity mainActivity;
 
 
+
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
 
 
 
@@ -77,8 +78,8 @@ public class LoginFragment extends Fragment{
         txtForgotPass = (TextView) root.findViewById(R.id.txt_forgot_pass_link);
 
 
-        etxtUsername.setText("gark");
-        etxtPassword.setText("12345");
+        etxtUsername.setText("staff");
+        etxtPassword.setText("staff");
 
 
 
@@ -95,8 +96,7 @@ public class LoginFragment extends Fragment{
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ip = Global.getIp();
-                Retrofit retrofit =Global.setIpRetrofit(ip);
+                Global.setIp(ip);
                 authInterface = retrofit.create(AuthInterface.class);
                 getLogin();
 

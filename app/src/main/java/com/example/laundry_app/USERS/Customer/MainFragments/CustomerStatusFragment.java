@@ -63,7 +63,7 @@ public class CustomerStatusFragment extends Fragment {
     private ArrayList<BookingModel> bookingModelList = new ArrayList<BookingModel>();
 
     String token, finalToken, role, type;
-    Retrofit retrofit = Global.retrofitConnect();
+    Retrofit retrofit = Global.setIpRetrofit(Global.getIp());
     Intent intent;
 
 

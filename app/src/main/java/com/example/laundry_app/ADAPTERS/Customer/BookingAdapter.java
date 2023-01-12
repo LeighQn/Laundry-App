@@ -57,10 +57,10 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.SalesAda
         converter.add("Delivered");
 
 
-
         holder.date.setText(date);
         holder.customerName.setText(customerName);
         holder.status.setText(converter.get(status -1));
+
     }
 
     @Override
@@ -74,7 +74,8 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.SalesAda
 
 
     public class SalesAdapterVH extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView date, customerName, status;
+        TextView date, customerName, status, bookingID;
+
 
 
         public SalesAdapterVH(@NonNull View itemView) {

@@ -17,10 +17,15 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.laundry_app.ADAPTERS.Customer.CustomerStatusAdapter;
+import com.example.laundry_app.API.INTERFACE.BookingInterface;
 import com.example.laundry_app.API.INTERFACE.Customer.CustomerProfileInterface;
 import com.example.laundry_app.API.INTERFACE.Customer.CustomerStatusInterface;
+import com.example.laundry_app.API.MODELCLASS.BookingModel;
+import com.example.laundry_app.API.MODELCLASS.BookingRequest;
+import com.example.laundry_app.API.MODELCLASS.BookingsRequest;
 import com.example.laundry_app.API.MODELCLASS.Customer.CustomerStatusModel;
 import com.example.laundry_app.Global;
+import com.example.laundry_app.USERS.Customer.CustomerDashboard;
 import com.example.laundry_app.USERS.Customer.MainFragments.AdaptersAndDataClass.CustomerAdapter;
 import com.example.laundry_app.USERS.Customer.MainFragments.AdaptersAndDataClass.Status;
 import com.example.laundry_app.R;
@@ -37,18 +42,23 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class StatusFragment extends Fragment {
 
 
-    private ArrayList<Status> statusArrayList;
+    private ArrayList<BookingModel> statusArrayList;
     private String[] statusDate;
     private String[] statusPayable;
     private String[] statusStatus;
     private RecyclerView recyclerView;
 
     Intent intent;
+
     CustomerStatusInterface customerStatusInterface;
     CustomerStatusAdapter customerStatusAdapter;
 
-    String ip = Global.getIp();
-    Retrofit retrofit =Global.setIpRetrofit(ip);
+    Retrofit retrofit;
+    BookingInterface bookingInterface;
+    String token;
+
+
+    CustomerDashboard customerDashboard;
 
 
     @Nullable
@@ -65,13 +75,15 @@ public class StatusFragment extends Fragment {
         // ====================================== INITIALIZE RETROFIT ====================================== //
         // ====================================== INITIALIZE RETROFIT ====================================== //
 
+        String ip = Global.getIp();
+        retrofit =Global.setIpRetrofit(ip);
         customerStatusInterface = retrofit.create(CustomerStatusInterface.class);
-
+        bookingInterface = retrofit.create(BookingInterface.class);
 
 
         // ==============================================================================================//
-
-
+        getDataFromActivity();
+        getAllBookings();
 
         //dataInitialized();
 
@@ -114,6 +126,35 @@ public class StatusFragment extends Fragment {
 //
 //    }
 
+
+    private void getDataFromActivity(){
+        customerDashboard = (CustomerDashboard) getActivity();
+        token = customerDashboard.getMyToken();
+
+    }
+
+    private void getAllBookings(){
+        String finalToken = "Bearer " + token;
+        Call<BookingsRequest> request = bookingInterface.getBookings(finalToken);
+        request.enqueue(new Callback<BookingsRequest>() {
+            @Override
+            public void onResponse(Call<BookingsRequest> call, Response<BookingsRequest> response) {
+                if(response.code() != 200){
+                    Toast.makeText(getContext(), "Something went wrong with status code " + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                BookingsRequest res = response.body();
+                statusArrayList = res.getBookings();
+
+            }
+
+            @Override
+            public void onFailure(Call<BookingsRequest> call, Throwable t) {
+
+            }
+        });
+    }
 
     // ============================== GET RETROFIT ============================== //
     // ============================== GET RETROFIT ============================== //

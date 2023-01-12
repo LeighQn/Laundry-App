@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.laundry_app.API.MODELCLASS.BookingModel;
 import com.example.laundry_app.USERS.Customer.Screens.DetailedBookingActivity;
 import com.example.laundry_app.R;
 
@@ -21,10 +22,10 @@ import java.util.ArrayList;
 public class CustomerAdapter extends  RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>{
 
     Context context;
-    ArrayList<Status> statusArrayList;
+    ArrayList<BookingModel> statusArrayList;
 
 
-    public CustomerAdapter(Context context, ArrayList<Status> statusArrayList) {
+    public CustomerAdapter(Context context, ArrayList<BookingModel> statusArrayList) {
 
         this.context = context;
         this.statusArrayList = statusArrayList;
@@ -41,10 +42,10 @@ public class CustomerAdapter extends  RecyclerView.Adapter<CustomerAdapter.Custo
     @Override
     public void onBindViewHolder(@NonNull CustomerViewHolder holder, int position) {
 
-        Status status = statusArrayList.get(position);
-        holder.txtDateStatus.setText(status.statusDate);
-        holder.txtPayableStatus.setText(status.statusPayables);
-        holder.txtStatusStatus.setText(status.statusStatus);
+        BookingModel status = statusArrayList.get(position);
+        holder.txtDateStatus.setText(status.getDate());
+        holder.txtPayableStatus.setText(status.getTotal());
+        holder.txtStatusStatus.setText(status.getStatus());
         //holder.txtDescription.setText(status.statusDescription);
 
         holder.rlCustomerStatusItem.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +56,7 @@ public class CustomerAdapter extends  RecyclerView.Adapter<CustomerAdapter.Custo
                 // create bundle for easier call on intent.putExtras(b); --> see below
                 Bundle b = new Bundle();
                 // b.putString or b.putInt or whatever blat you want, just change the key and value
-                b.putString("reservationStatusId", status.statusDate);
+                b.putString("reservationStatusId", status.getDate());
                 // butngag sulod ang intent nimo
                 intent.putExtras(b);
                 context.startActivity(intent);

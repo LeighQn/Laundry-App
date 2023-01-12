@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.laundry_app.ADAPTERS.Customer.BookingAdapter;
@@ -75,6 +76,7 @@ public class StatusFragment extends Fragment implements BookingAdapter.RecyclerV
 
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -125,8 +127,6 @@ public class StatusFragment extends Fragment implements BookingAdapter.RecyclerV
                 bookingAdapter.setBookingsListDatas(bookingModelList, listener);
                 recyclerView.setAdapter(bookingAdapter);
 
-
-
             }
 
             @Override
@@ -170,7 +170,7 @@ public class StatusFragment extends Fragment implements BookingAdapter.RecyclerV
     }
 
     private void setOnClickListerner(){
-        listener = (v, position) -> sendTokenToMap();
+        listener = (v, position) -> sendTokenToMap(v, position);
     }
 
 
@@ -182,9 +182,11 @@ public class StatusFragment extends Fragment implements BookingAdapter.RecyclerV
     }
 
 
-    private void sendTokenToMap(){
+    private void sendTokenToMap(View view, int position){
+        BookingModel booking = bookingModelList.get(position);
         intent = new Intent(getActivity(), MapActivity.class);
         intent.putExtra("token", token);
+        intent.putExtra("bookingID", booking.get_id());
         startActivity(intent);
 
     }

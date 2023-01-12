@@ -67,6 +67,7 @@ public class BookingActivity extends AppCompatActivity {
     // CALCULATION
     BookingModel bookingModel;
     User user;
+    User customer;
     TextView txtRegular, txtWhite, txtMaong, txtComforter;
     Spinner spinnerRegClothes, spinnerMaong, spinnerWhite, spinnerComforter;
 
@@ -168,6 +169,10 @@ public class BookingActivity extends AppCompatActivity {
         btnConfirmBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(bookingModel.getTotal() == 0){
+                    Toast.makeText(BookingActivity.this, "Please select at least at least a kilo for the laundry", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 convertedDate = etDatePicker.getText().toString();
                 Toast.makeText(BookingActivity.this, convertedDate, Toast.LENGTH_SHORT).show();
 
@@ -175,7 +180,6 @@ public class BookingActivity extends AppCompatActivity {
 
                 alertDialog.setMessage("Would you like to confirm the booking information? The subtotal is "
                                 + String.valueOf(bookingModel.getSubTotal())
-                                + ", delivery fee is " + String.valueOf(user.getRole() ==1 ? '0' : "20")
                                 + ", and with the total " + String.valueOf(bookingModel.getTotal()))
                         .setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
@@ -221,7 +225,7 @@ public class BookingActivity extends AppCompatActivity {
         intent = getIntent();
         token = intent.getStringExtra("token");
         if(intent.getStringExtra("customerID") == null){
-            customerID = "";
+            customerID = "none";
         }
         else{
             customerID = intent.getStringExtra("customerID");
@@ -248,41 +252,42 @@ public class BookingActivity extends AppCompatActivity {
 
     private void getDataForCreationOfBooking(){
         finalToken = "Bearer " + token;
-        if(customerID == ""){
-            // logged in is customer
-            Call<CustomerProfileModel> call = customerProfileInterface.getCustomerInfo(finalToken);
-            call.enqueue(new Callback<CustomerProfileModel>() {
-                @Override
-                public void onResponse(Call<CustomerProfileModel> call, Response<CustomerProfileModel> response) {
-                    if(!response.isSuccessful() || response.code() != 200){
-//                    txtName.setText("Code: " + String.valueOf(response.code()) );
-                        Toast.makeText(BookingActivity.this, response.body() != null ? response.body().getMessage() : "Something went wrong", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    user = response.body().getUser();
-                    bookingModel.setCustomer(user);
-                    String name = String.valueOf(response.body().getUser().getName());
-                    String phone = String.valueOf(response.body().getUser().getMobileNumber());
-                    //               String username = String.valueOf(response.body().getUser().getUsername());
-                    //              String address = String.valueOf(response.body().getUser().getAddress());
+        Call<CustomerProfileModel> call;
+        if(customerID != "none"){
+            call = customerProfileInterface.getCustomerInfo(customerID);
 
-                    txtName.setText(name);
-                    txtPhone.setText(phone);
-//               txtuserName.setText(username);
-//                txtAddress.setText(address);
-
-                }
-
-                @Override
-                public void onFailure(Call<CustomerProfileModel> call, Throwable t) {
-                    Toast.makeText(BookingActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            });
         }
         else{
-            // logged in is admin
-            //TODO: fetch customer info to set in booking customer data
+            call = customerProfileInterface.getUserInfo(finalToken);
         }
+        call.enqueue(new Callback<CustomerProfileModel>() {
+            @Override
+            public void onResponse(Call<CustomerProfileModel> call, Response<CustomerProfileModel> response) {
+                if(!response.isSuccessful() || response.code() != 200){
+//                    txtName.setText("Code: " + String.valueOf(response.code()) );
+                    Toast.makeText(BookingActivity.this, response.body() != null ? response.body().getMessage() : "Something went wrong", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                user = response.body().getUser();
+                bookingModel.setCustomer(user);
+                String name = String.valueOf(response.body().getUser().getName());
+                String phone = String.valueOf(response.body().getUser().getMobileNumber());
+                //               String username = String.valueOf(response.body().getUser().getUsername());
+                //              String address = String.valueOf(response.body().getUser().getAddress());
+
+                txtName.setText(name);
+                txtPhone.setText(phone);
+//               txtuserName.setText(username);
+//                txtAddress.setText(address);
+                populateSpinners();
+
+            }
+
+            @Override
+            public void onFailure(Call<CustomerProfileModel> call, Throwable t) {
+                Toast.makeText(BookingActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
         Call<PriceRequest> priceRequest = priceInterface.getPrice(finalToken);
         priceRequest.enqueue(new Callback<PriceRequest>() {
             @Override
@@ -293,7 +298,6 @@ public class BookingActivity extends AppCompatActivity {
                 }
                 PriceRequest result = response.body();
                 priceModel = result.getLaundry();
-                Toast.makeText(BookingActivity.this, "REGULAR PRICE" + String.valueOf(priceModel.getRegularPrice()), Toast.LENGTH_LONG).show();
                 populateMinimumTexts();
             }
 
@@ -305,7 +309,6 @@ public class BookingActivity extends AppCompatActivity {
             }
         });
 
-        populateSpinners();
     }
 
 
@@ -396,11 +399,7 @@ public class BookingActivity extends AppCompatActivity {
 
         // CHECK IF TOTAL KG IS 0
         int total = kgReg + kgWhi + kgMao + kgCom;
-        if(total == 0){
-            txtTotal.setText("0.00");
-            Toast.makeText(BookingActivity.this, "Please select at least " + String.valueOf(minmin), Toast.LENGTH_LONG).show();
-            return;
-        }
+
 
         // REAL CALCULATION
         int priWhi = priceModel.getWhitePrice();
@@ -415,14 +414,14 @@ public class BookingActivity extends AppCompatActivity {
         int subCom = calculateSubTotal(kgCom, kgComMin, priCom);
         int fee = user.getRole() == 1 ? 0 : 20;
         int subTotal =subReg + subWhi + subMao + subCom;
-        int finalTotal = subTotal+ fee;
+        int finalTotal = subTotal == 0 ? 0: subTotal+ fee;
         txtTotal.setText(String.valueOf(finalTotal));
 
 
         int type = user.getRole() == 1 ? 1 : 2;
 
         // set model values
-        BookingLaundryModel laundryData = new BookingLaundryModel(subReg, subWhi, subMao, subCom);
+        BookingLaundryModel laundryData = new BookingLaundryModel(kgReg, kgWhi, kgMao, kgCom);
         bookingModel.setLaundry(laundryData);
         bookingModel.setSubTotal(subTotal);
         bookingModel.setTotal(finalTotal);
@@ -443,13 +442,21 @@ public class BookingActivity extends AppCompatActivity {
 
 
     private void createBooking(){
-        Call<BookingRequest> request = bookingInterface.createBooking(finalToken, customerID, bookingModel);
+        finalToken = "Bearer " + token;
+        if(customerID != "none"){
+            bookingModel.setCustomer(user);
+        }
+        else{
+
+        }
+        Call<BookingRequest> request = bookingInterface.createBooking(finalToken, bookingModel);
         request.enqueue(new Callback<BookingRequest>() {
             @Override
             public void onResponse(Call<BookingRequest> call, Response<BookingRequest> response) {
                 if(response.code() != 200){
                     //
-                    Toast.makeText(BookingActivity.this, "Something went wrong", Toast.LENGTH_LONG).show();
+                    Toast.makeText(BookingActivity.this, "Something went wrong with status code: "
+                            + String.valueOf(response.code()), Toast.LENGTH_LONG).show();
                     return;
                 }
                 Toast.makeText(BookingActivity.this, response.body().getMessage(), Toast.LENGTH_LONG).show();

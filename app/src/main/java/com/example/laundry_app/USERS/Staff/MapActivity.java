@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -25,6 +26,7 @@ import com.example.laundry_app.API.MODELCLASS.Customer.CustomerProfileModel;
 import com.example.laundry_app.API.MODELCLASS.User;
 import com.example.laundry_app.APIClient;
 import com.example.laundry_app.Global;
+import com.example.laundry_app.MainActivity;
 import com.example.laundry_app.R;
 import com.example.laundry_app.USERS.Customer.Screens.BookingActivity;
 import com.example.laundry_app.USERS.Customer.Screens.CustomerProfileUpdate;
@@ -40,7 +42,7 @@ import retrofit2.Retrofit;
 public class MapActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     Spinner spinnerStatus;
-    Button btnNavigation;
+    Button btnNavigation, btnConfirm;
     BookingInterface bookingInterface;
     DashboardActivity dashboardActivity;
 
@@ -55,6 +57,8 @@ public class MapActivity extends AppCompatActivity implements AdapterView.OnItem
     String ip = Global.getIp();
     Retrofit retrofit =Global.setIpRetrofit(ip);
 
+    String bookingID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +66,7 @@ public class MapActivity extends AppCompatActivity implements AdapterView.OnItem
 
         spinnerStatus = findViewById(R.id.spinner_status);
         btnNavigation = findViewById(R.id.btn_go_to_nav);
+        btnConfirm = findViewById(R.id.btn_to_confirm_booking_admin);
         txtName = findViewById(R.id.txt_customer_name);
         txtUsername = findViewById(R.id.txt_customer_username);
         txtPhone = findViewById(R.id.txt_customer_phone);
@@ -112,6 +117,13 @@ public class MapActivity extends AppCompatActivity implements AdapterView.OnItem
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 }
+            }
+        });
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateBookingStatus();
             }
         });
 
@@ -177,6 +189,7 @@ public class MapActivity extends AppCompatActivity implements AdapterView.OnItem
         role = intent.getStringExtra("role");
         latitude = intent.getStringExtra("latitude");
         longitude = intent.getStringExtra("longitude");
+        bookingID = intent.getStringExtra("bookingID");
         //Toast.makeText(CustomerProfileUpdate.this, string + token, Toast.LENGTH_SHORT).show();
     }
 
@@ -210,7 +223,7 @@ public class MapActivity extends AppCompatActivity implements AdapterView.OnItem
 
     private void getBookingsInMap(){
         finalToken = "Bearer " + token;
-        Call<BookingRequest> call = bookingInterface.getBooking(finalToken);
+        Call<BookingRequest> call = bookingInterface.getBooking(finalToken,bookingID);
         call.enqueue(new Callback<BookingRequest>() {
             @Override
             public void onResponse(Call<BookingRequest> call, Response<BookingRequest> response) {
@@ -220,6 +233,7 @@ public class MapActivity extends AppCompatActivity implements AdapterView.OnItem
                 }
 
                 BookingRequest bookingRequest= response.body();
+                bookingModel = bookingRequest.getBooking();
                 token = bookingRequest.getBooking().getCustomer().getToken();
                 latitude = bookingRequest.getBooking().getCustomer().getLatitude();
                 longitude = bookingRequest.getBooking().getCustomer().getLongitude();
@@ -233,7 +247,7 @@ public class MapActivity extends AppCompatActivity implements AdapterView.OnItem
                 txtUsername.setText(username);
                 txtPhone.setText(phone);
                 txtAddress.setText(address);
-
+                spinnerStatus.setSelection(bookingRequest.getBooking().getStatus()-1);
             }
 
             @Override
@@ -244,4 +258,27 @@ public class MapActivity extends AppCompatActivity implements AdapterView.OnItem
         });
     }
 
+    private void updateBookingStatus(){
+        finalToken = "Bearer " + token;
+        bookingModel.setStatus(spinnerStatus.getSelectedItemPosition() + 1);
+        Call<BookingRequest> request = bookingInterface.updateBookingStatus(finalToken, bookingID, bookingModel);
+        request.enqueue(new Callback<BookingRequest>() {
+            @Override
+            public void onResponse(Call<BookingRequest> call, Response<BookingRequest> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(MapActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                intent = new Intent(MapActivity.this, DashboardActivity.class);
+                intent.putExtra("token", token);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Call<BookingRequest> call, Throwable t) {
+
+            }
+        });
+    }
 }
