@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,13 +41,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class BookingActivity extends AppCompatActivity {
 
     Button btnBackToCustomerDashboard, btnConfirmBooking, btnBookLaundry;
-    TextView etDatePicker, txtTotal, txtName, txtPhone;
+    TextView etDatePicker, txtTotal, txtName, txtPhone, txtAddress;
     Calendar calendar;
     String convertedDate;
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
     LocalDateTime now = LocalDateTime.now();
     CustomerProfileInterface customerProfileInterface;
-//    Retrofit retrofit = Global.retrofitConnect();
+    //    Retrofit retrofit = Global.retrofitConnect();
     String ip = Global.getIp();
     Retrofit retrofit =Global.setIpRetrofit(ip);
 
@@ -54,6 +55,7 @@ public class BookingActivity extends AppCompatActivity {
     BookingModel bookingModel;
     User user;
     TextView txtRegular, txtWhite, txtMaong, txtComforter;
+    Spinner spinnerRegClothes, spinnerMaong, spinnerWhite, spinnerComforter;
 
 
     Intent intent;
@@ -72,10 +74,11 @@ public class BookingActivity extends AppCompatActivity {
         etDatePicker = findViewById(R.id.etxt_date_picker);
         btnBackToCustomerDashboard = findViewById(R.id.btn_customer_home);
         btnConfirmBooking = findViewById(R.id.btn_to_confirm_booking);
-     //   btnBookLaundry = findViewById(R.id.btn_add_laundry_booking);
+        //   btnBookLaundry = findViewById(R.id.btn_add_laundry_booking);
         txtTotal = findViewById(R.id.txt_total_booking_display);
         txtName = findViewById(R.id.txt_customer_name_display);
         txtPhone = findViewById(R.id.etxt_contact);
+        txtAddress = findViewById(R.id.etxt_address);
 
         //? CALCULATION
         bookingModel = new BookingModel();
@@ -83,6 +86,10 @@ public class BookingActivity extends AppCompatActivity {
         txtWhite = findViewById(R.id.txt_laundry_white);
         txtMaong = findViewById(R.id.txt_laundry_maong);
         txtComforter = findViewById(R.id.txt_laundry_comforter);
+        spinnerRegClothes = findViewById(R.id.spinner_reg_laundry);
+        spinnerMaong = findViewById(R.id.spinner_maong_laundry);
+        spinnerWhite = findViewById(R.id.spinner_white_laundry);
+        spinnerComforter = findViewById(R.id.spinner_comforter_laundry);
 
 
 

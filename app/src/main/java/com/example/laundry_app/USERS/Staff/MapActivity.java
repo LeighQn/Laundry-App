@@ -52,7 +52,8 @@ public class MapActivity extends AppCompatActivity implements AdapterView.OnItem
     String finalToken, token, role;
     String name, username, address, phone;
 
-    Retrofit retrofit = APIClient.getClient();
+    String ip = Global.getIp();
+    Retrofit retrofit =Global.setIpRetrofit(ip);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
