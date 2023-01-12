@@ -114,7 +114,6 @@ public class CustomerStatusFragment extends Fragment {
             @Override
             public void onResponse(Call<BookingsRequest> call, Response<BookingsRequest> response) {
                 if(!response.isSuccessful() || response.code() != 200){
-                    Toast.makeText(getActivity(), response.body() != null ? response.body().getMessage() : "Something went wrong", Toast.LENGTH_SHORT).show();
                     bookingModelList.clear();
                     return;
                 }

@@ -98,7 +98,6 @@ public class LoginFragment extends Fragment{
                 ip = Global.getIp();
                 Retrofit retrofit =Global.setIpRetrofit(ip);
                 authInterface = retrofit.create(AuthInterface.class);
-                Toast.makeText(getActivity(), ip, Toast.LENGTH_SHORT).show();
                 getLogin();
 
             }
@@ -145,7 +144,6 @@ public class LoginFragment extends Fragment{
                         intent = new Intent(getActivity(), OTPActivity.class);
                         intent.putExtra("token", loginResponse.getToken());
                         startActivity(intent);
-                        Toast.makeText(getActivity(), loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                     else{
                         // redirect to login
@@ -193,7 +191,6 @@ public class LoginFragment extends Fragment{
         intent = new Intent(getActivity(), classes);
         intent.putExtra("token", token);
         startActivity(intent);
-        Toast.makeText(getActivity(), string.toString() + name, Toast.LENGTH_SHORT).show();
     }
 
 }

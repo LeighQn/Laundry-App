@@ -26,16 +26,12 @@ public class InputIPAddress extends AppCompatActivity {
         txtIp.setText("192.168.254.104");
 
         ip = txtIp.getText().toString();
-     //   Toast.makeText(this, ip, Toast.LENGTH_SHORT).show();
-
-
 
         btnIp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(InputIPAddress.this, MainActivity.class);
                 ip = ("http://" + txtIp.getText().toString() + ":8000/api/v1/");
-          //      Toast.makeText(InputIPAddress.this, ip, Toast.LENGTH_SHORT).show();
                 Global.setIp(ip);
                 startActivity(intent);
             }

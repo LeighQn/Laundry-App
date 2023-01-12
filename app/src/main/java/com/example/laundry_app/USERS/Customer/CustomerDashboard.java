@@ -170,7 +170,6 @@ public class CustomerDashboard extends AppCompatActivity {
         intent = new Intent(this, BookingActivity.class );
         intent.putExtra("token", token);
         startActivity(intent);
-        Toast.makeText(this, "Send to book", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -183,7 +182,6 @@ public class CustomerDashboard extends AppCompatActivity {
         intent.putExtra("token", token);
         intent.putExtra("role", role);
         startActivity(intent);
-        Toast.makeText(CustomerDashboard.this, "Role in Customer Dashboard is: " + role, Toast.LENGTH_SHORT).show();
 
 
     }

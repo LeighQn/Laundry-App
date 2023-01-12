@@ -196,8 +196,6 @@ public class SignUpFragment extends Fragment {
                 String stringLat = String.valueOf(addressList.get(0).getLatitude());
                 String stringLong = String.valueOf(addressList.get(0).getLongitude());
 
-                Toast.makeText(getActivity(), "Lat: " + stringLat + " Long: " +stringLong, Toast.LENGTH_SHORT).show();
-                //Toast.makeText(getActivity(), address, Toast.LENGTH_SHORT).show();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -220,7 +218,6 @@ public class SignUpFragment extends Fragment {
                 // Code: 201 means created
                 // Code: 200 mean successful
                 SignUp signResponse = response.body();
-                Toast.makeText(getActivity(), "Code: " + response.code(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
             }
@@ -244,7 +241,6 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 barangay = adapterView.getItemAtPosition(i).toString();
-                //Toast.makeText(adapterView.getContext(), barangay, Toast.LENGTH_SHORT).show();
             }
 
             @Override
