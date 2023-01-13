@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.laundry_app.API.MODELCLASS.User;
 import com.example.laundry_app.R;
 
 import java.util.ArrayList;
@@ -16,10 +17,10 @@ import java.util.ArrayList;
 public class StaffAdapter extends RecyclerView.Adapter<StaffAdapter.StaffViewHolder> {
 
     Context context;
-    ArrayList<Staff> staffArrayList;
+    ArrayList<User> staffArrayList;
 
 
-    public StaffAdapter(Context context, ArrayList<Staff> staffArrayList) {
+    public StaffAdapter(Context context, ArrayList<User> staffArrayList) {
         this.context = context;
         this.staffArrayList = staffArrayList;
     }
@@ -35,9 +36,9 @@ public class StaffAdapter extends RecyclerView.Adapter<StaffAdapter.StaffViewHol
 
     @Override
     public void onBindViewHolder(@NonNull StaffAdapter.StaffViewHolder holder, int position) {
-        Staff staff = staffArrayList.get(position);
-        holder.txtStaffName.setText(staff.staffName);
-        holder.txtStaffPosition.setText(staff.staffPosition);
+        User staff = staffArrayList.get(position);
+        holder.txtStaffName.setText(staff.getName());
+        holder.txtStaffPosition.setText(staff.getRole() == 1 ? "Admin": "Delivery");
     }
 
     @Override

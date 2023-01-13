@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -144,7 +145,6 @@ public class AddEmployee extends AppCompatActivity {
             alertDialog.setMessage("Kindly fillout the form.").setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-
                     createSignUp();
                 }
             });
@@ -153,13 +153,10 @@ public class AddEmployee extends AppCompatActivity {
             alert.show();
 
         }else{
-            alertDialog.setMessage("You have successfully Sign Up").setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+            alertDialog.setMessage("You have successfully created a new staff account").setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-
                     createSignUp();
-                    Intent intent = new Intent(AddEmployee.this, MainActivity.class);
-                    startActivity(intent);
                 }
             });
             AlertDialog alert = alertDialog.create();
@@ -262,6 +259,7 @@ public class AddEmployee extends AppCompatActivity {
             @Override
             public void onResponse(Call<SignUp> call, Response<SignUp> response) {
                 if(!response.isSuccessful()){
+                    Log.d("ADD_EMP", response.body() != null ? response.body().getMessage() : "Something went wrong");
                     Toast.makeText(AddEmployee.this, "Code: " + response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
