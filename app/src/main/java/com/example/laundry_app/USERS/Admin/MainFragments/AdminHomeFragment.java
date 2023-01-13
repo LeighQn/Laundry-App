@@ -66,6 +66,8 @@ public class AdminHomeFragment extends Fragment {
 
     ArrayList barArrayList;
     ArrayList<BookingModel> bookings = new ArrayList<BookingModel>();
+    ArrayList dataX = new ArrayList<>();
+    ArrayList dataY = new ArrayList<>();
     int entry1 = 10, entry2 = 5, entry3 = 7, entry4 = 2, entry5=4, entry6=6, entry7=17;
     int numberOfBookings1;
     String token, finalToken;
