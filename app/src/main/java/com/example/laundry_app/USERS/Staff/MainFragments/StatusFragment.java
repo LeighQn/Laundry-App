@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -141,14 +142,24 @@ public class StatusFragment extends Fragment implements BookingAdapter.RecyclerV
     // ______________________________ SPINNER EXECUTION ______________________________ //
 
     private void spinnerExecution(){
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.type, android.R.layout.simple_spinner_item);
+        Log.d("STATS_FRAG", "GOT HERE");
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.laudry_status, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                type = adapterView.getItemAtPosition(i).toString();
-                convertSpinnerValue();
+                int type = (int) adapterView.getSelectedItemPosition();
+                ArrayList<BookingModel> newBookings = new ArrayList<BookingModel>();
+                for(int x = 0; x < newBookings.size(); x++){
+                    BookingModel booking = newBookings.get(x);
+                    if(booking.getStatus() == type){
+                        newBookings.add(booking);
+                    }
+                }
+                bookingModelList = newBookings;
+
+
             }
 
             @Override
@@ -158,16 +169,6 @@ public class StatusFragment extends Fragment implements BookingAdapter.RecyclerV
         });
     }
 
-    private void convertSpinnerValue(){
-        if(type.equals("WALK-IN")){
-            role ="1";
-            Toast.makeText(getActivity(), type + "is " + role, Toast.LENGTH_SHORT).show();
-        }else if(type.equals("BOOKING")){
-            role ="3";
-        }else{
-            Toast.makeText(getActivity(), "Kindly choose from the dropdown.", Toast.LENGTH_SHORT).show();
-        }
-    }
 
     private void setOnClickListerner(){
         listener = (v, position) -> sendTokenToMap(v, position);
