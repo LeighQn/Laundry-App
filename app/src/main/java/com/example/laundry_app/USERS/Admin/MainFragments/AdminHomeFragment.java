@@ -232,7 +232,7 @@ public class AdminHomeFragment extends Fragment {
                     if(bookings.get(i).getStatus() == 1){
                         totalPickups += 1;
                     }
-                    BookingModel booking = bookings.get(0);
+                    BookingModel booking = bookings.get(i);
                     String pattern = "yyyy/MM/dd";
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern, Locale.ENGLISH);
                     LocalDate date = LocalDate.parse(booking.getDate(), formatter);
@@ -256,7 +256,9 @@ public class AdminHomeFragment extends Fragment {
                     }
 
                     if(yearDiff == 0 && monthDiff == 0){
+                        Log.d("BOOKING TOTAL", String.valueOf(booking.getTotal()));
                         monthlyIncom += booking.getTotal();
+                        Log.d("MONTHLY_INCOME", String.valueOf(monthlyIncom));
                     }
                 }
                 btnDailyIncome.setText(String.valueOf(dailyIncome));
