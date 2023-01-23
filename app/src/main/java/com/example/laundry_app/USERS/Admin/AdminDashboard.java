@@ -77,7 +77,6 @@ public class AdminDashboard extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.admin_frame_layout, adminHomeFragment).commit();        intent = getIntent();
         token = intent.getStringExtra("token");
-    //    Toast.makeText(AdminDashboard.this, "Admin: " + token, Toast.LENGTH_SHORT).show();
 
         requestTokenInAdminDashboard("Bearer " + token);
 
@@ -93,11 +92,6 @@ public class AdminDashboard extends AppCompatActivity {
                         btnLogout.setVisibility(View.GONE);
                         return true;
 
-                    case R.id.sales:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.admin_frame_layout, adminSalesFragment).commit();
-                        receiver("Sales: ");
-                        btnLogout.setVisibility(View.GONE);
-                        return true;
 
                     case R.id.record:
                         getSupportFragmentManager().beginTransaction().replace(R.id.admin_frame_layout, adminRecordFragment).commit();
@@ -190,7 +184,6 @@ public class AdminDashboard extends AppCompatActivity {
     public void receiver(String string){
         intent = getIntent();
         token = intent.getStringExtra("token");
-        Toast.makeText(AdminDashboard.this, string + token, Toast.LENGTH_SHORT).show();
     }
 
     public void sendDataToBook(){
@@ -201,7 +194,7 @@ public class AdminDashboard extends AppCompatActivity {
     }
 
 
-    public String getMyToken(){
+    public String getMyTokenAdmin(){
         return token;
     }
 

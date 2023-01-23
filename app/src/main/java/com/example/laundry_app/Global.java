@@ -28,7 +28,7 @@ public class Global extends Application {
 
     public static String garkIP = "http://192.168.1.6:8000/api/v1/";
 
-    public static String token, ip;
+    public static String token, ip, date;
     public static int role;
 
     public static Retrofit getClient(){
@@ -90,5 +90,13 @@ public class Global extends Application {
 
     public static void setIp(String ip) {
         Global.ip = ip;
+    }
+
+    public static String getDate() {
+        return date;
+    }
+
+    public static void setDate(String date) {
+        Global.date = date;
     }
 }

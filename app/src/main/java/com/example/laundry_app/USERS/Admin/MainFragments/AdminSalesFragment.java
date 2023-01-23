@@ -113,7 +113,7 @@ public class AdminSalesFragment extends Fragment {
 
     private void getDataFromActivity(){
         adminDashboard = (AdminDashboard) getActivity();
-        token = adminDashboard.getMyToken();
+        token = adminDashboard.getMyTokenAdmin();
 
     }
 

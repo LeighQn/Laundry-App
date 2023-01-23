@@ -98,7 +98,6 @@ public class CustomerDashboard extends AppCompatActivity {
                 Intent intent = new Intent(CustomerDashboard.this, MainActivity.class);
                 startActivity(intent);
                 Global.setIp(ip);
-                Toast.makeText(CustomerDashboard.this, "floating btn", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -144,7 +143,7 @@ public class CustomerDashboard extends AppCompatActivity {
 
                     case R.id.profile:
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, profileFragment).commit();
-                        notificationBellVisible(btnLogout, btnNotificationBell);
+                        notificationBellVisible1(btnLogout, btnNotificationBell);
                         return true;
                 }
                 return false;
@@ -161,10 +160,13 @@ public class CustomerDashboard extends AppCompatActivity {
     // ============================== METHODS ============================== //
 
     public void notificationBellVisible(Button visible, Button invisible){
+        visible.setVisibility(View.INVISIBLE);
+        invisible.setVisibility(View.INVISIBLE);
+    }
+    public void notificationBellVisible1(Button visible, Button invisible){
         visible.setVisibility(View.VISIBLE);
         invisible.setVisibility(View.INVISIBLE);
     }
-
 
     public void sendDataToBook(){
         intent = new Intent(this, BookingActivity.class );

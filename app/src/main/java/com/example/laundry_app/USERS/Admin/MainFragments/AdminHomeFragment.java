@@ -153,7 +153,7 @@ public class AdminHomeFragment extends Fragment {
 
     private void getDataFromActivityAdmin(){
         adminDashboard = (AdminDashboard) getActivity();
-        token = adminDashboard.getMyToken();
+        token = adminDashboard.getMyTokenAdmin();
 
     }
 
@@ -213,7 +213,7 @@ public class AdminHomeFragment extends Fragment {
                     if(bookings.get(i).getStatus() == 1){
                         totalPickups += 1;
                     }
-                    BookingModel booking = bookings.get(i);
+                    BookingModel booking = bookings.get(0);
                     String pattern = "yyyy/MM/dd";
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern, Locale.ENGLISH);
                     LocalDate date = LocalDate.parse(booking.getDate(), formatter);

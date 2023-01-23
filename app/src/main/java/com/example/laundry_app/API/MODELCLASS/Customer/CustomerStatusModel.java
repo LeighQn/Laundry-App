@@ -6,14 +6,8 @@ public class CustomerStatusModel {
 
 
     private String token;
-
-    @SerializedName("title")
     private String date;
-
-    @SerializedName("body")
     private String total;
-
-    @SerializedName("userId")
     private String status;
 
     public CustomerStatusModel(String date, String total, String status) {

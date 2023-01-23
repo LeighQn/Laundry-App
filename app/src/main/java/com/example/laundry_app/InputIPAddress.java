@@ -23,7 +23,7 @@ public class InputIPAddress extends AppCompatActivity {
         txtIp = findViewById(R.id.txt_set_ip);
         btnIp = findViewById(R.id.btn_get_ip);
 
-        txtIp.setText("192.168.1.6");
+        txtIp.setText("192.168.254.104");
 
         ip = txtIp.getText().toString();
 

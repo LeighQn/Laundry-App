@@ -56,7 +56,7 @@ public class AdminStaffFragment extends Fragment {
 
         authInterface = retrofit.create(AuthInterface.class);
         AdminDashboard adminDashboard = (AdminDashboard) getActivity();
-        token = adminDashboard.getMyToken();
+        token = adminDashboard.getMyTokenAdmin();
 //        staffDataInitialize();
         getAllStaffs();
 

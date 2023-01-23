@@ -114,7 +114,7 @@ public class ProfileFragment extends Fragment {
     private void getCustomerProfile() {
 
         finalToken = "Bearer " + token;
-        Call<CustomerProfileModel> call = customerProfileInterface.getCustomerInfo(finalToken);
+        Call<CustomerProfileModel> call = customerProfileInterface.getUserInfo(finalToken);
         call.enqueue(new Callback<CustomerProfileModel>() {
             @Override
             public void onResponse(Call<CustomerProfileModel> call, Response<CustomerProfileModel> response) {

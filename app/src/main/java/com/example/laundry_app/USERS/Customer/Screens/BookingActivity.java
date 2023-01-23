@@ -135,7 +135,7 @@ public class BookingActivity extends AppCompatActivity {
             }
 
             private void updateCalendar() {
-                String format = "MM/dd/yy";
+                String format = "yyyy/MM/dd";
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
 
                 etDatePicker.setText(simpleDateFormat.format(calendar.getTime()));

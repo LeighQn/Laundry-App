@@ -102,7 +102,7 @@
     <Spinner
         android:id="@+id/spinner_out_for_delivery"
         android:layout_below="@+id/txt_out_for_delivery"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:layout_width="250dp"
         android:layout_marginLeft="12dp"
         android:layout_height="20dp"
@@ -110,6 +110,50 @@
         android:theme="@style/mySpinnerItemStyle"
         android:entries="@array/type"
         android:elevation="10dp"/>
+
+    <Button
+        android:id="@+id/btn_date"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/txt_out_for_delivery"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/transparent_background"
+        android:visibility="gone"
+        android:textSize="16sp"
+        />
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="75dp"
+        android:layout_below="@+id/txt_out_for_delivery"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/search_icon"
+        android:backgroundTint="@color/editTextColor"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:visibility="gone"
+        android:textColor="@color/blue_grotto"
+        />
+
+    <Button
+        android:id="@+id/btn_all"
+        android:layout_width="60dp"
+        android:layout_height="35dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_below="@+id/txt_out_for_delivery"
+        android:layout_marginTop="20dp"
+        android:text="All"
+        android:background="@drawable/soft_edges_transparent"
+        android:textStyle="bold"
+        android:textSize="10sp"
+        android:visibility="gone"
+        android:textColor="@color/blue_grotto"
+        />
+
 
     <ImageView
         android:layout_width="350dp"
@@ -125,15 +169,16 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="12dp"
         android:layout_width="250dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:background="@drawable/soft_rounded_with_bg_volor"
-        android:backgroundTint="@color/blue_grotto"
+        android:backgroundTint="@color/editTextColor"
+        android:alpha="0.5"
         android:id="@+id/img_comforter_spinner_bg"/>
 
     <ImageView
         android:id="@+id/img_choose_spinner_icon"
         android:layout_below="@id/txt_out_for_delivery"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:layout_marginLeft="220dp"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -144,18 +189,18 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_staff_status"
-        android:layout_below="@id/spinner_out_for_delivery"
+        android:layout_below="@id/img_comforter_spinner_bg"
         android:layout_marginTop="24dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"/>
 
-<!--    <ProgressBar-->
-<!--        android:id="@+id/id_staff_progress_bar"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:visibility="gone"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_centerVertical="true"/>-->
+    <!--    <ProgressBar-->
+    <!--        android:id="@+id/id_staff_progress_bar"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:visibility="gone"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        android:layout_centerVertical="true"/>-->
 
 </RelativeLayout>

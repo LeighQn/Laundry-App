@@ -121,8 +121,6 @@ public class CustomerStatusFragment extends Fragment {
                 BookingsRequest  bookingsRequestResponse= response.body();
                 bookingModelList = bookingsRequestResponse.getBookings();
 
-                Toast.makeText(getActivity(), "Got the bookings with size: " + bookingModelList.size(), Toast.LENGTH_SHORT).show();
-
                 bookingAdapter.setStatusDatas(bookingModelList, listener);
                 recyclerView.setAdapter(bookingAdapter);
 

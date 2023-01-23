@@ -116,7 +116,7 @@
 
     <ImageView
         android:id="@+id/btn_number_of_pickup"
-        android:layout_width="400dp"
+        android:layout_width="380dp"
         android:layout_height="120dp"
         android:layout_below="@id/txt_admin_name"
         android:layout_marginTop="50dp"
@@ -133,7 +133,7 @@
         android:layout_below="@id/txt_admin_name"
         android:layout_marginTop="70dp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="30dp"
         android:elevation="10dp"
         android:shadowColor="@color/red"
         android:shadowRadius="5"
@@ -150,6 +150,7 @@
         android:layout_height="50dp"
         android:layout_below="@id/txt_number_of_delivery"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="40dp"
         android:text="0"
@@ -176,7 +177,7 @@
 
     <ImageView
         android:id="@+id/img_monthly"
-        android:layout_width="400dp"
+        android:layout_width="380dp"
         android:layout_height="120dp"
         android:layout_below="@id/btn_number_of_pickup"
         android:layout_marginTop="20dp"
@@ -193,7 +194,7 @@
         android:layout_below="@id/txt_display_number_of_delivery"
         android:layout_marginTop="10dp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="30dp"
         android:elevation="10dp"
         android:shadowColor="@color/black"
         android:shadowRadius="5"
@@ -210,6 +211,7 @@
         android:layout_marginBottom="40dp"
         android:layout_below="@id/txt_monthly_income"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:textAlignment="center"
         android:textStyle="bold"

@@ -78,7 +78,7 @@ public class NewAdminSalesFragment extends Fragment {
 
     private void getDataFromActivity(){
         adminDashboard = (AdminDashboard) getActivity();
-        token = adminDashboard.getMyToken();
+        token = adminDashboard.getMyTokenAdmin();
 
         Toast.makeText(getActivity(), "Here:" + token, Toast.LENGTH_SHORT).show();
 

@@ -50,7 +50,6 @@ public class StatusFragment extends Fragment {
 
     Intent intent;
 
-    CustomerStatusInterface customerStatusInterface;
     CustomerStatusAdapter customerStatusAdapter;
 
     Retrofit retrofit;
@@ -77,7 +76,6 @@ public class StatusFragment extends Fragment {
 
         String ip = Global.getIp();
         retrofit =Global.setIpRetrofit(ip);
-        customerStatusInterface = retrofit.create(CustomerStatusInterface.class);
         bookingInterface = retrofit.create(BookingInterface.class);
 
 
@@ -95,36 +93,6 @@ public class StatusFragment extends Fragment {
         customerAdapter.notifyDataSetChanged();
     }
 
-//    private void dataInitialized() {
-//        statusArrayList = new ArrayList<>();
-//
-//        //statusPicture = new
-//
-//        statusDate = new String[]{
-//                getString(R.string.date1),
-//                getString(R.string.date2),
-//                getString(R.string.date3),
-//        };
-//
-//        statusPayable = new String[]{
-//                getString(R.string.total1),
-//                getString(R.string.total2),
-//                getString(R.string.total3),
-//
-//        };
-//        statusStatus = new String[]{
-//                getString(R.string.status1),
-//                getString(R.string.status2),
-//                getString(R.string.status3),
-//        };
-//
-//        for(int i=0; i < statusDate.length; i++){
-//
-//            Status status = new Status(statusDate[i], statusPayable[i], statusStatus[i] );
-//            statusArrayList.add(status);
-//        }
-//
-//    }
 
 
     private void getDataFromActivity(){
@@ -159,27 +127,4 @@ public class StatusFragment extends Fragment {
     // ============================== GET RETROFIT ============================== //
     // ============================== GET RETROFIT ============================== //
 
-    private void getCustomerStatus(){
-        Call<List<CustomerStatusModel>> call = customerStatusInterface.getCustomerStatus();
-        call.enqueue(new Callback<List<CustomerStatusModel>>() {
-            @Override
-            public void onResponse(Call<List<CustomerStatusModel>> call, Response<List<CustomerStatusModel>> response) {
-
-                if(!response.isSuccessful()){
-                    Toast.makeText(getActivity(), "Code: " + response.code(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                List<CustomerStatusModel> customerStatusModelsResponse = response.body();
-
-//                customerStatusAdapter.setCustomerStatusData (customerStatusModelsResponse);
-                recyclerView.setAdapter(customerStatusAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<List<CustomerStatusModel>> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 }
