@@ -121,6 +121,7 @@ public class AdminHomeFragment extends Fragment {
         btnMonthlyIncome.setText("0");
         monthlyIncom = 0;
         totalPickups = 0;
+        dailyIncome = 0;
         getAllBookings();
 
 
@@ -204,6 +205,9 @@ public class AdminHomeFragment extends Fragment {
 //        });
 //    }
     private void getAllBookings(){
+        dailyIncome = 0;
+        monthlyIncom = 0;
+
         finalToken = "Bearer " + token;
         Call<BookingsRequest> requestCall = bookingInterface.getBookings(finalToken);
         requestCall.enqueue(new Callback<BookingsRequest>() {
